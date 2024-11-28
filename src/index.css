@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-b from-gray-950 to-gray-900 text-white min-h-screen;
+  }
+}
+
+@layer components {
+  .section-light {
+    @apply bg-gray-900/50;
+  }
+
+  .section-dark {
+    @apply bg-gray-950/50;
+  }
+
+  .hero-button {
+    @apply px-4 py-2  
+           text-sm text-white/70
+           border border-white/10
+           rounded-full 
+           transition-all duration-300 ease-in-out
+           hover:border-white/20 hover:text-white/90 hover:scale-[1.02]
+           active:scale-[0.98];
+  }
+
+  .nav-item {
+    @apply px-3 py-1.5 
+           text-sm text-white/70
+           rounded-full 
+           transition-all duration-300 ease-in-out
+           hover:bg-white/5 hover:text-white/90;
+  }
+}
