@@ -1,12 +1,12 @@
 import "./App.css";
-import Hero from "./Components/Hero";
-import NavBar from "./Components/NavBar";
-import Skills from "./Components/Skills";
-import About from "./Components/About";
-import ScrollProgress from "./Components/ScrollProgress";
-import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
-import Projects from "./Components/Projects";
+import Hero from "./components/hero/Hero";
+import NavBar from "./components/common/NavBar";
+import Skills from "./components/skills/Skills";
+import About from "./components/about/About";
+import ScrollProgress from "./components/common/ScrollProgress";
+import Contact from "./components/contact/Contact";
+import Footer from "./components/common/Footer";
+import Projects from "./components/projects/Projects";
 
 function App() {
   return (

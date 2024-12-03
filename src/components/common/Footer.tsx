@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HeroData } from "../data/data";
+import { HeroData } from "../../data/data";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 

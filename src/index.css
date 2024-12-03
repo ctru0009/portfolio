@@ -13,6 +13,10 @@
     @apply bg-gray-900/50;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   .section-dark {
     @apply bg-gray-950/50;
   }

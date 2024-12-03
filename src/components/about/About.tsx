@@ -1,4 +1,4 @@
-import { HeroData, AboutData } from "../data/data";
+import { HeroData, AboutData } from "../../data/data";
 const About = () => {
   const education = AboutData.education;
 
