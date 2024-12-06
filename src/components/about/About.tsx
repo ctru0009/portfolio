@@ -21,7 +21,7 @@ const About = () => {
           {/* Left Column - Image */}
           <div className="rounded-lg overflow-hidden shadow-lg">
             <img
-              src="/your-photo.jpg"
+              src= {HeroData.avatarURL}
               alt="Professional headshot"
               className="w-full h-auto"
             />
