@@ -37,7 +37,7 @@ interface AboutDataInterface {
 const HeroData = {
   avatarURL: "https://i.pravatar.cc/300",
   name: "Cong Chuong Truong",
-  title: "Fresh Software Engineer",
+  title: "Software Engineer",
   location: "Melbourne, Australia",
   email: "truongcongchuong123@gmail.com",
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
