@@ -24,7 +24,7 @@ const Hero = () => {
             <span className="font-medium text-white"> {HeroData.name}</span>, I
             am a
             <span className="font-medium text-white"> {HeroData.title} </span>
-            based in Melbourne.
+            based in Australia.
           </h1>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
