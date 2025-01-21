@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { MdEmail, MdLocationOn } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import { HeroData } from "../../data/data";
 import ContactItem from "./ContactItem";
 
@@ -23,19 +23,13 @@ const Contact = () => {
       value: HeroData.github,
       link: HeroData.github,
     },
-    {
-      icon: <MdLocationOn className="text-2xl" />,
-      label: "Location",
-      value: "Melbourne, Australia",
-      link: undefined,
-    },
   ];
 
   return (
     <div id="contact" className="section-dark scroll-smooth">
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold text-white">Contact</h2>
+          <h2 className="text-3xl font-semibold text-white mb-4 ">Contact</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Feel free to reach out if you're looking for a developer, have a
             question, or just want to connect.
