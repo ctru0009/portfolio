@@ -42,7 +42,7 @@ const HeroData = {
   email: "truongcongchuong123@gmail.com",
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
-  resume: "",
+  resume: "https://drive.usercontent.google.com/download?id=16GDBNCSazQEMOWzPbbJc8v4u2u72KiYL&export=download",
 };
 
 const AboutData = {
