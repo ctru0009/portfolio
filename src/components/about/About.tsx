@@ -3,10 +3,7 @@ const About = () => {
   const education = AboutData.education;
 
   return (
-    <div
-      id="about"
-      className="section-light py-20 px-4 sm:px-6 lg:px-8"
-    >
+    <div id="about" className="section-light py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-16">
@@ -21,7 +18,7 @@ const About = () => {
           {/* Left Column - Image */}
           <div className="rounded-lg overflow-hidden shadow-lg">
             <img
-              src= {HeroData.avatarURL}
+              src={HeroData.avatarURL}
               alt="Professional headshot"
               className="w-full h-auto"
             />
@@ -30,48 +27,30 @@ const About = () => {
           {/* Right Column - Content */}
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold text-gray-100">
-              Hello, I'm {HeroData.name}
+              Hey, I'm {HeroData.name}
             </h3>
 
             <p className="text-gray-300 leading-relaxed">
-              I'm a {HeroData.title} with a passion for creating elegant solutions to
-              complex problems.
+              I'm a <b>Full Stack .NET Developer</b> who genuinely loves
+              building things that work well and make people's lives a little
+              easier. Coding isn't just a job for me - it's something I find
+              endlessly fascinating. There's nothing quite like the feeling of
+              taking an idea, breaking it down into smaller pieces, and turning
+              it into something real and useful. I spend most of my time working
+              with
+              <b> C#, ASP.NET Core, SQL, and JavaScript</b> frameworks to create
+              apps and systems that are both functional and user-friendly. I'm
+              the kind of person who enjoys diving into a tricky problem and
+              figuring out the best way to solve it, whether that means writing
+              clean, efficient code or collaborating with others to find a
+              better approach.
             </p>
-
-            {/* Skills Section */}
-            <div>
-              {/* <h4 className="text-xl font-semibold text-gray-100 mb-4">
-                Technical Skills
-              </h4>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  "React",
-                  "TypeScript",
-                  "Node.js",
-                  "Next.js",
-                  "Tailwind CSS",
-                ].map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div> */}
-            </div>
-
-            {/* Quick Facts */}
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              {/* <div>
-                <h4 className="font-medium text-gray-100">Location</h4>
-                <p className="text-gray-300">[Your Location]</p>
-              </div>
-              <div>
-                <h4 className="font-medium text-gray-100">Experience</h4>
-                <p className="text-gray-300">[X] Years</p>
-              </div> */}
-            </div>
+            <p className="text-gray-300 leading-relaxed">
+              When I'm not coding, I'm usually hanging out with friends, playing
+              the guitar. If you're looking for someone who's passionate about
+              building great software and always ready to take on new
+              challenges, I'd love to connect and see how I can help.
+            </p>
           </div>
         </div>
 
