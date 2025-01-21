@@ -1,6 +1,7 @@
 import projectImage1 from "../assets/images/project1.png";
 import projectImage2 from "../assets/images/project2.png";
 import projectImage3 from "../assets/images/project3.png";
+import projectImage4 from "../assets/images/project4.png";
 
 interface HeroDataInterface {
   avatarURL: string;
@@ -32,7 +33,6 @@ interface ProjectInterface {
 interface AboutDataInterface {
   education: EducationInterface[];
 }
-
 
 const HeroData = {
   avatarURL: "https://i.pravatar.cc/300",
@@ -66,7 +66,7 @@ const AboutData = {
   ],
 };
 
-const ProjectsData= [
+const ProjectsData = [
   {
     title: "Document Management System",
     description:
@@ -107,6 +107,27 @@ const ProjectsData= [
     githubLink: "https://github.com/ctru0009/events-management-app",
     liveLink: "https://github.com/ctru0009/events-management-app",
   },
+  {
+    title: "Fizz Buzz Game",
+    description:
+      "A simple Fizz Game that replaces numbers with specific words for multiples of numbers (e.g. 3 and 5 are replaced with Fizz and Buzz).",
+    image: projectImage4,
+    technologies: [
+      "Typescript",
+      "React",
+      "ASP.NET",
+      "SignalR",
+      "PosgreSQL",
+      "TailwindCSS",
+    ],
+    githubLink: "https://github.com/ctru0009/FizzBuzz",
+    liveLink: "https://github.com/ctru0009/FizzBuzz",
+  },
 ];
-export { HeroData, AboutData, ProjectsData};
-export type { HeroDataInterface, AboutDataInterface, ProjectInterface, EducationInterface };
+export { HeroData, AboutData, ProjectsData };
+export type {
+  HeroDataInterface,
+  AboutDataInterface,
+  ProjectInterface,
+  EducationInterface,
+};
