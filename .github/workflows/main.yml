@@ -1,0 +1,42 @@
+name: Deploy Portfolio to Github Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  
+env:
+  CUSTOM_DOMAIN: "www.congchuongtruong.net"
+  
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+        
+      - name: Add CNAME file
+        run: echo "${{ env.CUSTOM_DOMAIN }}" > dist/CNAME  
+
+      - name: Deploy to gh-pages Branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Deploy to the gh-pages branch
+          folder: dist  # Deploy the 'dist' folder
+          target-folder: .  # Deploy to the root of gh-pages (preserving CNAME and index.html)
+          clean: true  # Delete old files in the gh-pages branch        
