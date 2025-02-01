@@ -28,7 +28,11 @@ const Hero = () => {
           </h1>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-          <a href={"mailto:" + HeroData.email} className="hero-button group">
+          <a
+            href={"mailto:" + HeroData.email}
+            target="_blank"
+            className="hero-button group"
+          >
             <span className="flex items-center gap-2">
               Contact me{" "}
               <CiMail className="group-hover:translate-x-1 transition-transform" />
@@ -43,12 +47,16 @@ const Hero = () => {
           <div className="flex gap-3">
             <a
               href={HeroData.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hero-button hover:text-white/90 transition-colors"
             >
               <FaLinkedin className="text-xl" />
             </a>
             <a
               href={HeroData.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hero-button hover:text-white/90 transition-colors"
             >
               <FaGithub className="text-xl" />
