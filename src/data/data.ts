@@ -2,6 +2,7 @@ import projectImage1 from "../assets/images/project1.png";
 import projectImage2 from "../assets/images/project2.png";
 import projectImage3 from "../assets/images/project3.png";
 import projectImage4 from "../assets/images/project4.png";
+import avatar from "../assets/images/avatar.jpg";
 
 interface HeroDataInterface {
   avatarURL: string;
@@ -35,7 +36,8 @@ interface AboutDataInterface {
 }
 
 const HeroData = {
-  avatarURL: "https://i.pravatar.cc/300",
+  // avatarURL: "https://i.pravatar.cc/300",
+  avatarURL: avatar,
   name: "Cong Chuong Truong",
   title: "Software Engineer",
   location: "Melbourne, Australia",
