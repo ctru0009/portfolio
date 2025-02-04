@@ -44,7 +44,7 @@ const HeroData = {
   email: "truongcongchuong123@gmail.com",
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
-  resume: "https://drive.usercontent.google.com/download?id=16GDBNCSazQEMOWzPbbJc8v4u2u72KiYL&export=download",
+  resume: "https://drive.google.com/file/d/1USpSHskFzHaK2A0-7UVaBWiuXnWqCLJj/view",
 };
 
 const AboutData = {
