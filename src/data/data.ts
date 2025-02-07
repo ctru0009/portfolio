@@ -35,6 +35,28 @@ interface AboutDataInterface {
   education: EducationInterface[];
 }
 
+interface NavigationInterface {
+  name: string;
+  link: string;
+}
+
+interface WorkInterface {
+  title: string;
+  company: string;
+  period: string;
+  responsibilities: string[];
+  technologies: string[];
+}
+
+const NavigationData: NavigationInterface[] = [
+  { name: "Home", link: "#home" },
+  { name: "About", link: "#about" },
+  { name: "Skills", link: "#skills" },
+  { name: "Work Experience", link: "#works" },
+  { name: "Projects", link: "#projects" },
+  { name: "Contacts", link: "#contact" },
+];
+
 const HeroData = {
   // avatarURL: "https://i.pravatar.cc/300",
   avatarURL: avatar,
@@ -44,7 +66,8 @@ const HeroData = {
   email: "truongcongchuong123@gmail.com",
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
-  resume: "https://drive.google.com/file/d/1USpSHskFzHaK2A0-7UVaBWiuXnWqCLJj/view",
+  resume:
+    "https://drive.google.com/file/d/1USpSHskFzHaK2A0-7UVaBWiuXnWqCLJj/view",
 };
 
 const AboutData = {
@@ -67,6 +90,20 @@ const AboutData = {
     },
   ],
 };
+
+const WorkData: WorkInterface[] = [
+  {
+    title: "Software Engineer",
+    company: "Jung Talents",
+    period: "Feb 2023 - Present",
+    responsibilities: [
+      "Migrated GreenBench's backend from .NET 8 to .NET 9, enhancing performance, security, and maintainability.",
+      "Developed and optimized API endpoints using ASP.NET Core, Entity Framework Core, and LINQ.",
+      "Built and improved PTE Master's online learning platform with TypeScript, React, Docker, and PostgreSQL.",
+    ],
+    technologies: ["React", "TypeScript", ".NET", "PostgreSQL", "Docker"],
+  },
+];
 
 const ProjectsData = [
   {
@@ -126,10 +163,12 @@ const ProjectsData = [
     liveLink: "https://github.com/ctru0009/FizzBuzz",
   },
 ];
-export { HeroData, AboutData, ProjectsData };
+export { HeroData, AboutData, ProjectsData, WorkData, NavigationData };
 export type {
   HeroDataInterface,
   AboutDataInterface,
   ProjectInterface,
   EducationInterface,
+  WorkInterface,
+  NavigationInterface,
 };
