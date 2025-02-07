@@ -1,4 +1,4 @@
-
+import { NavigationData } from "../../data/data";
 import { motion } from "framer-motion";
 const NavBar = () => {
   return (
@@ -10,21 +10,12 @@ const NavBar = () => {
         className="text-center text-white/70"
       >
         <nav className="flex gap-1 p-0.5 border border-white/30 rounded-full bg-white/10 backdrop-blur">
-          <a href="#home" className="nav-item">
-            Home
-          </a>
-          <a href="#about" className="nav-item">
-            About
-          </a>
-          <a href="#skills" className="nav-item">
-            Skills
-          </a>
-          <a href="#projects" className="nav-item">
-            Projects
-          </a>
-          <a href="#contact" className="nav-item">
-            Contact
-          </a>
+          {NavigationData.map((item) => (
+            <a href={item.link} className="nav-item">
+              {item.name}
+            </a>
+          ))}
+
         </nav>
       </motion.div>
     </div>

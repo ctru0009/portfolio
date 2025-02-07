@@ -5,7 +5,7 @@ const Projects = () => {
   const projects = ProjectsData;
 
   return (
-    <div id="projects" className="section-light py-20 px-4 sm:px-6">
+    <div id="projects" className="section-dark py-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-100 mb-4">Projects</h2>

@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HeroData } from "../../data/data";
+import { HeroData, NavigationData } from "../../data/data";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -14,7 +14,7 @@ const Footer = () => {
 
           {/* Center - Quick Links */}
           <div className="flex gap-6 text-sm">
-            <a href="#home" className="text-gray-400 hover:text-white transition-colors">
+            {/* <a href="#home" className="text-gray-400 hover:text-white transition-colors">
               Home
             </a>
             <a href="#about" className="text-gray-400 hover:text-white transition-colors">
@@ -25,7 +25,12 @@ const Footer = () => {
             </a>
             <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
               Contact
-            </a>
+            </a> */}
+            {NavigationData.map((item) => (
+              <a href={item.link} className="text-gray-400 hover:text-white transition-colors">
+                {item.name}
+              </a>
+            ))}
           </div>
 
           {/* Right side - Social Links */}

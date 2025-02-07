@@ -7,6 +7,7 @@ import ScrollProgress from "./components/common/ScrollProgress";
 import Contact from "./components/contact/Contact";
 import Footer from "./components/common/Footer";
 import Projects from "./components/projects/Projects";
+import Work from "./components/works/Work";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Hero />
       <About />
       <Skills />
+      <Work />
       <Projects />
       <Contact />
       <Footer />

@@ -30,6 +30,15 @@
            hover:border-white/20 hover:text-white/90 hover:scale-[1.02]
            active:scale-[0.98];
   }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
   .nav-item {
     @apply px-3 py-1.5 
