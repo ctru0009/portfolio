@@ -38,16 +38,25 @@ const About = () => {
               taking an idea, breaking it down into smaller pieces, and turning
               it into something real and useful. I spend most of my time working
               with
-              <b> C#, ASP.NET Core, SQL, and JavaScript</b> frameworks to create
-              apps and systems that are both functional and user-friendly. I'm
-              the kind of person who enjoys diving into a tricky problem and
-              figuring out the best way to solve it, whether that means writing
-              clean, efficient code or collaborating with others to find a
-              better approach.
+              <b>
+                {" "}
+                C#, ASP.NET Core, PostgreSQL, and JavaScript frameworks like
+                React and TypeScript
+              </b>{" "}
+              frameworks to create apps and systems that are both{" "}
+              <b>scalable, secure, and user-friendly</b>. I'm the kind of person
+              who enjoys diving into a tricky problems like whether it's{" "}
+              <b>
+                optimizing API performance, improving UI responsiveness, or
+                containerizing applications with Docker
+              </b>
+              . I also love collaborating with others to find the best approach,
+              whether that means
+              <b> {" "}debugging tricky issues or refining system design</b>.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              When I'm not coding, I'm usually hanging out with friends, playing
-              the guitar. If you're looking for someone who's passionate about
+              When I'm not coding, I'm usually <b>{" "}hanging out with friends, playing
+              the guitar</b>. If you're looking for someone who's passionate about
               building great software and always ready to take on new
               challenges, I'd love to connect and see how I can help.
             </p>
