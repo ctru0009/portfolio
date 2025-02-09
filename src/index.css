@@ -9,6 +9,23 @@
 }
 
 @layer components {
+
+  .burger-menu span {
+    transform-origin: center;
+  }
+  
+  .burger-menu.open span:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .burger-menu.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .burger-menu.open span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
   .section-light {
     @apply bg-gray-900/50;
   }
