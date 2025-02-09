@@ -1,13 +1,19 @@
-import { FaReact, FaNodeJs, FaPython, FaGitAlt } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaPython, FaGitAlt, FaAws } from "react-icons/fa";
 import {
   SiTypescript,
   SiJavascript,
   SiTailwindcss,
   SiMongodb,
   SiDotnet,
+  SiFlask,
+  SiPostgresql,
+  SiRedis,
+  SiDocker,
+  SiXdotorg,
 } from "react-icons/si";
 import { PiFileSqlLight } from "react-icons/pi";
 import SkillItem from "./SkillItem";
+import { TbBrandCSharp } from "react-icons/tb";
 const Skills = () => {
   const skills = [
     { name: "React", icon: <FaReact className="text-4xl text-[#61DAFB]" /> },
@@ -21,20 +27,36 @@ const Skills = () => {
     },
     { name: "Node.js", icon: <FaNodeJs className="text-4xl text-[#339933]" /> },
     { name: "Python", icon: <FaPython className="text-4xl text-[#3776AB]" /> },
+    { name: "Flask", icon: <SiFlask className="text-4xl text-[#000000]" /> },
+    { name: "C#", icon: <TbBrandCSharp className="text-4xl text-[#9B4993]" /> },
+    { name: ".NET", icon: <SiDotnet className="text-4xl text-[#502bd4]" /> },
     {
       name: "Tailwind CSS",
       icon: <SiTailwindcss className="text-4xl text-[#06B6D4]" />,
     },
     { name: "Git", icon: <FaGitAlt className="text-4xl text-[#F05032]" /> },
     {
+      name: "PostgreSQL",
+      icon: <SiPostgresql className="text-4xl text-[#336791]" />,
+    },
+    {
       name: "MongoDB",
       icon: <SiMongodb className="text-4xl text-[#47A248]" />,
     },
-    { name: "C# .NET", icon: <SiDotnet className="text-4xl text-[#502bd4]" /> },
+    { name: "Redis", icon: <SiRedis className="text-4xl text-[#DC382D]" /> },
     {
       name: "SQL",
       icon: <PiFileSqlLight className="text-4xl text-[#f29111]" />,
     },
+    { name: "Docker", icon: <SiDocker className="text-4xl text-[#2496ED]" /> },
+    {
+      name: "AWS (Basic)",
+      icon: <FaAws className="text-4xl text-[#FF9900]" />,
+    },
+    {
+      name: "xUnit/NUnit",
+      icon: <SiXdotorg className="text-4xl text-[#8B0000]" />,
+    }, // No specific icon, using a placeholder
   ];
 
   return (
