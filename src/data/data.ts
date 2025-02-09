@@ -97,11 +97,22 @@ const WorkData: WorkInterface[] = [
     company: "Jung Talents",
     period: "Feb 2023 - Present",
     responsibilities: [
-      "Migrated and optimized GreenBench's backend from .NET 8 to .NET 9.",
-      "Developed and maintained API endpoints using ASP.NET Core and Entity Framework Core.",
-      "Built and enhanced PTE Master's online learning platform with React, TypeScript, and PostgreSQL.",
+      "Optimized backend performance by migrating GreenBench’s system from .NET 8 to .NET 9, improving API response times by 25% and reducing database calls by 50% with Redis caching.",
+      "Enhanced front-end efficiency by resolving React re-rendering issues (React.memo, useCallback, useMemo), cutting UI lag by 40% across the platform.",
+      "Built and deployed full-stack applications, including the PTE Master learning platform using TypeScript, React, Docker, and PostgreSQL, improving scalability and deployment consistency.",
     ],
-    technologies: ["React", "TypeScript", ".NET", "PostgreSQL", "Docker"],
+    technologies: [
+      "React",
+      "TypeScript",
+      ".NET",
+      "PostgreSQL",
+      "Docker",
+      "Redis",
+      "C#",
+      "AWS",
+      "Git",
+      "Tailwind CSS",
+    ],
   },
 ];
 
