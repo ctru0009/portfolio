@@ -95,9 +95,9 @@ const WorkData: WorkInterface[] = [
   {
     title: "Software Engineer",
     company: "Jung Talents",
-    period: "Feb 2023 - Present",
+    period: "Feb 2024 - Present",
     responsibilities: [
-      "Optimized backend performance by migrating GreenBench’s system from .NET 8 to .NET 9, improving API response times by 25% and reducing database calls by 50% with Redis caching.",
+      "Optimized backend performance by migrating GreenBench's system from .NET 8 to .NET 9, improving API response times by 25% and reducing database calls by 50% with Redis caching.",
       "Enhanced front-end efficiency by resolving React re-rendering issues (React.memo, useCallback, useMemo), cutting UI lag by 40% across the platform.",
       "Built and deployed full-stack applications, including the PTE Master learning platform using TypeScript, React, Docker, and PostgreSQL, improving scalability and deployment consistency.",
     ],
