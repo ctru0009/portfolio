@@ -50,7 +50,7 @@ const Skills = () => {
     },
     { name: "Docker", icon: <SiDocker className="text-4xl text-[#2496ED]" /> },
     {
-      name: "AWS (Basic)",
+      name: "AWS",
       icon: <FaAws className="text-4xl text-[#FF9900]" />,
     },
     {
