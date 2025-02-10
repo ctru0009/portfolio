@@ -38,7 +38,12 @@ const Hero = () => {
               <CiMail className="group-hover:translate-x-1 transition-transform" />
             </span>
           </a>
-          <a href={HeroData.resume} className="hero-button group">
+          <a
+            href={HeroData.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-button group"
+          >
             <span className="flex items-center gap-2">
               Download CV{" "}
               <BiImport className="group-hover:translate-y-[-2px] transition-transform" />
