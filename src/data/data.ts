@@ -67,7 +67,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/1MEt0dJyai3xAXE5YcUtbwKkxIdVD3G3r/view",
+    "https://drive.google.com/file/d/14U5QnxlfFrwenR9UGe6lAnVkI-g9Q7qC/view",
 };
 
 const AboutData = {
@@ -97,9 +97,15 @@ const WorkData: WorkInterface[] = [
     company: "Jung Talents",
     period: "Feb 2024 - Present",
     responsibilities: [
-      "Optimized backend performance by migrating GreenBench's system from .NET 8 to .NET 9, improving API response times by 25% and reducing database calls by 50% with Redis caching.",
-      "Enhanced front-end efficiency by resolving React re-rendering issues (React.memo, useCallback, useMemo), cutting UI lag by 40% across the platform.",
-      "Built and deployed full-stack applications, including the PTE Master learning platform using TypeScript, React, Docker, and PostgreSQL, improving scalability and deployment consistency.",
+      "Assisted in migrating .NET 8 to .NET 9, improving performance by 15%.",
+      "Developed ASP.NET Core web apps, optimizing APIs for 20% better scalability.",
+      "Improved query performance by 30% using Entity Framework Core & LINQ.",
+      "Contributed to Auth0 implementation for secure authentication & authorization.",
+      "Increased test coverage by 40% with nUnit, reducing bugs by 20%.",
+      "Deployed to Azure (App Services, Functions, DevOps), cutting deployment time by 35%.",
+      "Containerized apps with Docker, streamlining CI/CD.",
+      "Enhanced Redis caching, reducing database load by 45%.",
+      "Integrated Serilog, improving error resolution by 30%.",
     ],
     technologies: [
       "React",
