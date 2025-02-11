@@ -21,7 +21,7 @@ const NavBar = () => {
         initial={{ y: -150 }}
         animate={{ y: 0 }}
         transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-        className="text-center text-white/70 relative w-full max-w-screen-xl px-4"
+        className="text-center text-white/70 relative px-4"
       >
         {/* Burger Menu Button */}
         {isMobile && (
