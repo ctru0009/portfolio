@@ -67,7 +67,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/14U5QnxlfFrwenR9UGe6lAnVkI-g9Q7qC/view",
+    "https://drive.google.com/file/d/1IbAtjM8XL8Dq6-URkD3AkxTbPQfmkgGw/view",
 };
 
 const AboutData = {
@@ -98,26 +98,27 @@ const WorkData: WorkInterface[] = [
     period: "Feb 2024 - Present",
     responsibilities: [
       "Assisted in migrating .NET 8 to .NET 9, improving performance by 15%.",
-      "Developed ASP.NET Core web apps, optimizing APIs for 20% better scalability.",
+      "Worked on ASP.NET Core web apps, helping optimize APIs for 20% better scalability.",
       "Improved query performance by 30% using Entity Framework Core & LINQ.",
       "Contributed to Auth0 implementation for secure authentication & authorization.",
-      "Increased test coverage by 40% with nUnit, reducing bugs by 20%.",
-      "Deployed to Azure (App Services, Functions, DevOps), cutting deployment time by 35%.",
-      "Containerized apps with Docker, streamlining CI/CD.",
-      "Enhanced Redis caching, reducing database load by 45%.",
-      "Integrated Serilog, improving error resolution by 30%.",
+      "Helped increase test coverage by 40% with nUnit, reducing bugs by 20%",
+      "Assisted with Azure deployments (App Services, Functions, DevOps), cutting deployment time by 35%.",
+      "Containerized apps with Docker & Docker compose, ensuring consistent development environments.",
+      "Worked on enhancing Redis caching, helped reduce database load by 45%.",
+      "Contributed to Serilog intergration, improving error resolution by 30%",
     ],
     technologies: [
-      "React",
-      "TypeScript",
       ".NET",
-      "PostgreSQL",
       "Docker",
       "Redis",
       "C#",
-      "AWS",
+      "Azure",
       "Git",
-      "Tailwind CSS",
+      "Serilog",
+      "Entity Framework Core",
+      "LINQ",
+      "Auth0",
+      "nUnit",
     ],
   },
 ];
