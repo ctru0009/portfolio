@@ -67,7 +67,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/1IbAtjM8XL8Dq6-URkD3AkxTbPQfmkgGw/view",
+    "https://drive.google.com/file/d/1ugwKe2FmkyYn_k4BPvIfe5j_FIQ-5YAn/view",
 };
 
 const AboutData = {
@@ -98,14 +98,14 @@ const WorkData: WorkInterface[] = [
     period: "Feb 2024 - Present",
     responsibilities: [
       "Assisted in migrating .NET 8 to .NET 9, improving performance by 15%.",
-      "Worked on ASP.NET Core web apps, helping optimize APIs for 20% better scalability.",
-      "Improved query performance by 30% using Entity Framework Core & LINQ.",
+      "Worked on ASP.NET Core web apps, helping optimize APIs for 10% better scalability.",
+      "Improved query performance by 15% using Entity Framework Core & LINQ.",
       "Contributed to Auth0 implementation for secure authentication & authorization.",
-      "Helped increase test coverage by 40% with nUnit, reducing bugs by 20%",
-      "Assisted with Azure deployments (App Services, Functions, DevOps), cutting deployment time by 35%.",
+      "Helped increase test coverage by 20% with nUnit, reducing bugs by 10%",
+      "Assisted with Azure deployments (App Services, Functions, DevOps), cutting deployment time by 15%.",
       "Containerized apps with Docker & Docker compose, ensuring consistent development environments.",
-      "Worked on enhancing Redis caching, helped reduce database load by 45%.",
-      "Contributed to Serilog intergration, improving error resolution by 30%",
+      "Worked on enhancing Redis caching, helped reduce database load by 20%.",
+      "Contributed to Serilog intergration, improving error resolution by 15%",
     ],
     technologies: [
       ".NET",
