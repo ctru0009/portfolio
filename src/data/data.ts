@@ -95,7 +95,7 @@ const WorkData: WorkInterface[] = [
   {
     title: "Software Engineer",
     company: "Jung Talents",
-    period: "Feb 2024 - Present",
+    period: "Feb 2024 - Jan 2025",
     responsibilities: [
       "Assisted in migrating .NET 8 to .NET 9, improving performance by 15%.",
       "Worked on ASP.NET Core web apps, helping optimize APIs for 10% better scalability.",
