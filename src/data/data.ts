@@ -67,7 +67,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/1ugwKe2FmkyYn_k4BPvIfe5j_FIQ-5YAn/view",
+    "https://drive.google.com/file/d/1hLloyDQXrFRdHSwlr_zvVzxNI8dWFR6w/view",
 };
 
 const AboutData = {
@@ -101,11 +101,11 @@ const WorkData: WorkInterface[] = [
       "Worked on ASP.NET Core web apps, helping optimize APIs for 10% better scalability.",
       "Improved query performance by 15% using Entity Framework Core & LINQ.",
       "Contributed to Auth0 implementation for secure authentication & authorization.",
-      "Helped increase test coverage by 20% with nUnit, reducing bugs by 10%",
-      "Assisted with Azure deployments (App Services, Functions, DevOps), cutting deployment time by 15%.",
+      "Helped increase test coverage with nUnit, reducing bugs in code base.",
+      "Assisted with Azure deployments (App Services, Functions, DevOps).",
       "Containerized apps with Docker & Docker compose, ensuring consistent development environments.",
       "Worked on enhancing Redis caching, helped reduce database load by 20%.",
-      "Contributed to Serilog intergration, improving error resolution by 15%",
+      "Contributed to Serilog intergration.",
     ],
     technologies: [
       ".NET",
