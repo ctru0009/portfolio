@@ -27,7 +27,7 @@ const Footer = () => {
               Contact
             </a> */}
             {NavigationData.map((item) => (
-              <a href={item.link} className="text-gray-400 hover:text-white transition-colors">
+              <a href={item.link} key={item.name} className="text-gray-400 hover:text-white transition-colors">
                 {item.name}
               </a>
             ))}
