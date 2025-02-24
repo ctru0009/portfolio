@@ -97,11 +97,11 @@ const WorkData: WorkInterface[] = [
     company: "Jung Talents",
     period: "Feb 2024 - Jan 2025",
     responsibilities: [
-      "Assisted in migrating .NET 8 to .NET 9, improving performance by 15%.",
+      "Migrating .NET 8 to .NET 9, improving performance by 15%.",
       "Worked on ASP.NET Core web apps, helping optimize APIs for 10% better scalability.",
       "Improved query performance by 15% using Entity Framework Core & LINQ.",
       "Contributed to Auth0 implementation for secure authentication & authorization.",
-      "Helped increase test coverage with nUnit, reducing bugs in code base.",
+      "Increase test coverage with nUnit, reducing bugs in code base.",
       "Assisted with Azure deployments (App Services, Functions, DevOps).",
       "Containerized apps with Docker & Docker compose, ensuring consistent development environments.",
       "Worked on enhancing Redis caching, helped reduce database load by 20%.",
