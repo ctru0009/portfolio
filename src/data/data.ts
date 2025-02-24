@@ -1,8 +1,8 @@
-import projectImage1 from "../assets/images/project1.png";
-import projectImage2 from "../assets/images/project2.png";
-import projectImage3 from "../assets/images/project3.png";
-import projectImage4 from "../assets/images/project4.png";
-import avatar from "../assets/images/avatar.jpg";
+import projectImage1 from "../assets/images/project1.webp";
+import projectImage2 from "../assets/images/project2.webp";
+import projectImage3 from "../assets/images/project3.webp";
+import projectImage4 from "../assets/images/project4.webp";
+import avatar from "../assets/images/avatar.webp";
 
 interface HeroDataInterface {
   avatarURL: string;
