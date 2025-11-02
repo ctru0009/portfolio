@@ -5,8 +5,7 @@ const ScrollProgress = () => {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 80,
     damping: 20,
-    restDelta: 0.001,
-    maxStallDuration: 100
+    restDelta: 0.001
   });
 
   return (

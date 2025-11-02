@@ -165,9 +165,9 @@ const NavBar = () => {
             className={`
             ${
               isMobile
-                ? `absolute top-full left-0 right-0 mt-2
-                 ${isOpen ? "flex" : "hidden"} flex-col gap-2 p-4
-                 bg-black/80 backdrop-blur rounded-lg border border-white/20`
+                ? `absolute top-full left-0 right-0 mt-2 min-w-[280px]
+                 ${isOpen ? "flex" : "hidden"} flex-col gap-1 p-4
+                 bg-black/90 backdrop-blur-lg rounded-xl border border-white/20 shadow-2xl`
                 : "flex gap-1 p-0.5 border border-white/30 rounded-full bg-white/10 backdrop-blur pl-16"
             }
           `}
@@ -182,9 +182,9 @@ const NavBar = () => {
                   href={item.link}
                   onClick={(e) => handleNavClick(e, item.link)}
                   className={`
-                    nav-item relative px-4 py-2 rounded-full transition-all duration-300
+                    relative px-4 py-3 rounded-lg transition-all duration-300
                     ${isMobile
-                      ? "w-full text-left hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
+                      ? "w-full text-left text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30 bg-transparent"
                       : `hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 ${isActive
                           ? "bg-white/20 text-white"
                           : "text-white/70 hover:text-white"
