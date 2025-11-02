@@ -1,10 +1,8 @@
 name: Deploy Portfolio to Github Pages
-
 on:
   push:
     branches:
       - main
-
 permissions:
   contents: write
   
@@ -17,7 +15,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-
+        
       - name: Setup Nodejs
         uses: actions/setup-node@v4
         with:
@@ -26,30 +24,22 @@ jobs:
       
       - name: Install Dependencies
         run: npm install
-
-      - name: Create .env file with secrets
-        run: |
-          cat << EOF > .env
-          VITE_EMAILJS_PUBLIC_KEY=${{ secrets.EMAILJS_PUBLIC_KEY }}
-          VITE_EMAILJS_SERVICE_ID=${{ secrets.EMAILJS_SERVICE_ID }}
-          VITE_EMAILJS_TEMPLATE_ID=${{ secrets.EMAILJS_TEMPLATE_ID }}
-          EOF
-        shell: 'bash --noprofile --norc {0}'
-        env:
-          EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
-          EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
-          EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
-
+        
       - name: Build Project
         run: npm run build
+        env:
+          # Pass secrets as environment variables during build
+          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
+          VITE_EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
         
       - name: Add CNAME file
-        run: echo "${{ env.CUSTOM_DOMAIN }}" > dist/CNAME  
-
+        run: echo "${{ env.CUSTOM_DOMAIN }}" > dist/CNAME
+        
       - name: Deploy to gh-pages Branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Deploy to the gh-pages branch
-          folder: dist  # Deploy the 'dist' folder
-          target-folder: .  # Deploy to the root of gh-pages (preserving CNAME and index.html)
-          clean: true  # Delete old files in the gh-pages branch        
+          branch: gh-pages
+          folder: dist
+          target-folder: .
+          clean: true
