@@ -27,6 +27,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Create .env file with secrets
+        run: |
+          echo "VITE_EMAILJS_PUBLIC_KEY=${{ secrets.EMAILJS_PUBLIC_KEY }}" > .env
+          echo "VITE_EMAILJS_SERVICE_ID=${{ secrets.EMAILJS_SERVICE_ID }}" >> .env
+          echo "VITE_EMAILJS_TEMPLATE_ID=${{ secrets.EMAILJS_TEMPLATE_ID }}" >> .env
+
       - name: Build Project
         run: npm run build
         
