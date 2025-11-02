@@ -57,7 +57,7 @@ Granular CONTEXT.md files co-located with code for minimal cascade effects:
 - **[State Management](/frontend/src/store/CONTEXT.md)** - *State patterns.* Global state, local state, data flow, and persistence strategies
 - **[API Client](/frontend/src/api/CONTEXT.md)** - *Client patterns.* HTTP clients, error handling, caching, and data synchronization
 - **[Routing](/frontend/src/routes/CONTEXT.md)** - *Navigation patterns.* Route definitions, guards, lazy loading, and deep linking
-- **[Utilities](/src/utils/CONTEXT.md)** - *Helper functions.* Formatters, validators, transformers, EmailJS integration, and common utilities
+- **[Utilities](/src/utils/CONTEXT.md)** - *Helper functions.* Formatters, validators, transformers, Web3Forms integration, and common utilities
 
 ### Shared Feature Documentation
 - **[Common Types](/shared/src/types/CONTEXT.md)** - *Type definitions.* Shared interfaces, enums, and type utilities

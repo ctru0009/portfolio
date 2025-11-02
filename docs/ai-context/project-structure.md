@@ -12,9 +12,10 @@ This document provides the complete technology stack and file tree structure for
 - **Framer Motion 11.11.10** - Animation library for smooth transitions and interactions
 
 ### Integration Services & APIs
-- **EmailJS Browser 4.4.1** - Email service integration for contact form functionality
-- **React Icons** - Icon library for UI components
+- **Web3Forms** - Secure form submission service for contact form functionality
+- **React Icons 5.3.0** - Icon library for UI components
 - **React Syntax Highlighter** - Code syntax highlighting for projects section
+- **React Intersection Observer** - Scroll-triggered animations and visibility detection
 
 ### Development & Quality Tools
 - **ESLint** - Code quality and linting for React/TypeScript
@@ -28,6 +29,8 @@ This document provides the complete technology stack and file tree structure for
 - **Data Centralization** - All content data managed in `src/data/data.ts` with TypeScript interfaces
 - **Responsive Design** - Mobile-first approach with TailwindCSS responsive utilities
 - **Animation Integration** - Framer Motion for scroll-based animations and micro-interactions
+- **Security-First Forms** - Honeypot fields and Web3Forms integration for secure contact functionality
+- **Advanced Navigation** - Search functionality and scroll spy for enhanced user experience
 
 ## Complete Project Structure
 
@@ -62,7 +65,7 @@ portfolio/
 │   ├── vite-env.d.ts                   # Vite TypeScript definitions
 │   ├── components/                     # React components organized by section
 │   │   ├── common/                     # Shared components
-│   │   │   ├── NavBar.tsx              # Navigation with smooth scrolling
+│   │   │   ├── NavBar.tsx              # Navigation with search, scroll spy, and mobile menu
 │   │   │   ├── Footer.tsx              # Footer with navigation links
 │   │   │   └── ScrollProgress.tsx      # Reading progress indicator
 │   │   ├── hero/                       # Hero section components
@@ -84,7 +87,7 @@ portfolio/
 │   │   │   └── ProjectDetails.tsx      # Project details modal
 │   │   └── contact/                    # Contact section components
 │   │       ├── Contact.tsx             # Contact information and layout
-│   │       ├── ContactForm.tsx         # EmailJS-powered contact form
+│   │       ├── ContactForm.tsx         # Web3Forms-powered contact form with honeypot
 │   │       └── ContactItem.tsx         # Individual contact information item
 │   ├── data/                           # Content data management
 │   │   └── data.ts                     # Centralized portfolio data with TypeScript interfaces
@@ -96,14 +99,26 @@ portfolio/
 │   │       ├── project3.webp           # Project 3 screenshot
 │   │       └── project4.webp           # Project 4 screenshot
 │   └── utils/                          # Utility functions
-│       └── emailjs.ts                  # EmailJS integration utilities
+│       └── web3Forms.ts                # Web3Forms integration utilities
 ├── dist/                               # Build output directory
 ├── docs/                               # Additional documentation
-│   ├── EMAILJS_SETUP.md                # EmailJS configuration guide
-│   └── EMAILJS_TEMPLATE.md             # Email template setup instructions
+│   ├── WEB3FORMS_SETUP.md              # Web3Forms configuration guide
+│   └── deployment-guide.md             # GitHub Pages deployment instructions
 └── node_modules/                       # Dependencies (gitignored)
 ```
 
 ---
 
-*This document reflects the current state of the portfolio project with EmailJS integration and component-based architecture.*
+*This document reflects the current state of the portfolio project with Web3Forms integration, advanced navigation features, and component-based architecture.*
+
+## Known Technical Debt
+
+- **Work Component Duplication**: Work components exist in both `/work/` and `/works/` directories (needs consolidation)
+- **Lint Warning**: NavBar.tsx has a minor useEffect dependency warning
+- **Unused Imports**: Styled Components imported but not actively used
+
+## Security Features
+
+- **Honeypot Field**: Spam protection in contact form
+- **Web3Forms Integration**: Secure form submission without exposing email addresses
+- **Environment Variables**: Sensitive configuration handled via GitHub Actions secrets
