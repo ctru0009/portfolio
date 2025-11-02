@@ -20,7 +20,6 @@ interface Skill {
   name: string;
   icon: React.ReactNode;
   category: "frontend" | "backend" | "database" | "tools" | "cloud";
-  experience: string;
 }
 
 const Skills = () => {
@@ -28,23 +27,23 @@ const Skills = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   const skills: Skill[] = [
-    { name: "React", icon: <FaReact className="text-3xl text-[#61DAFB]" />, category: "frontend", experience: "3+ years" },
-    { name: "TypeScript", icon: <SiTypescript className="text-3xl text-[#3178C6]" />, category: "frontend", experience: "2+ years" },
-    { name: "JavaScript", icon: <SiJavascript className="text-3xl text-[#F7DF1E]" />, category: "frontend", experience: "4+ years" },
-    { name: "Tailwind CSS", icon: <SiTailwindcss className="text-3xl text-[#06B6D4]" />, category: "frontend", experience: "2+ years" },
-    { name: "Node.js", icon: <FaNodeJs className="text-3xl text-[#339933]" />, category: "backend", experience: "2+ years" },
-    { name: "Python", icon: <FaPython className="text-3xl text-[#3776AB]" />, category: "backend", experience: "3+ years" },
-    { name: "Flask", icon: <SiFlask className="text-3xl text-[#000000]" />, category: "backend", experience: "1+ years" },
-    { name: "C#", icon: <TbBrandCSharp className="text-3xl text-[#9B4993]" />, category: "backend", experience: "2+ years" },
-    { name: ".NET", icon: <SiDotnet className="text-3xl text-[#502bd4]" />, category: "backend", experience: "1+ years" },
-    { name: "PostgreSQL", icon: <SiPostgresql className="text-3xl text-[#336791]" />, category: "database", experience: "2+ years" },
-    { name: "MongoDB", icon: <SiMongodb className="text-3xl text-[#47A248]" />, category: "database", experience: "1+ years" },
-    { name: "Redis", icon: <SiRedis className="text-3xl text-[#DC382D]" />, category: "database", experience: "1+ years" },
-    { name: "SQL", icon: <PiFileSqlLight className="text-3xl text-[#f29111]" />, category: "database", experience: "3+ years" },
-    { name: "Docker", icon: <SiDocker className="text-3xl text-[#2496ED]" />, category: "tools", experience: "1+ years" },
-    { name: "Git", icon: <FaGitAlt className="text-3xl text-[#F05032]" />, category: "tools", experience: "4+ years" },
-    { name: "xUnit/NUnit", icon: <SiXdotorg className="text-3xl text-[#8B0000]" />, category: "tools", experience: "1+ years" },
-    { name: "AWS", icon: <FaAws className="text-3xl text-[#FF9900]" />, category: "cloud", experience: "6 months" },
+    { name: "React", icon: <FaReact className="text-3xl text-[#61DAFB]" />, category: "frontend" },
+    { name: "TypeScript", icon: <SiTypescript className="text-3xl text-[#3178C6]" />, category: "frontend" },
+    { name: "JavaScript", icon: <SiJavascript className="text-3xl text-[#F7DF1E]" />, category: "frontend" },
+    { name: "Tailwind CSS", icon: <SiTailwindcss className="text-3xl text-[#06B6D4]" />, category: "frontend" },
+    { name: "Node.js", icon: <FaNodeJs className="text-3xl text-[#339933]" />, category: "backend" },
+    { name: "Python", icon: <FaPython className="text-3xl text-[#3776AB]" />, category: "backend" },
+    { name: "Flask", icon: <SiFlask className="text-3xl text-[#000000]" />, category: "backend" },
+    { name: "C#", icon: <TbBrandCSharp className="text-3xl text-[#9B4993]" />, category: "backend" },
+    { name: ".NET", icon: <SiDotnet className="text-3xl text-[#502bd4]" />, category: "backend" },
+    { name: "PostgreSQL", icon: <SiPostgresql className="text-3xl text-[#336791]" />, category: "database" },
+    { name: "MongoDB", icon: <SiMongodb className="text-3xl text-[#47A248]" />, category: "database" },
+    { name: "Redis", icon: <SiRedis className="text-3xl text-[#DC382D]" />, category: "database" },
+    { name: "SQL", icon: <PiFileSqlLight className="text-3xl text-[#f29111]" />, category: "database" },
+    { name: "Docker", icon: <SiDocker className="text-3xl text-[#2496ED]" />, category: "tools" },
+    { name: "Git", icon: <FaGitAlt className="text-3xl text-[#F05032]" />, category: "tools" },
+    { name: "xUnit/NUnit", icon: <SiXdotorg className="text-3xl text-[#8B0000]" />, category: "tools" },
+    { name: "AWS", icon: <FaAws className="text-3xl text-[#FF9900]" />, category: "cloud" },
   ];
 
   const categories = [
@@ -122,10 +121,7 @@ const Skills = () => {
                 </div>
 
                 {/* Skill Name */}
-                <h3 className="text-gray-100 font-semibold text-center mb-2">{skill.name}</h3>
-
-                {/* Experience */}
-                <p className="text-gray-400 text-sm text-center">{skill.experience}</p>
+                <h3 className="text-gray-100 font-semibold text-center">{skill.name}</h3>
 
                 {/* Hover Details */}
                 <AnimatePresence>
@@ -139,8 +135,7 @@ const Skills = () => {
                       <div className="mb-3">
                         {skill.icon}
                       </div>
-                      <h4 className="text-white font-semibold mb-2">{skill.name}</h4>
-                      <p className="text-gray-300 text-sm">{skill.experience} experience</p>
+                      <h4 className="text-white font-semibold">{skill.name}</h4>
                     </motion.div>
                   )}
                 </AnimatePresence>
