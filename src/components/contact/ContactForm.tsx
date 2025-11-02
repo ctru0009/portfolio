@@ -8,6 +8,7 @@ interface FormData {
   email: string;
   subject: string;
   message: string;
+  website: string; // Honeypot field
 }
 
 interface FormErrors {
@@ -23,6 +24,7 @@ const ContactForm = () => {
     email: "",
     subject: "",
     message: "",
+    website: "", // Honeypot field
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -92,6 +94,15 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Honeypot field validation - check if bot filled it
+    if (formData.website.trim() !== "") {
+      // Silently fail for bots - don't give any feedback
+      setSubmitError("Message sent successfully!"); // Fake success message
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", subject: "", message: "", website: "" });
+      return;
+    }
+
     if (!validateForm()) {
       return;
     }
@@ -110,7 +121,7 @@ const ContactForm = () => {
 
       console.log("Email sent successfully:", response);
       setIsSubmitted(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({ name: "", email: "", subject: "", message: "", website: "" });
     } catch (error) {
       console.error("Failed to send email:", error);
       setSubmitError("Failed to send message. Please try again later or contact me directly.");
@@ -120,7 +131,7 @@ const ContactForm = () => {
   };
 
   const resetForm = () => {
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setFormData({ name: "", email: "", subject: "", message: "", website: "" });
     setErrors({});
     setSubmitError("");
     setIsSubmitted(false);
@@ -238,6 +249,24 @@ const ContactForm = () => {
                     </motion.p>
                   )}
                 </div>
+              </div>
+
+              {/* Honeypot Field - Hidden from humans but visible to bots */}
+              <div style={{ display: 'none' }} aria-hidden="true">
+                <label htmlFor="website" className="block text-sm font-medium text-gray-300 mb-2">
+                  Website
+                </label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-3 bg-gray-700/50 border rounded-lg text-white placeholder-gray-400"
+                  placeholder="Leave this field empty"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
               </div>
 
               {/* Subject Field */}
