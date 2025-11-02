@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { WorkData } from "../../data/data";
 import WorkCard from "../works/WorkCard";
 
@@ -5,14 +6,19 @@ const Work = () => {
   return (
     <div id="work" className="section-light py-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold text-gray-100 mb-4">
             Work Experience
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             My professional journey and experience in software development.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative">
           <div className="pb-8">

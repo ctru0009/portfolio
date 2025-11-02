@@ -3,17 +3,16 @@ import { WorkInterface } from "../../data/data";
 
 const WorkCard = ({
   work,
-  index,
 }: {
   work: WorkInterface;
   index: number;
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.2 }}
-      className="bg-gray-800/50 rounded-xl p-6 w-[350px] hover:transform hover:scale-[1.02] transition-all duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-gray-800/50 rounded-xl p-6 w-[350px] hover:bg-gray-800/70 transition-all duration-300"
     >
       <div className="flex flex-col h-full">
         <div className="mb-4">
