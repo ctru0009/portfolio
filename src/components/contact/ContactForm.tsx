@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaEnvelope, FaUser, FaComment, FaPaperPlane, FaCheck, FaExclamationTriangle } from "react-icons/fa";
-import { initializeEmailJS, sendEmail, isEmailJSConfigured } from "../../utils/emailjs";
+import { sendWeb3Form, isWeb3FormsConfigured } from "../../utils/web3forms";
 
 interface FormData {
   name: string;
@@ -33,14 +33,10 @@ const ContactForm = () => {
   const [submitError, setSubmitError] = useState("");
   const [isConfigured, setIsConfigured] = useState(true);
 
-  // Initialize EmailJS on component mount
+  // Check Web3Forms configuration on component mount
   useEffect(() => {
-    const configured = isEmailJSConfigured();
+    const configured = isWeb3FormsConfigured();
     setIsConfigured(configured);
-
-    if (configured) {
-      initializeEmailJS();
-    }
   }, []);
 
   const validateForm = (): boolean => {
@@ -108,7 +104,7 @@ const ContactForm = () => {
     }
 
     if (!isConfigured) {
-      setSubmitError("Email service is not configured. Please contact me directly.");
+      setSubmitError("Form service is not configured. Please contact me directly.");
       return;
     }
 
@@ -116,14 +112,14 @@ const ContactForm = () => {
     setSubmitError("");
 
     try {
-      // Send email using EmailJS
-      const response = await sendEmail(formData);
+      // Send form using Web3Forms
+      const response = await sendWeb3Form(formData);
 
-      console.log("Email sent successfully:", response);
+      console.log("Form submitted successfully:", response);
       setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "", website: "" });
     } catch (error) {
-      console.error("Failed to send email:", error);
+      console.error("Failed to submit form:", error);
       setSubmitError("Failed to send message. Please try again later or contact me directly.");
     } finally {
       setIsSubmitting(false);
@@ -163,10 +159,10 @@ const ContactForm = () => {
               <FaExclamationTriangle className="text-yellow-400 mt-1 flex-shrink-0" />
               <div>
                 <p className="text-yellow-300 font-medium mb-1">
-                  Email Service Not Configured
+                  Form Service Not Configured
                 </p>
                 <p className="text-yellow-200 text-sm">
-                  The contact form is not connected to an email service yet. Please contact me directly via email or LinkedIn.
+                  The contact form is not connected to the form service yet. Please contact me directly via email or LinkedIn.
                 </p>
               </div>
             </div>
