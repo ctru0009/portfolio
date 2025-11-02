@@ -185,10 +185,7 @@ const NavBar = () => {
                     relative px-4 py-3 rounded-lg transition-all duration-300
                     ${isMobile
                       ? "w-full text-left text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30 bg-transparent"
-                      : `hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 ${isActive
-                          ? "bg-white/20 text-white"
-                          : "text-white/70 hover:text-white"
-                        }`
+                      : `hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 text-white/70 hover:text-white`
                     }
                   `}
                   aria-current={isActive ? "page" : undefined}
