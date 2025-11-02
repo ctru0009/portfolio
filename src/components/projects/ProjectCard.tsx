@@ -16,16 +16,19 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
   return (
     <>
-      <div
-        className="bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
+      <article
+        className="bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        role="article"
+        aria-label={`Project: ${project.title}`}
       >
         <div className="relative group h-48 overflow-hidden">
           <img
             src={project.image}
-            alt={project.title}
+            alt={`${project.title} project preview`}
             className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? 'scale-105' : 'scale-100'}`}
+            loading="lazy"
           />
 
           {/* Gradient overlay */}
@@ -37,9 +40,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
               onClick={(e) => e.stopPropagation()}
-              title="View Source Code"
+              aria-label={`View source code for ${project.title} on GitHub`}
             >
               <FaGithub className="text-xl text-white" />
             </a>
@@ -50,8 +53,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                   e.stopPropagation();
                   setShowPreview(true);
                 }}
-                className="p-3 bg-blue-600/80 rounded-full hover:bg-blue-600 transition-all duration-300 hover:scale-110"
-                title="Live Preview"
+                className="p-3 bg-blue-600/80 rounded-full hover:bg-blue-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
+                aria-label={`View live preview of ${project.title}`}
               >
                 <FaPlay className="text-xl text-white" />
               </button>
@@ -61,9 +64,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               href={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
               onClick={(e) => e.stopPropagation()}
-              title="Open in New Tab"
+              aria-label={`Open live demo of ${project.title} in new tab`}
             >
               <FaExternalLinkAlt className="text-xl text-white" />
             </a>
@@ -109,7 +112,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             ))}
           </div>
         </div>
-      </div>
+      </article>
 
       {/* Preview Modal */}
       <AnimatePresence>
@@ -120,6 +123,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setShowPreview(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`modal-title-${project.title}`}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -127,12 +133,14 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               exit={{ scale: 0.9, opacity: 0 }}
               className="bg-gray-900 rounded-xl border border-gray-700 max-w-4xl w-full max-h-[90vh] overflow-hidden"
               onClick={(e) => e.stopPropagation()}
+              role="document"
             >
               <div className="flex items-center justify-between p-4 border-b border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-100">{project.title} - Preview</h3>
+                <h3 id={`modal-title-${project.title}`} className="text-xl font-semibold text-gray-100">{project.title} - Preview</h3>
                 <button
                   onClick={() => setShowPreview(false)}
-                  className="p-2 hover:bg-gray-800 rounded-full transition-colors"
+                  className="p-2 hover:bg-gray-800 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+                  aria-label="Close preview modal"
                 >
                   <FaTimes className="text-gray-400" />
                 </button>

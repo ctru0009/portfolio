@@ -106,9 +106,27 @@ const NavBar = () => {
     }
   };
 
+  // Handle keyboard navigation for mobile menu
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape' && isOpen && isMobile) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen && isMobile) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleGlobalKeyDown);
+    return () => document.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [isOpen, isMobile]);
+
   return (
     <>
-      <div className="fixed z-[999] left-0 right-0 flex justify-center items-center top-6">
+      <div className="fixed z-[999] left-0 right-0 flex justify-center items-center top-6" onKeyDown={handleKeyDown}>
         <motion.div
           initial={{ y: -150 }}
           animate={{ y: 0 }}
@@ -128,27 +146,33 @@ const NavBar = () => {
           {isMobile && (
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/30 rounded-lg"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
             >
-              <div className={`burger-menu ${isOpen ? "open" : ""}`}>
-                <span className="block w-6 h-0.5 bg-current mb-1.5 transition-all"></span>
-                <span className="block w-6 h-0.5 bg-current mb-1.5 transition-all"></span>
-                <span className="block w-6 h-0.5 bg-current transition-all"></span>
+              <div className={`hamburger-menu ${isOpen ? "open" : ""}`}>
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
             </button>
           )}
 
           {/* Navigation Items */}
           <nav
+            id="mobile-navigation"
             className={`
             ${
               isMobile
                 ? `absolute top-full left-0 right-0 mt-2
                  ${isOpen ? "flex" : "hidden"} flex-col gap-2 p-4
-                 bg-black/80 backdrop-blur rounded-lg`
+                 bg-black/80 backdrop-blur rounded-lg border border-white/20`
                 : "flex gap-1 p-0.5 border border-white/30 rounded-full bg-white/10 backdrop-blur pl-16"
             }
           `}
+            role="navigation"
+            aria-label="Main navigation"
           >
             {NavigationData.map((item) => {
               const isActive = activeSection === item.link.replace("#", "");
@@ -160,13 +184,14 @@ const NavBar = () => {
                   className={`
                     nav-item relative px-4 py-2 rounded-full transition-all duration-300
                     ${isMobile
-                      ? "w-full text-left hover:bg-white/10"
-                      : `hover:bg-white/20 ${isActive
+                      ? "w-full text-left hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
+                      : `hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 ${isActive
                           ? "bg-white/20 text-white"
                           : "text-white/70 hover:text-white"
                         }`
                     }
                   `}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {item.name}
                   {/* Active indicator */}
