@@ -29,36 +29,39 @@ const About = () => {
             <h3 className="text-2xl font-semibold text-gray-100">
               Hey, I'm {HeroData.name}
             </h3>
-
             <p className="text-gray-300 leading-relaxed">
-              I'm a <b>Full Stack .NET Developer</b> who genuinely loves
-              building things that work well and make people's lives a little
-              easier. Coding isn't just a job for me - it's something I find
-              endlessly fascinating. There's nothing quite like the feeling of
-              taking an idea, breaking it down into smaller pieces, and turning
-              it into something real and useful. I spend most of my time working
-              with
+              I'm a <b>Full Stack .NET Developer</b> who loves building things
+              that actually work and make people's lives easier. Coding isn't
+              just my job, it's genuinely something I can't get enough of.
+              There's something really satisfying about taking an idea, figuring
+              out how to break it down, and watching it turn into something
+              real. I work mostly with{" "}
               <b>
-                {" "}
                 C#, ASP.NET Core, PostgreSQL, and JavaScript frameworks like
                 React and TypeScript
               </b>{" "}
-              frameworks to create apps and systems that are both{" "}
-              <b>scalable, secure, and user-friendly</b>. I'm the kind of person
-              who enjoys diving into a tricky problems like whether it's{" "}
+              to build things that are{" "}
+              <b>solid, secure, and don't frustrate users</b>. I'm the kind of
+              person who gets excited about diving into tricky problems, whether
+              that's{" "}
               <b>
-                optimizing API performance, improving UI responsiveness, or
-                containerizing applications with Docker
+                optimizing API performance, making a UI more responsive, or
+                getting Docker containers working smoothly
               </b>
-              . I also love collaborating with others to find the best approach,
-              whether that means
-              <b> {" "}debugging tricky issues or refining system design</b>.
+              . I also really enjoy{" "}
+              <b>
+                working with other people to debug weird issues or rethink how a
+                system should work
+              </b>
+              .
             </p>
             <p className="text-gray-300 leading-relaxed">
-              When I'm not coding, I'm usually <b>{" "}hanging out with friends, playing
-              the guitar</b>. If you're looking for someone who's passionate about
-              building great software and always ready to take on new
-              challenges, I'd love to connect and see how I can help.
+              When I'm not coding, I'm usually{" "}
+              <b>hanging out with friends or messing around on my guitar</b>.
+              I'm always up for learning something new or taking on challenges
+              that make me a better developer. If you need someone who actually
+              cares about building good software and gets excited about solving
+              problems, let's talk.
             </p>
           </div>
         </div>
