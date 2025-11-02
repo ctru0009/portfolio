@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaEnvelope, FaUser, FaComment, FaPaperPlane, FaCheck } from "react-icons/fa";
+import { FaEnvelope, FaUser, FaComment, FaPaperPlane, FaCheck, FaExclamationTriangle } from "react-icons/fa";
+import { initializeEmailJS, sendEmail, isEmailJSConfigured } from "../../utils/emailjs";
 
 interface FormData {
   name: string;
@@ -28,6 +29,17 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [isConfigured, setIsConfigured] = useState(true);
+
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    const configured = isEmailJSConfigured();
+    setIsConfigured(configured);
+
+    if (configured) {
+      initializeEmailJS();
+    }
+  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -84,21 +96,24 @@ const ContactForm = () => {
       return;
     }
 
+    if (!isConfigured) {
+      setSubmitError("Email service is not configured. Please contact me directly.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError("");
 
     try {
-      // Simulate form submission (replace with actual implementation)
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Send email using EmailJS
+      const response = await sendEmail(formData);
 
-      // Here you would normally send the data to your backend
-      // For now, we'll just simulate a successful submission
-      console.log("Form submitted:", formData);
-
+      console.log("Email sent successfully:", response);
       setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
-      setSubmitError("Failed to send message. Please try again later.");
+      console.error("Failed to send email:", error);
+      setSubmitError("Failed to send message. Please try again later or contact me directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -125,6 +140,27 @@ const ContactForm = () => {
             I'd love to hear from you! Fill out the form below and I'll get back to you as soon as possible.
           </p>
         </div>
+
+        {/* Configuration Warning */}
+        {!isConfigured && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 p-4 bg-yellow-600/20 border border-yellow-600/50 rounded-lg"
+          >
+            <div className="flex items-start gap-3">
+              <FaExclamationTriangle className="text-yellow-400 mt-1 flex-shrink-0" />
+              <div>
+                <p className="text-yellow-300 font-medium mb-1">
+                  Email Service Not Configured
+                </p>
+                <p className="text-yellow-200 text-sm">
+                  The contact form is not connected to an email service yet. Please contact me directly via email or LinkedIn.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
@@ -283,11 +319,11 @@ const ContactForm = () => {
               <div className="flex justify-center">
                 <motion.button
                   type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  disabled={isSubmitting || !isConfigured}
+                  whileHover={{ scale: (isSubmitting || !isConfigured) ? 1 : 1.02 }}
+                  whileTap={{ scale: (isSubmitting || !isConfigured) ? 1 : 0.98 }}
                   className={`px-8 py-3 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 ${
-                    isSubmitting
+                    (isSubmitting || !isConfigured)
                       ? "bg-gray-600 text-gray-300 cursor-not-allowed"
                       : "bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800"
                   }`}
