@@ -8,7 +8,7 @@ permissions:
   
 env:
   CUSTOM_DOMAIN: "www.congchuongtruong.net"
-  VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
+  VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
   
 jobs:
   build-deploy:
@@ -25,9 +25,16 @@ jobs:
       
       - name: Install Dependencies
         run: npm install
+
         
+      - name: Debug Environment
+        run: |
+          echo "VITE_WEB3FORMS_ACCESS_KEY is set: ${{ secrets.WEB3FORMS_ACCESS_KEY != '' }}"
+
       - name: Build Project
         run: npm run build
+        env:
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
 
         
       - name: Add CNAME file
