@@ -8,7 +8,7 @@ permissions:
   
 env:
   CUSTOM_DOMAIN: "www.congchuongtruong.net"
-  VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
+  VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.VITE_WEB3FORMS_ACCESS_KEY }}
   
 jobs:
   build-deploy:
