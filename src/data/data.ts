@@ -67,7 +67,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/1hLloyDQXrFRdHSwlr_zvVzxNI8dWFR6w/view",
+    "https://drive.google.com/file/d/1jDl6jSJV3AxX1-Nn63TSpzAxmDUQMNAa/view?usp=sharing",
 };
 
 const AboutData = {
@@ -93,19 +93,16 @@ const AboutData = {
 
 const WorkData: WorkInterface[] = [
   {
-    title: "Software Engineer",
-    company: "Jung Talents",
-    period: "Feb 2024 - Jan 2025",
+    title: "Junior Software Engineer",
+    company: "Jung Talents (Remote)",
+    period: "August 2024 - August 2025",
     responsibilities: [
-      "Migrating .NET 8 to .NET 9, improving performance by 15%.",
-      "Worked on ASP.NET Core web apps, helping optimize APIs for 10% better scalability.",
-      "Improved query performance by 15% using Entity Framework Core & LINQ.",
-      "Contributed to Auth0 implementation for secure authentication & authorization.",
-      "Increase test coverage with nUnit, reducing bugs in code base.",
-      "Assisted with Azure deployments (App Services, Functions, DevOps).",
-      "Containerized apps with Docker & Docker compose, ensuring consistent development environments.",
-      "Worked on enhancing Redis caching, helped reduce database load by 20%.",
-      "Contributed to Serilog intergration.",
+      "Participated in .NET 8 to .NET 9 migration, updating dependencies and testing components across the application, contributing to a 15% overall performance improvement.",
+      "Optimized ASP.NET Core APIs under mentorship, implementing caching and refactoring endpoints that improved response times by 10%.",
+      "Improved database query performance by 15% by writing efficient Entity Framework Core queries and applying LINQ best practices with guidance from senior developers.",
+      "Configured Azure CI/CD pipelines, managed App Services and Functions, and troubleshooting deployment issues.",
+      "Containerized applications using Docker and Docker Compose, creating consistent development environments and documenting setup procedures for the team.",
+      "Contributed to Redis caching implementation, working with senior developers to identify cacheable data and implement strategies that reduced database queries by 20%.",
     ],
     technologies: [
       ".NET",
@@ -114,11 +111,9 @@ const WorkData: WorkInterface[] = [
       "C#",
       "Azure",
       "Git",
-      "Serilog",
       "Entity Framework Core",
       "LINQ",
-      "Auth0",
-      "nUnit",
+      "CI/CD",
     ],
   },
 ];
@@ -129,7 +124,7 @@ const ProjectsData = [
     description:
       "A document management system with user authentication, file uploads, and access control.",
     image: projectImage1,
-    technologies: ["Typescript", "React", "Flask", "PosgreSQL", "TailwindCSS"],
+    technologies: ["Typescript", "React", "Flask", "PostgreSQL", "TailwindCSS"],
     githubLink: "https://github.com/ctru0009/document-management",
     liveLink: "https://github.com/ctru0009/document-management",
   },
@@ -142,7 +137,7 @@ const ProjectsData = [
       "Typescript",
       "React",
       "ASP.NET",
-      "PosgreSQL",
+      "PostgreSQL",
       "TailwindCSS",
     ],
     githubLink: "https://github.com/ctru0009/QuizWebApp",
@@ -167,14 +162,15 @@ const ProjectsData = [
   {
     title: "Fizz Buzz Game",
     description:
-      "A simple Fizz Game that replaces numbers with specific words for multiples of numbers (e.g. 3 and 5 are replaced with Fizz and Buzz).",
+      "A web-based FizzBuzz game with real-time updates, session management, and customizable game rules.",
     image: projectImage4,
     technologies: [
       "Typescript",
       "React",
       "ASP.NET",
       "SignalR",
-      "PosgreSQL",
+      "Redis",
+      "PostgreSQL",
       "TailwindCSS",
     ],
     githubLink: "https://github.com/ctru0009/FizzBuzz",
