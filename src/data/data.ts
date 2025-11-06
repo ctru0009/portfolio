@@ -103,12 +103,6 @@ const WorkData: WorkInterface[] = [
       "Configured Azure CI/CD pipelines, managed App Services and Functions, and troubleshooting deployment issues.",
       "Containerized applications using Docker and Docker Compose, creating consistent development environments and documenting setup procedures for the team.",
       "Contributed to Redis caching implementation, working with senior developers to identify cacheable data and implement strategies that reduced database queries by 20%.",
-      "Participated in .NET 8 to .NET 9 migration, updating dependencies and testing components across the application, contributing to a 15% overall performance improvement.",
-      "Optimized ASP.NET Core APIs under mentorship, implementing caching and refactoring endpoints that improved response times by 10%.",
-      "Improved database query performance by 15% by writing efficient Entity Framework Core queries and applying LINQ best practices with guidance from senior developers.",
-      "Configured Azure CI/CD pipelines, managed App Services and Functions, and troubleshooting deployment issues.",
-      "Containerized applications using Docker and Docker Compose, creating consistent development environments and documenting setup procedures for the team.",
-      "Contributed to Redis caching implementation, working with senior developers to identify cacheable data and implement strategies that reduced database queries by 20%.",
     ],
     technologies: [
       ".NET",
