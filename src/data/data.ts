@@ -67,7 +67,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/1jDl6jSJV3AxX1-Nn63TSpzAxmDUQMNAa/view?usp=sharing",
+    "https://drive.google.com/file/d/1TGV0oxRqULVMKm_lp5_CT4Te5xR0FnUi/view?usp=sharing",
 };
 
 const AboutData = {
@@ -95,7 +95,7 @@ const WorkData: WorkInterface[] = [
   {
     title: "Junior Software Engineer",
     company: "Jung Talents (Remote)",
-    period: "August 2024 - August 2025",
+    period: "February 2024 - January 2025 ",
     responsibilities: [
       "Participated in .NET 8 to .NET 9 migration, updating dependencies and testing components across the application, contributing to a 15% overall performance improvement.",
       "Optimized ASP.NET Core APIs under mentorship, implementing caching and refactoring endpoints that improved response times by 10%.",
