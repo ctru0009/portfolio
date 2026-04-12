@@ -2,6 +2,9 @@ import projectImage1 from "../assets/images/project1.webp";
 import projectImage2 from "../assets/images/project2.webp";
 import projectImage3 from "../assets/images/project3.webp";
 import projectImage4 from "../assets/images/project4.webp";
+import projectImage5 from "../assets/images/project5.webp";
+import projectImage6 from "../assets/images/project6.webp"; 
+
 import avatar from "../assets/images/avatar.webp";
 
 interface HeroDataInterface {
@@ -67,7 +70,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/1TGV0oxRqULVMKm_lp5_CT4Te5xR0FnUi/view?usp=sharing",
+    "https://drive.google.com/file/d/1tjrRalxRuRZdhDb-qW7Fltlp-IgISvQy/view?usp=sharing",
 };
 
 const AboutData = {
@@ -93,16 +96,16 @@ const AboutData = {
 
 const WorkData: WorkInterface[] = [
   {
-    title: "Junior Software Engineer",
+    title: "Software Engineer",
     company: "Jung Talents (Remote)",
-    period: "February 2024 - January 2025 ",
+    period: "February 2024 - February 2026",
     responsibilities: [
-      "Participated in .NET 8 to .NET 9 migration, updating dependencies and testing components across the application, contributing to a 15% overall performance improvement.",
-      "Optimized ASP.NET Core APIs under mentorship, implementing caching and refactoring endpoints that improved response times by 10%.",
-      "Improved database query performance by 15% by writing efficient Entity Framework Core queries and applying LINQ best practices with guidance from senior developers.",
-      "Configured Azure CI/CD pipelines, managed App Services and Functions, and troubleshooting deployment issues.",
-      "Containerized applications using Docker and Docker Compose, creating consistent development environments and documenting setup procedures for the team.",
-      "Contributed to Redis caching implementation, working with senior developers to identify cacheable data and implement strategies that reduced database queries by 20%.",
+      "Led the .NET 8 to .NET 9 upgrade across the core API surface. Updated dependencies, resolved breaking changes, and expanded test coverage.",
+      "Refactored high-traffic ASP.NET Core endpoints with caching and query shaping. Improved average response time by 10% for the customer dashboard.",
+      "Rewrote EF Core queries using compiled queries and proper indexing. Reduced database CPU by 15% on reporting workloads.",
+      "Built Azure DevOps pipelines for build, test, and deploy to App Services and Functions.",
+      "Containerized the full stack with Docker. Wrote setup docs that reduced new developer onboarding from a day to under an hour.",
+      "Introduced Claude Code into daily workflow for test generation, code review, and documentation. Used it to scaffold xUnit tests, enforce coding standards, and propose refactors, which increased my feature throughput while keeping coverage above 80%.",
     ],
     technologies: [
       ".NET",
@@ -114,12 +117,43 @@ const WorkData: WorkInterface[] = [
       "Entity Framework Core",
       "LINQ",
       "CI/CD",
-      "CI/CD",
+      "Claude Code",
     ],
   },
 ];
 
 const ProjectsData = [
+    {
+    title: "AI-Powered Resource Planning System",
+    description:
+      "A hybrid architecture system where SQL and business rules handle deterministic planning while Gemini provides probabilistic risk scoring. Uses Zod schemas as a strict contract between AI output and the frontend, with graceful degradation and exponential backoff retry when the AI service is down.",
+    image: projectImage5,
+    technologies: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Gemini API",
+      "Zod",
+      "PostgreSQL",
+    ],
+    githubLink: "https://github.com/ctru0009/resource-planning-system",
+    liveLink: "https://github.com/ctru0009/resource-planning-system",
+  },
+  {
+    title: "AI Product Data Enrichment Pipeline",
+    description:
+      "A batch pipeline that classifies product data with Gemini, protected by Zod validation on every response. Implements exponential backoff with jitter and incremental writes per batch to respect rate limits and avoid data loss. Designed for partial failure — bad rows are logged and skipped, pipeline always completes with valid output.",
+    image: projectImage6,
+    technologies: [
+      "Node.js",
+      "TypeScript",
+      "Gemini API",
+      "Zod",
+      "CSV",
+    ],
+    githubLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
+    liveLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
+  },
   {
     title: "Document Management System",
     description:
