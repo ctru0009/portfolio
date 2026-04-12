@@ -5,27 +5,40 @@ import { HeroData } from "../../data/data";
 
 const Hero = () => {
   return (
-    <div id="home" className="section-dark scroll-smooth">
-      <div className="flex flex-col justify-center items-center h-dvh space-y-12">
+    <div
+      id="home"
+      className="section-dark scroll-smooth relative overflow-hidden"
+    >
+      {/* Ambient glow effect */}
+      <div className="absolute inset-0 ambient-glow pointer-events-none" />
+
+      <div className="relative flex flex-col justify-center items-center h-dvh space-y-12">
         <div className="relative group">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-white/20 via-transparent to-white/20 rounded-full blur-xl opacity-40 group-hover:opacity-60 transition duration-700"></div>
           <img
             src={HeroData.avatarURL}
             alt="Profile image"
-            className="relative w-48 h-48 md:w-56 md:h-56 border-2 rounded-full 
-                     border-white/20 hover:border-white/40 
-                     transition-all duration-300
+            className="relative w-48 h-48 md:w-56 md:h-56 border-2 rounded-full
+                     border-white/10 hover:border-white/20
+                     shadow-2xl shadow-black/50
+                     transition-all duration-500
                      object-cover filter hover:brightness-110"
           />
         </div>
-        <div className="text-center text-white/80 space-y-2 max-w-2xl px-4">
-          <h1 className="text-2xl md:text-3xl font-light leading-relaxed">
-            Hi there, I'm{" "}
-            <span className="font-medium text-white"> {HeroData.name}</span>, I
-            am a
-            <span className="font-medium text-white"> {HeroData.title} </span>
-            based in Australia.
+        <div className="text-center text-white/80 space-y-4 max-w-2xl px-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight">
+            Hi, I'm{" "}
+            <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent font-normal">
+              {HeroData.name}
+            </span>
           </h1>
+          <p className="text-xl md:text-2xl font-normal text-gray-300">
+            I am a{" "}
+            <span className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 bg-clip-text text-transparent font-medium">
+              {HeroData.title}
+            </span>{" "}
+            based in Australia.
+          </p>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
           <a
@@ -35,7 +48,7 @@ const Hero = () => {
           >
             <span className="flex items-center gap-2">
               Contact me{" "}
-              <CiMail className="group-hover:translate-x-1 transition-transform" />
+              <CiMail className="group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </a>
           <a
@@ -46,7 +59,7 @@ const Hero = () => {
           >
             <span className="flex items-center gap-2">
               Download CV{" "}
-              <BiImport className="group-hover:translate-y-[-2px] transition-transform" />
+              <BiImport className="group-hover:translate-y-[-2px] transition-transform duration-300" />
             </span>
           </a>
           <div className="flex gap-3">

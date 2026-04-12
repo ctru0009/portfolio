@@ -17,30 +17,32 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <>
       <article
-        className="bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+        className="group relative bg-gray-900/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-white/10 transition-all duration-500 cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-black/50 focus:outline-none focus:ring-2 focus:ring-white/20"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         role="article"
         aria-label={`Project: ${project.title}`}
       >
-        <div className="relative group h-48 overflow-hidden">
+        <div className="relative group h-56 overflow-hidden">
           <img
             src={project.image}
             alt={`${project.title} project preview`}
-            className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? 'scale-105' : 'scale-100'}`}
+            className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? "scale-105" : "scale-100"}`}
             loading="lazy"
           />
 
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent" />
 
           {/* Interactive overlay */}
-          <div className={`absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center gap-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+          <div
+            className={`absolute inset-0 bg-gray-950/80 backdrop-blur-sm flex items-center justify-center gap-4 transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"}`}
+          >
             <a
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 border border-white/10"
               onClick={(e) => e.stopPropagation()}
               aria-label={`View source code for ${project.title} on GitHub`}
             >
@@ -53,7 +55,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                   e.stopPropagation();
                   setShowPreview(true);
                 }}
-                className="p-3 bg-blue-600/80 rounded-full hover:bg-blue-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
+                className="p-3 bg-white/10 rounded-full hover:bg-white/15 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 border border-white/20"
                 aria-label={`View live preview of ${project.title}`}
               >
                 <FaPlay className="text-xl text-white" />
@@ -64,7 +66,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               href={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 border border-white/10"
               onClick={(e) => e.stopPropagation()}
               aria-label={`Open live demo of ${project.title} in new tab`}
             >
@@ -73,17 +75,17 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
 
           {/* Technology badges overlay */}
-          <div className="absolute top-2 right-2 flex flex-wrap gap-1 max-w-[60%]">
+          <div className="absolute top-3 right-3 flex flex-wrap gap-1 max-w-[60%]">
             {project.technologies.slice(0, 2).map((tech, techIndex) => (
               <span
                 key={techIndex}
-                className="bg-blue-600/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm"
+                className="bg-gray-800/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm border border-white/10"
               >
                 {tech}
               </span>
             ))}
             {project.technologies.length > 2 && (
-              <span className="bg-gray-600/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+              <span className="bg-gray-700/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm border border-white/10">
                 +{project.technologies.length - 2}
               </span>
             )}
@@ -91,21 +93,23 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         </div>
 
         <div className="p-6">
-          <h3 className="text-xl font-semibold text-gray-100 mb-2 flex items-center gap-2">
+          <h3 className="text-xl font-medium text-white mb-2 flex items-center gap-2">
             {project.title}
             {isLiveDemo && (
-              <span className="bg-green-600/20 text-green-400 text-xs px-2 py-1 rounded-full border border-green-600/50">
+              <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded-full border border-emerald-500/20">
                 Live
               </span>
             )}
           </h3>
-          <p className="text-gray-400 mb-4 line-clamp-2">{project.description}</p>
+          <p className="text-gray-400 mb-4 line-clamp-2 leading-relaxed">
+            {project.description}
+          </p>
 
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech, techIndex) => (
               <span
                 key={techIndex}
-                className="bg-gray-700/50 text-gray-300 px-2 py-1 rounded-md text-sm hover:bg-blue-600/50 hover:text-white transition-colors duration-200 cursor-default"
+                className="px-3 py-1 bg-gray-800/50 text-gray-300 rounded-md border border-white/5 text-sm hover:bg-gray-700/50 hover:text-white transition-colors duration-200 cursor-default"
               >
                 {tech}
               </span>
@@ -136,7 +140,12 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               role="document"
             >
               <div className="flex items-center justify-between p-4 border-b border-gray-700">
-                <h3 id={`modal-title-${project.title}`} className="text-xl font-semibold text-gray-100">{project.title} - Preview</h3>
+                <h3
+                  id={`modal-title-${project.title}`}
+                  className="text-xl font-semibold text-gray-100"
+                >
+                  {project.title} - Preview
+                </h3>
                 <button
                   onClick={() => setShowPreview(false)}
                   className="p-2 hover:bg-gray-800 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
@@ -150,7 +159,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center">
                   <div className="text-center">
                     <FaPlay className="text-4xl text-blue-500 mb-4 mx-auto" />
-                    <p className="text-gray-400 mb-4">Live preview would open here</p>
+                    <p className="text-gray-400 mb-4">
+                      Live preview would open here
+                    </p>
                     <a
                       href={project.liveLink}
                       target="_blank"

@@ -16,10 +16,47 @@ const NavBar = () => {
 
   // Search data
   const searchableContent = {
-    skills: ["React", "TypeScript", "JavaScript", "Node.js", "Python", "Flask", "C#", ".NET", "Tailwind CSS", "Git", "PostgreSQL", "MongoDB", "Redis", "SQL", "Docker", "AWS"],
-    projects: ["Document Management", "Quiz App", "Event Management App", "Portfolio Website"],
-    technologies: ["React", "TypeScript", "JavaScript", "Flask", "ASP.NET", "Angular", "Node.js", "PostgreSQL", "MongoDB"],
-    experience: ["Software Engineer", "Jung Talents", "Technical Support", "Monash University"]
+    skills: [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "Python",
+      "Flask",
+      "C#",
+      ".NET",
+      "Tailwind CSS",
+      "Git",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "SQL",
+      "Docker",
+      "AWS",
+    ],
+    projects: [
+      "Document Management",
+      "Quiz App",
+      "Event Management App",
+      "Portfolio Website",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Flask",
+      "ASP.NET",
+      "Angular",
+      "Node.js",
+      "PostgreSQL",
+      "MongoDB",
+    ],
+    experience: [
+      "Software Engineer",
+      "Jung Talents",
+      "Technical Support",
+      "Monash University",
+    ],
   };
 
   useEffect(() => {
@@ -41,7 +78,10 @@ const NavBar = () => {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
             setActiveSection(section);
             break;
           }
@@ -52,7 +92,7 @@ const NavBar = () => {
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  });
 
   // Search functionality
   const handleSearch = (query: string) => {
@@ -66,7 +106,7 @@ const NavBar = () => {
     const lowerQuery = query.toLowerCase();
 
     Object.entries(searchableContent).forEach(([category, items]) => {
-      items.forEach(item => {
+      items.forEach((item) => {
         if (item.toLowerCase().includes(lowerQuery)) {
           results.push(`${item} (${category})`);
         }
@@ -82,10 +122,10 @@ const NavBar = () => {
 
     // Navigate to relevant section based on category
     const sectionMap: { [key: string]: string } = {
-      "skills": "#skills",
-      "projects": "#projects",
-      "technologies": "#projects",
-      "experience": "#works"
+      skills: "#skills",
+      projects: "#projects",
+      technologies: "#projects",
+      experience: "#works",
     };
 
     const targetSection = sectionMap[cleanCategory] || "#home";
@@ -95,7 +135,10 @@ const NavBar = () => {
     setSearchResults([]);
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string,
+  ) => {
     e.preventDefault();
     const element = document.getElementById(targetId.replace("#", ""));
     if (element) {
@@ -108,25 +151,28 @@ const NavBar = () => {
 
   // Handle keyboard navigation for mobile menu
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape' && isOpen && isMobile) {
+    if (e.key === "Escape" && isOpen && isMobile) {
       setIsOpen(false);
     }
   };
 
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen && isMobile) {
+      if (e.key === "Escape" && isOpen && isMobile) {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener('keydown', handleGlobalKeyDown);
-    return () => document.removeEventListener('keydown', handleGlobalKeyDown);
+    document.addEventListener("keydown", handleGlobalKeyDown);
+    return () => document.removeEventListener("keydown", handleGlobalKeyDown);
   }, [isOpen, isMobile]);
 
   return (
     <>
-      <div className="fixed z-[999] left-0 right-0 flex justify-center items-center top-6" onKeyDown={handleKeyDown}>
+      <div
+        className="fixed z-[999] left-0 right-0 flex justify-center items-center top-6"
+        onKeyDown={handleKeyDown}
+      >
         <motion.div
           initial={{ y: -150 }}
           animate={{ y: 0 }}
@@ -147,7 +193,9 @@ const NavBar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/30 rounded-lg"
-              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-label={
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+              }
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"
             >
@@ -166,9 +214,9 @@ const NavBar = () => {
             ${
               isMobile
                 ? `absolute top-full left-0 right-0 mt-2 min-w-[280px]
-                 ${isOpen ? "flex" : "hidden"} flex-col gap-1 p-4
-                 bg-black/90 backdrop-blur-lg rounded-xl border border-white/20 shadow-2xl`
-                : "flex gap-1 p-0.5 border border-white/30 rounded-full bg-white/10 backdrop-blur pl-16"
+                 ${isOpen ? "flex" : "hidden"} flex-col gap-1 p-2
+                 bg-gray-950/95 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl shadow-black/50`
+                : "flex gap-1 p-1.5 rounded-full bg-gray-950/60 backdrop-blur-xl border border-white/10 shadow-2xl"
             }
           `}
             role="navigation"
@@ -182,10 +230,11 @@ const NavBar = () => {
                   href={item.link}
                   onClick={(e) => handleNavClick(e, item.link)}
                   className={`
-                    relative px-4 py-3 rounded-lg transition-all duration-300
-                    ${isMobile
-                      ? "w-full text-left text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30 bg-transparent"
-                      : `hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 text-white/70 hover:text-white`
+                    relative px-5 py-2.5 rounded-full transition-all duration-300
+                    ${
+                      isMobile
+                        ? "w-full text-left text-white/90 hover:bg-white/5 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30 bg-transparent"
+                        : `text-sm text-gray-400 hover:text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-white/30`
                     }
                   `}
                   aria-current={isActive ? "page" : undefined}
@@ -195,8 +244,12 @@ const NavBar = () => {
                   {isActive && !isMobile && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute inset-0 bg-white/20 rounded-full"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      className="absolute inset-0 bg-gradient-to-b from-white/15 to-white/5 rounded-full border border-white/10"
+                      transition={{
+                        type: "spring",
+                        bounce: 0.2,
+                        duration: 0.6,
+                      }}
                     />
                   )}
                 </a>
@@ -220,7 +273,7 @@ const NavBar = () => {
               initial={{ scale: 0.9, y: -20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: -20 }}
-              className="bg-gray-900 rounded-xl border border-gray-700 w-full max-w-2xl"
+              className="bg-gray-900/40 backdrop-blur-xl rounded-2xl border border-white/10 w-full max-w-2xl shadow-2xl shadow-black/50"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center gap-3 p-4 border-b border-gray-700">
@@ -250,7 +303,9 @@ const NavBar = () => {
                       onClick={() => handleSearchResultClick(result)}
                       className="w-full text-left px-4 py-3 hover:bg-gray-800 transition-colors border-b border-gray-800 last:border-b-0"
                     >
-                      <span className="text-white">{result.split(" (")[0]}</span>
+                      <span className="text-white">
+                        {result.split(" (")[0]}
+                      </span>
                       <span className="text-gray-400 text-sm ml-2">
                         {result.split(" (")[1]?.replace(")", "")}
                       </span>
@@ -262,7 +317,9 @@ const NavBar = () => {
               {searchQuery && searchResults.length === 0 && (
                 <div className="p-8 text-center text-gray-400">
                   <p>No results found for "{searchQuery}"</p>
-                  <p className="text-sm mt-2">Try searching for skills, projects, or technologies</p>
+                  <p className="text-sm mt-2">
+                    Try searching for skills, projects, or technologies
+                  </p>
                 </div>
               )}
             </motion.div>

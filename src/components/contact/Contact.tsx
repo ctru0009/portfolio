@@ -37,10 +37,15 @@ const Contact = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-100 mb-4">Get In Touch</h2>
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-100 mb-4">
+            <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+              Get In Touch
+            </span>
+          </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Feel free to reach out if you're looking for a developer, have a question, or just want to connect.
-            I'm always interested in hearing about new opportunities and exciting projects.
+            Feel free to reach out if you're looking for a developer, have a
+            question, or just want to connect. I'm always interested in hearing
+            about new opportunities and exciting projects.
           </p>
         </motion.div>
 
@@ -52,9 +57,11 @@ const Contact = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 p-6"
+              className="bg-gray-900/40 backdrop-blur-sm rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300 p-8"
             >
-              <h3 className="text-xl font-semibold text-white mb-6">Contact Information</h3>
+              <h3 className="text-xl font-medium text-white mb-8">
+                Contact Information
+              </h3>
               <div className="space-y-4">
                 {contactInfo.map((item, index) => (
                   <ContactItem key={index} item={item} index={index} />
@@ -68,17 +75,28 @@ const Contact = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 p-6"
+              className="bg-gray-900/40 backdrop-blur-sm rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300 p-8"
             >
-              <h3 className="text-xl font-semibold text-white mb-4">Let's Connect</h3>
-              <p className="text-gray-400 mb-4">
-                I'm passionate about building amazing web experiences and am always open to discussing new opportunities.
+              <h3 className="text-xl font-medium text-white mb-6">
+                Let's Connect
+              </h3>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                I'm passionate about building amazing web experiences and am
+                always open to discussing new opportunities.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-sm" role="status">
+                <span
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-white/5"
+                  role="status"
+                >
+                  <span className="w-2 h-2 rounded-full bg-gray-400"></span>
                   Available for hire
                 </span>
-                <span className="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm" role="status">
+                <span
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-white/5"
+                  role="status"
+                >
+                  <span className="w-2 h-2 rounded-full bg-gray-400"></span>
                   Open to collaborate
                 </span>
               </div>
@@ -99,17 +117,27 @@ const Contact = () => {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl border border-blue-600/50 p-8">
-            <h3 className="text-2xl font-semibold text-white mb-4">Let's Build Something Amazing Together</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Whether you have a project in mind, want to discuss potential collaborations, or just want to chat about technology - I'm here and ready to connect!
+          <div className="bg-gray-900/40 backdrop-blur-sm rounded-2xl border border-white/10 p-8">
+            <h3 className="text-2xl font-medium text-white mb-4">
+              <span className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                Let's Build Something Amazing Together
+              </span>
+            </h3>
+            <p className="text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed">
+              Whether you have a project in mind, want to discuss potential
+              collaborations, or just want to chat about technology - I'm here
+              and ready to connect!
             </p>
-            <div className="flex flex-wrap justify-center gap-4" role="group" aria-label="Social media links">
+            <div
+              className="flex flex-wrap justify-center gap-4"
+              role="group"
+              aria-label="Social media links"
+            >
               <a
                 href={HeroData.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
+                className="px-6 py-3 bg-white/5 text-white rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-white/20 border border-white/10"
                 aria-label="Connect with me on LinkedIn"
               >
                 <FaLinkedin aria-hidden="true" />
@@ -119,7 +147,7 @@ const Contact = () => {
                 href={HeroData.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-400/50"
+                className="px-6 py-3 bg-white/5 text-white rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-white/20 border border-white/10"
                 aria-label="View my GitHub profile"
               >
                 <FaGithub aria-hidden="true" />
@@ -129,7 +157,7 @@ const Contact = () => {
                 href={HeroData.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400/50"
+                className="px-6 py-3 border border-white/10 text-gray-300 rounded-lg hover:bg-white/5 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/20"
                 aria-label="View my resume"
               >
                 View Resume

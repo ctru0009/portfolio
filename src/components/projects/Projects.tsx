@@ -1,4 +1,3 @@
-
 import { ProjectsData } from "../../data/data";
 import ProjectCard from "./ProjectCard";
 import { motion } from "framer-motion";
@@ -16,9 +15,14 @@ const Projects = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-100 mb-4">Projects</h2>
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-100 mb-4">
+            <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+              Projects
+            </span>
+          </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills and experience.
+            Here are some of my recent projects that showcase my skills and
+            experience.
           </p>
         </motion.div>
 
@@ -38,7 +42,7 @@ const Projects = () => {
               transition={{
                 duration: 0.5,
                 ease: "easeOut",
-                delay: index * 0.1
+                delay: index * 0.1,
               }}
             >
               <ProjectCard project={project} index={index} />
@@ -50,4 +54,4 @@ const Projects = () => {
   );
 };
 
-export default Projects
+export default Projects;
