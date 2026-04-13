@@ -70,7 +70,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/1tjrRalxRuRZdhDb-qW7Fltlp-IgISvQy/view?usp=sharing",
+    "https://drive.google.com/file/d/1ruT_PArDztujd2wfOc9bkZZtIVfpZ-6D/view?usp=sharing",
 };
 
 const AboutData = {
@@ -98,7 +98,7 @@ const WorkData: WorkInterface[] = [
   {
     title: "Software Engineer",
     company: "Jung Talents (Remote)",
-    period: "February 2024 - February 2026",
+    period: "February 2023 - February 2026",
     responsibilities: [
       "Led the .NET 8 to .NET 9 upgrade across the core API surface. Updated dependencies, resolved breaking changes, and expanded test coverage.",
       "Refactored high-traffic ASP.NET Core endpoints with caching and query shaping. Improved average response time by 10% for the customer dashboard.",
