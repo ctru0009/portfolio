@@ -98,7 +98,7 @@ const WorkData: WorkInterface[] = [
   {
     title: "Software Engineer",
     company: "Jung Talents (Remote)",
-    period: "February 2023 - February 2026",
+    period: "January 2023 - February 2026",
     responsibilities: [
       "Led the .NET 8 to .NET 9 upgrade across the core API surface. Updated dependencies, resolved breaking changes, and expanded test coverage.",
       "Refactored high-traffic ASP.NET Core endpoints with caching and query shaping. Improved average response time by 10% for the customer dashboard.",
