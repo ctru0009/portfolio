@@ -70,7 +70,7 @@ const HeroData = {
   linkedin: "https://www.linkedin.com/in/congchuongtruong/",
   github: "https://github.com/ctru0009",
   resume:
-    "https://drive.google.com/file/d/1ruT_PArDztujd2wfOc9bkZZtIVfpZ-6D/view?usp=sharing",
+    "https://drive.google.com/file/d/1AW3Mq0g6_rypW3C3K0cEpBbvGI6b6Gq3/view?usp=sharing",
 };
 
 const AboutData = {
