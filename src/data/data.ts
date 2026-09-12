@@ -1,9 +1,5 @@
-import projectImage1 from "../assets/images/project1.webp";
-import projectImage2 from "../assets/images/project2.webp";
-import projectImage3 from "../assets/images/project3.webp";
-import projectImage4 from "../assets/images/project4.webp";
 import projectImage5 from "../assets/images/project5.webp";
-import projectImage6 from "../assets/images/project6.webp"; 
+import projectImage6 from "../assets/images/project6.webp";
 
 import avatar from "../assets/images/avatar.webp";
 
@@ -22,7 +18,6 @@ interface EducationInterface {
   degree: string;
   school: string;
   period: string;
-  coursework: string[];
 }
 
 interface ProjectInterface {
@@ -46,6 +41,7 @@ interface NavigationInterface {
 interface WorkInterface {
   title: string;
   company: string;
+  location: string;
   period: string;
   responsibilities: string[];
   technologies: string[];
@@ -78,63 +74,75 @@ const AboutData = {
     {
       degree: "Bachelor of Computer Science",
       school: "Monash University",
-      period: "2021 - 2024",
-      coursework: [
-        "Fundamentals of algorithms",
-        "Algorithms and data structures",
-        "Object-oriented design and implementation",
-        "Systems development",
-        "Databases",
-        "Programming paradigms",
-        "Parallel computing",
-        "Full stack development",
-        "Advanced data structures and algorithms",
-      ],
+      period: "2021–2024",
     },
   ],
 };
 
 const WorkData: WorkInterface[] = [
   {
-    title: "Software Engineer",
-    company: "Jung Talents (Remote)",
-    period: "January 2023 - February 2026",
+    title: "AI Engineer (Contractor)",
+    company: "AI Registrar",
+    location: "Australia · Remote",
+    period: "2026–Present",
     responsibilities: [
-      "Led the .NET 8 to .NET 9 upgrade across the core API surface. Updated dependencies, resolved breaking changes, and expanded test coverage.",
-      "Refactored high-traffic ASP.NET Core endpoints with caching and query shaping. Improved average response time by 10% for the customer dashboard.",
-      "Rewrote EF Core queries using compiled queries and proper indexing. Reduced database CPU by 15% on reporting workloads.",
-      "Built Azure DevOps pipelines for build, test, and deploy to App Services and Functions.",
-      "Containerized the full stack with Docker. Wrote setup docs that reduced new developer onboarding from a day to under an hour.",
-      "Introduced Claude Code into daily workflow for test generation, code review, and documentation. Used it to scaffold xUnit tests, enforce coding standards, and propose refactors, which increased my feature throughput while keeping coverage above 80%.",
+      "Built clinical workflow features across patient triage, provider matching, referrals and clinician-facing AI-assisted experiences in a multi-tenant TypeScript/React/Node.js platform.",
+      "Migrated clinical AI workloads to Australian-region AWS Bedrock with workload-specific routing and fail-closed provider and configuration validation.",
+      "Designed safeguards around structured model output, provider boundaries, graceful degradation and privacy-sensitive processing so AI failures or configuration errors could not silently become unsafe application behaviour.",
+      "Took on technical review alongside implementation, reviewing changes for architecture, security, regression risk, test quality and production readiness.",
     ],
     technologies: [
-      ".NET",
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Fastify",
+      "PostgreSQL",
+      "Prisma",
+      "Zod",
+      "AWS Bedrock",
       "Docker",
-      "Redis",
+      "GitHub Actions",
+    ],
+  },
+  {
+    title: "Software Engineer",
+    company: "Jung Talents",
+    location: "Remote",
+    period: "January 2023 – February 2026",
+    responsibilities: [
+      "Led the .NET 8 → .NET 9 upgrade across the core API surface, updating dependencies, resolving breaking changes and expanding regression coverage.",
+      "Refactored high-traffic ASP.NET Core endpoints using caching and query shaping, improving average dashboard response time by 10%.",
+      "Built Azure DevOps CI/CD pipelines for build, test and deployment to Azure App Services and Azure Functions.",
+      "Reworked EF Core queries and database access patterns to reduce unnecessary database load on reporting workloads.",
+    ],
+    technologies: [
       "C#",
-      "Azure",
-      "Git",
+      ".NET",
+      "ASP.NET Core",
       "Entity Framework Core",
-      "LINQ",
-      "CI/CD",
-      "Claude Code",
+      "PostgreSQL",
+      "Redis",
+      "Azure",
+      "Docker",
+      "Azure DevOps",
     ],
   },
 ];
 
 const ProjectsData = [
-    {
+  {
     title: "AI-Powered Resource Planning System",
     description:
-      "A hybrid architecture system where SQL and business rules handle deterministic planning while Gemini provides probabilistic risk scoring. Uses Zod schemas as a strict contract between AI output and the frontend, with graceful degradation and exponential backoff retry when the AI service is down.",
+      "A resource-planning MVP where capacity, dependency and skill constraints are enforced in application code while Gemini provides bounded impact and risk analysis. Zod validates model responses before they reach the React UI, and deterministic planning remains available without AI-generated analysis.",
     image: projectImage5,
     technologies: [
       "React",
-      "TypeScript",
+      "JavaScript",
       "Node.js",
+      "Express",
       "Gemini API",
       "Zod",
-      "PostgreSQL",
+      "SQLite",
     ],
     githubLink: "https://github.com/ctru0009/resource-planning-system",
     liveLink: "https://github.com/ctru0009/resource-planning-system",
@@ -142,7 +150,7 @@ const ProjectsData = [
   {
     title: "AI Product Data Enrichment Pipeline",
     description:
-      "A batch pipeline that classifies product data with Gemini, protected by Zod validation on every response. Implements exponential backoff with jitter and incremental writes per batch to respect rate limits and avoid data loss. Designed for partial failure — bad rows are logged and skipped, pipeline always completes with valid output.",
+      "A TypeScript CLI that classifies DummyJSON product records with Gemini. Every model response is Zod-validated; batches retry with backoff; checkpoints and row-level isolation mean a bad row or provider blip does not kill the run.",
     image: projectImage6,
     technologies: [
       "Node.js",
@@ -153,63 +161,6 @@ const ProjectsData = [
     ],
     githubLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
     liveLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
-  },
-  {
-    title: "Document Management System",
-    description:
-      "A document management system with user authentication, file uploads, and access control.",
-    image: projectImage1,
-    technologies: ["Typescript", "React", "Flask", "PostgreSQL", "TailwindCSS"],
-    githubLink: "https://github.com/ctru0009/document-management",
-    liveLink: "https://github.com/ctru0009/document-management",
-  },
-  {
-    title: "Quiz App",
-    description:
-      "A quiz app with user authentication, quiz creation, quiz taking and quiz review.",
-    image: projectImage2,
-    technologies: [
-      "Typescript",
-      "React",
-      "ASP.NET",
-      "PostgreSQL",
-      "TailwindCSS",
-    ],
-    githubLink: "https://github.com/ctru0009/QuizWebApp",
-    liveLink: "https://github.com/ctru0009/QuizWebApp",
-  },
-  {
-    title: "Event Management App",
-    description:
-      "An web application that used the MEAN stack to manage the events and event categories",
-    image: projectImage3,
-    technologies: [
-      "Typescript",
-      "Angular",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Bootstrap",
-    ],
-    githubLink: "https://github.com/ctru0009/events-management-app",
-    liveLink: "https://github.com/ctru0009/events-management-app",
-  },
-  {
-    title: "Fizz Buzz Game",
-    description:
-      "A web-based FizzBuzz game with real-time updates, session management, and customizable game rules.",
-    image: projectImage4,
-    technologies: [
-      "Typescript",
-      "React",
-      "ASP.NET",
-      "SignalR",
-      "Redis",
-      "PostgreSQL",
-      "TailwindCSS",
-    ],
-    githubLink: "https://github.com/ctru0009/FizzBuzz",
-    liveLink: "https://github.com/ctru0009/FizzBuzz",
   },
 ];
 export { HeroData, AboutData, ProjectsData, WorkData, NavigationData };

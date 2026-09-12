@@ -21,8 +21,7 @@ const Projects = () => {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills and
-            experience.
+            Public work that shows how I bound AI inside ordinary software.
           </p>
         </motion.div>
 

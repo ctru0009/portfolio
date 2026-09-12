@@ -62,16 +62,18 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               </button>
             )}
 
-            <a
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 border border-white/10"
-              onClick={(e) => e.stopPropagation()}
-              aria-label={`Open live demo of ${project.title} in new tab`}
-            >
-              <FaExternalLinkAlt className="text-xl text-white" />
-            </a>
+            {isLiveDemo && (
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 border border-white/10"
+                onClick={(e) => e.stopPropagation()}
+                aria-label={`Open live demo of ${project.title} in new tab`}
+              >
+                <FaExternalLinkAlt className="text-xl text-white" />
+              </a>
+            )}
           </div>
 
           {/* Technology badges overlay */}
@@ -101,7 +103,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               </span>
             )}
           </h3>
-          <p className="text-gray-400 mb-4 line-clamp-2 leading-relaxed">
+          <p className="text-gray-400 mb-4 line-clamp-3 leading-relaxed">
             {project.description}
           </p>
 
