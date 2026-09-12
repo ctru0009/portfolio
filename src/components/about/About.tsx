@@ -53,53 +53,24 @@ const About = () => {
               Hey, I'm {HeroData.name}
             </h3>
             <p className="text-gray-400 leading-relaxed">
-              I'm a <b className="text-gray-300">Full Stack .NET Developer</b>{" "}
-              who genuinely loves building software from the ground up. For me,
-              coding isn't just a day job—it's the satisfaction of taking a messy
-              problem, breaking it down, and engineering a solution that actually
-              works.
+              I'm a Melbourne-based software engineer with 3+ years of
+              professional experience across .NET, TypeScript, React, Node.js,
+              PostgreSQL, Azure and AWS-backed AI systems. I started in
+              full-stack .NET; more recently I build AI-integrated product
+              features with the same bar for reliability, privacy and delivery.
             </p>
             <p className="text-gray-400 leading-relaxed">
-              I work mostly with{" "}
-              <b className="text-gray-300">
-                C#, ASP.NET Core, PostgreSQL, React, and TypeScript
-              </b>
-              . Over the last year or so, I've completely embraced{" "}
-              <b className="text-gray-300">AI-assisted development</b>. I use
-              tools like <b className="text-gray-300">Claude Code</b> daily as a
-              core part of my workflow—not to just copy-paste code, but as an
-              always-on pair programmer. It helps me scaffold tests, catch edge
-              cases, and automate the tedious boilerplate so I can spend my
-              actual brainpower on the hard stuff:{" "}
-              <b className="text-gray-300">
-                optimizing API performance, fixing weird database bottlenecks,
-                and architecting secure systems
-              </b>
-              .
+              AI interprets. Deterministic software acts. I use models where
+              interpretation, summarisation or classification creates value, and
+              I keep state changes, permissions and workflow transitions in
+              ordinary software. Model output is validated, failures degrade
+              safely, and high-risk ambiguity stays reviewable.
             </p>
             <p className="text-gray-400 leading-relaxed">
-              I'm the type of developer who gets excited about{" "}
-              <b className="text-gray-300">
-                diving into tricky bugs, getting Docker containers to behave, and
-                collaborating with a team to rethink how a feature should work
-              </b>
-              .
-            </p>
-            <p className="text-gray-400 leading-relaxed">
-              When my editor is closed, I'm usually{" "}
-              <b className="text-gray-300">
-                hanging out with friends or messing around on my guitar
-              </b>
-              .
-            </p>
-            <p className="text-gray-400 leading-relaxed">
-              I'm always up for learning something new. If you need someone who
-              actually cares about{" "}
-              <b className="text-gray-300">
-                building resilient software and knows how to use modern AI tools
-                to ship it efficiently
-              </b>
-              , let's talk.
+              I use coding agents for investigation, implementation, testing and
+              review, and I keep architecture, acceptance criteria and
+              production checks human-owned. Outside work I'm usually with
+              friends or playing guitar.
             </p>
           </motion.div>
         </div>
@@ -131,7 +102,7 @@ const About = () => {
                 }}
                 className="bg-gray-900/40 backdrop-blur-sm rounded-2xl p-8 border border-white/5 hover:border-white/10 transition-all duration-300"
               >
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex justify-between items-start">
                   <div>
                     <h5 className="text-xl font-medium text-white mb-1">
                       {edu.degree}
@@ -141,22 +112,6 @@ const About = () => {
                   <span className="text-sm text-gray-500 tracking-wide uppercase">
                     {edu.period}
                   </span>
-                </div>
-
-                <div>
-                  <h6 className="text-gray-300 font-medium mb-3">
-                    Relevant Coursework
-                  </h6>
-                  <div className="flex flex-wrap gap-2">
-                    {edu.coursework.map((course, courseIndex) => (
-                      <span
-                        key={courseIndex}
-                        className="px-4 py-2 text-sm bg-gray-800/50 text-gray-300 rounded-lg border border-white/5 hover:border-white/10 transition-colors duration-200"
-                      >
-                        {course}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </motion.div>
             ))}

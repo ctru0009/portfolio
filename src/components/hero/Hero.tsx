@@ -33,11 +33,15 @@ const Hero = () => {
             </span>
           </h1>
           <p className="text-xl md:text-2xl font-normal text-gray-300">
-            I am a{" "}
             <span className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 bg-clip-text text-transparent font-medium">
               {HeroData.title}
-            </span>{" "}
-            based in Australia.
+            </span>
+          </p>
+          <p className="text-lg md:text-xl font-normal text-gray-400">
+            Building reliable AI-integrated products.
+          </p>
+          <p className="text-base md:text-lg font-normal text-gray-400">
+            Open to software engineering opportunities
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-4">

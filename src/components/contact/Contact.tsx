@@ -43,9 +43,9 @@ const Contact = () => {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Feel free to reach out if you're looking for a developer, have a
-            question, or just want to connect. I'm always interested in hearing
-            about new opportunities and exciting projects.
+            Open to full-time software engineering roles across Australia,
+            including applied AI, backend and full-stack work. Based in
+            Melbourne.
           </p>
         </motion.div>
 
@@ -81,8 +81,8 @@ const Contact = () => {
                 Let's Connect
               </h3>
               <p className="text-gray-400 mb-6 leading-relaxed">
-                I'm passionate about building amazing web experiences and am
-                always open to discussing new opportunities.
+                Happy to talk about software engineering roles, applied AI
+                products and production backend problems.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span
@@ -90,14 +90,14 @@ const Contact = () => {
                   role="status"
                 >
                   <span className="w-2 h-2 rounded-full bg-gray-400"></span>
-                  Available for hire
+                  Open to full-time roles
                 </span>
                 <span
                   className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-white/5"
                   role="status"
                 >
                   <span className="w-2 h-2 rounded-full bg-gray-400"></span>
-                  Open to collaborate
+                  Based in Melbourne
                 </span>
               </div>
             </motion.div>
@@ -120,13 +120,12 @@ const Contact = () => {
           <div className="bg-gray-900/40 backdrop-blur-sm rounded-2xl border border-white/10 p-8">
             <h3 className="text-2xl font-medium text-white mb-4">
               <span className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                Let's Build Something Amazing Together
+                Let's work together
               </span>
             </h3>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed">
-              Whether you have a project in mind, want to discuss potential
-              collaborations, or just want to chat about technology - I'm here
-              and ready to connect!
+              If you're hiring for a software engineering role — applied AI,
+              backend or full-stack — get in touch.
             </p>
             <div
               className="flex flex-wrap justify-center gap-4"

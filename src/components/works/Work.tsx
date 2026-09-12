@@ -19,7 +19,8 @@ const Work = () => {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            My professional journey and experience in software development.
+            Full-stack software engineering, production AI systems, cloud
+            delivery and technical review.
           </p>
         </motion.div>
 
