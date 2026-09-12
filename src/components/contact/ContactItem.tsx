@@ -14,14 +14,14 @@ interface ContactItemProps {
 const ContactItem: FC<ContactItemProps> = ({ item, index }) => {
   const content = (
     <>
-      <div className="p-3 bg-gray-800/50 rounded-lg group-hover:bg-gray-700/50 transition-colors duration-300">
+      <div className="p-3 shrink-0 bg-gray-800/50 rounded-lg group-hover:bg-gray-700/50 transition-colors duration-300">
         <div className="text-gray-300">{item.icon}</div>
       </div>
-      <div>
+      <div className="min-w-0">
         <h3 className="text-sm text-gray-500 uppercase tracking-wide">
           {item.label}
         </h3>
-        <p className="text-white font-medium">{item.value}</p>
+        <p className="text-white font-medium break-words lg:[overflow-wrap:normal]">{item.value}</p>
       </div>
     </>
   );
