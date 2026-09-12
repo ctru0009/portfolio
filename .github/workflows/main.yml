@@ -3,6 +3,12 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
 permissions:
   contents: write
   
@@ -13,6 +19,7 @@ env:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -20,16 +27,14 @@ jobs:
       - name: Setup Nodejs
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: 'npm'
       
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
-        
-      - name: Debug Environment
-        run: |
-          echo "VITE_WEB3FORMS_ACCESS_KEY is set: ${{ secrets.WEB3FORMS_ACCESS_KEY != '' }}"
+      - name: Lint Project
+        run: npm run lint
 
       - name: Build Project
         run: npm run build
