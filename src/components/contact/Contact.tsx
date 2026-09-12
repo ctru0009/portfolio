@@ -57,7 +57,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-              className="bg-gray-900/40 backdrop-blur-sm rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300 p-8"
+              className="bg-gray-900/40 backdrop-blur-sm rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300 p-8 break-all lg:break-normal"
             >
               <h3 className="text-xl font-medium text-white mb-8">
                 Contact Information

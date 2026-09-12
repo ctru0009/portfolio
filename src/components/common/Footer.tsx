@@ -15,7 +15,7 @@ const Footer = () => {
           </div>
 
           {/* Center - Quick Links */}
-          <div className="flex gap-8 text-sm">
+          <div className="flex flex-wrap justify-center gap-8 text-sm">
             {NavigationData.map((item) => (
               <a
                 href={item.link}
