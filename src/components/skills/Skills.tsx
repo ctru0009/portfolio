@@ -1,39 +1,40 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   FaReact,
   FaNodeJs,
-  FaPython,
   FaGitAlt,
   FaAws,
   FaFilter,
-  FaRobot,
-  FaMagic,
+  FaCode,
+  FaServer,
+  FaMicrosoft,
+  FaMountain,
 } from "react-icons/fa";
 import {
   SiTypescript,
   SiJavascript,
   SiTailwindcss,
-  SiMongodb,
   SiDotnet,
-  SiFlask,
   SiPostgresql,
   SiRedis,
   SiDocker,
-  SiXdotorg,
+  SiFastify,
+  SiPrisma,
+  SiGithubactions,
+  SiAzuredevops,
 } from "react-icons/si";
-import { PiFileSqlLight } from "react-icons/pi";
+import { PiFileSqlLight, PiShieldCheck } from "react-icons/pi";
 import { TbBrandCSharp } from "react-icons/tb";
 
 interface Skill {
   name: string;
   icon: React.ReactNode;
-  category: "frontend" | "backend" | "database" | "tools" | "cloud";
+  category: "frontend" | "backend" | "database" | "cloud" | "also";
 }
 
 const Skills = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   const skills: Skill[] = [
     {
@@ -57,21 +58,6 @@ const Skills = () => {
       category: "frontend",
     },
     {
-      name: "Node.js",
-      icon: <FaNodeJs className="text-3xl text-[#339933]" />,
-      category: "backend",
-    },
-    {
-      name: "Python",
-      icon: <FaPython className="text-3xl text-[#3776AB]" />,
-      category: "backend",
-    },
-    {
-      name: "Flask",
-      icon: <SiFlask className="text-3xl text-[#000000]" />,
-      category: "backend",
-    },
-    {
       name: "C#",
       icon: <TbBrandCSharp className="text-3xl text-[#9B4993]" />,
       category: "backend",
@@ -82,18 +68,28 @@ const Skills = () => {
       category: "backend",
     },
     {
+      name: "ASP.NET Core",
+      icon: <FaCode className="text-3xl text-[#E74C3C]" />,
+      category: "backend",
+    },
+    {
+      name: "Node.js",
+      icon: <FaNodeJs className="text-3xl text-[#339933]" />,
+      category: "backend",
+    },
+    {
+      name: "Fastify",
+      icon: <SiFastify className="text-3xl text-[#14B8A6]" />,
+      category: "backend",
+    },
+    {
+      name: "REST APIs",
+      icon: <FaServer className="text-3xl text-[#F97316]" />,
+      category: "backend",
+    },
+    {
       name: "PostgreSQL",
       icon: <SiPostgresql className="text-3xl text-[#336791]" />,
-      category: "database",
-    },
-    {
-      name: "MongoDB",
-      icon: <SiMongodb className="text-3xl text-[#47A248]" />,
-      category: "database",
-    },
-    {
-      name: "Redis",
-      icon: <SiRedis className="text-3xl text-[#DC382D]" />,
       category: "database",
     },
     {
@@ -102,19 +98,14 @@ const Skills = () => {
       category: "database",
     },
     {
-      name: "Docker",
-      icon: <SiDocker className="text-3xl text-[#2496ED]" />,
-      category: "tools",
+      name: "Redis",
+      icon: <SiRedis className="text-3xl text-[#DC382D]" />,
+      category: "database",
     },
     {
-      name: "Git",
-      icon: <FaGitAlt className="text-3xl text-[#F05032]" />,
-      category: "tools",
-    },
-    {
-      name: "xUnit/NUnit",
-      icon: <SiXdotorg className="text-3xl text-[#8B0000]" />,
-      category: "tools",
+      name: "Prisma",
+      icon: <SiPrisma className="text-3xl text-[#4F46E5]" />,
+      category: "database",
     },
     {
       name: "AWS",
@@ -122,19 +113,39 @@ const Skills = () => {
       category: "cloud",
     },
     {
-      name: "Claude Code",
-      icon: <FaMagic className="text-3xl text-[#D97706]" />,
-      category: "tools",
+      name: "Azure",
+      icon: <FaMicrosoft className="text-3xl text-[#0078D4]" />,
+      category: "cloud",
     },
     {
-      name: "Agentic Engineering",
-      icon: <FaRobot className="text-3xl text-[#8B5CF6]" />,
-      category: "tools",
+      name: "Docker",
+      icon: <SiDocker className="text-3xl text-[#2496ED]" />,
+      category: "cloud",
     },
     {
-      name: "AI-Assisted Dev",
-      icon: <FaRobot className="text-3xl text-[#10B981]" />,
-      category: "tools",
+      name: "GitHub Actions",
+      icon: <SiGithubactions className="text-3xl text-[#6E40C9]" />,
+      category: "cloud",
+    },
+    {
+      name: "Azure DevOps",
+      icon: <SiAzuredevops className="text-3xl text-[#2563EB]" />,
+      category: "cloud",
+    },
+    {
+      name: "Git",
+      icon: <FaGitAlt className="text-3xl text-[#F05032]" />,
+      category: "also",
+    },
+    {
+      name: "AWS Bedrock",
+      icon: <FaMountain className="text-3xl text-[#6B7280]" />,
+      category: "also",
+    },
+    {
+      name: "Zod",
+      icon: <PiShieldCheck className="text-3xl text-[#16A34A]" />,
+      category: "also",
     },
   ];
 
@@ -143,8 +154,8 @@ const Skills = () => {
     { id: "frontend", name: "Frontend", color: "bg-blue-600" },
     { id: "backend", name: "Backend", color: "bg-green-600" },
     { id: "database", name: "Database", color: "bg-purple-600" },
-    { id: "tools", name: "Tools", color: "bg-orange-600" },
     { id: "cloud", name: "Cloud", color: "bg-cyan-600" },
+    { id: "also", name: "Also", color: "bg-orange-600" },
   ];
 
   const filteredSkills =
@@ -168,8 +179,8 @@ const Skills = () => {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Here are the technologies I work with. Click on categories to filter
-            skills.
+            Technologies I use in professional work across backend, full-stack,
+            cloud and applied AI.
           </p>
         </motion.div>
 
@@ -216,8 +227,6 @@ const Skills = () => {
                 delay: index * 0.03,
               }}
               whileHover={{ y: -5, scale: 1.02 }}
-              onHoverStart={() => setHoveredSkill(skill.name)}
-              onHoverEnd={() => setHoveredSkill(null)}
               className="relative group"
             >
               <div className="p-6 bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300 h-full relative overflow-hidden">
@@ -237,21 +246,6 @@ const Skills = () => {
                     {skill.name}
                   </h3>
                 </div>
-
-                {/* Hover Details */}
-                <AnimatePresence>
-                  {hoveredSkill === skill.name && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute inset-0 bg-gray-900/95 backdrop-blur-sm rounded-2xl p-4 flex flex-col justify-center items-center text-center z-10"
-                    >
-                      <div className="mb-3">{skill.icon}</div>
-                      <h4 className="text-white font-semibold">{skill.name}</h4>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             </motion.div>
           ))}

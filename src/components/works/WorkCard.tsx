@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { WorkInterface } from "../../data/data";
 
 const WorkCard = ({ work, index }: { work: WorkInterface; index: number }) => {
+  const isCurrent = work.period.includes("Present");
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -13,8 +15,16 @@ const WorkCard = ({ work, index }: { work: WorkInterface; index: number }) => {
     >
       <div className="flex flex-col h-full">
         <div className="mb-6 pb-6 border-b border-white/5">
-          <h3 className="text-2xl font-medium text-white mb-2">{work.title}</h3>
+          <h3 className="text-2xl font-medium text-white mb-2 flex items-center gap-2">
+            {work.title}
+            {isCurrent && (
+              <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded-full border border-emerald-500/20">
+                Present
+              </span>
+            )}
+          </h3>
           <p className="text-gray-400 text-lg mb-1">{work.company}</p>
+          <p className="text-sm text-gray-500 mb-1">{work.location}</p>
           <p className="text-sm text-gray-500 tracking-wide uppercase">
             {work.period}
           </p>
