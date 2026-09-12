@@ -12,7 +12,7 @@ const Hero = () => {
       {/* Ambient glow effect */}
       <div className="absolute inset-0 ambient-glow pointer-events-none" />
 
-      <div className="relative flex flex-col justify-center items-center h-dvh space-y-12">
+      <div className="relative flex flex-col justify-center items-center min-h-dvh py-16 space-y-8 md:space-y-12">
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-white/20 via-transparent to-white/20 rounded-full blur-xl opacity-40 group-hover:opacity-60 transition duration-700"></div>
           <img
