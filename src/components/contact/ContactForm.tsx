@@ -142,10 +142,10 @@ const ContactForm = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h3 className="text-2xl font-semibold text-white mb-2">Send Me a Message</h3>
-          <p className="text-gray-400">
-            I'd love to hear from you! Fill out the form below and I'll get back to you as soon as possible.
-          </p>
+          <h3 className="text-2xl font-semibold text-white mb-2">
+            Have a role or technical problem worth discussing?
+          </h3>
+          <p className="text-gray-400">Send a message.</p>
         </div>
 
         {/* Configuration Warning */}
