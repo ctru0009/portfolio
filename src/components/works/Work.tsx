@@ -32,7 +32,7 @@ const Work = () => {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           <div className="overflow-x-auto pb-8 hide-scrollbar">
-            <div className="flex justify-center gap-6 min-w-max">
+            <div className="flex flex-col gap-6 sm:flex-row sm:justify-center sm:min-w-max">
               {WorkData.map((work, index) => (
                 <WorkCard key={index} work={work} index={index} />
               ))}

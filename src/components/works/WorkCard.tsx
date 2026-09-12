@@ -11,7 +11,7 @@ const WorkCard = ({ work, index }: { work: WorkInterface; index: number }) => {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
       whileHover={{ y: -5 }}
-      className="bg-gray-900/40 backdrop-blur-sm rounded-2xl p-8 w-[380px] border border-white/5 hover:border-white/10 transition-all duration-300 hover:shadow-xl hover:shadow-black/50"
+      className="bg-gray-900/40 backdrop-blur-sm rounded-2xl p-8 w-full max-w-[380px] sm:w-[380px] border border-white/5 hover:border-white/10 transition-all duration-300 hover:shadow-xl hover:shadow-black/50"
     >
       <div className="flex flex-col h-full">
         <div className="mb-6 pb-6 border-b border-white/5">
