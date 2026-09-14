@@ -13,6 +13,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   const [showPreview, setShowPreview] = useState(false);
 
   const isLiveDemo = project.liveLink !== project.githubLink;
+  const slug = project.title.toLowerCase().replace(/\s+/g, "-");
 
   return (
     <>
@@ -24,12 +25,55 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         aria-label={`Project: ${project.title}`}
       >
         <div className="relative group h-56 overflow-hidden">
-          <img
-            src={project.image}
-            alt={`${project.title} project preview`}
-            className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? "scale-105" : "scale-100"}`}
-            loading="lazy"
-          />
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={`${project.title} project preview`}
+              className={`w-full h-full object-cover object-left transition-transform duration-700 ${isHovered ? "scale-105" : "scale-100"}`}
+              loading="lazy"
+            />
+          ) : (
+            <div
+              className="relative w-full h-full flex items-center justify-center bg-gray-950 bg-gradient-to-br from-gray-900 via-gray-950 to-black"
+              aria-hidden="true"
+            >
+              {/* Subtle dot grid backdrop */}
+              <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:18px_18px]" />
+
+              {/* Accent glow */}
+              <div className="absolute w-40 h-40 rounded-full bg-emerald-500/[0.05] blur-3xl" />
+
+              {/* Terminal window */}
+              <div className="relative w-[80%] max-w-xs rounded-xl border border-white/10 bg-gray-900/70 backdrop-blur-sm shadow-2xl shadow-black/50 overflow-hidden">
+                <div className="flex items-center gap-1.5 px-3 py-2 border-b border-white/5 bg-white/[0.03]">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+                  <span className="ml-auto pl-3 font-mono text-[10px] tracking-widest uppercase text-gray-500 truncate">
+                    {slug}
+                  </span>
+                </div>
+                <div className="p-4 font-mono text-xs leading-relaxed">
+                  <p className="text-gray-200 truncate">
+                    <span className="text-emerald-400">$</span> ./{slug}
+                  </p>
+                  <p className="text-gray-400 truncate">
+                    <span className="text-emerald-400">✓</span> ready
+                    {project.technologies.length > 0 && (
+                      <span className="text-gray-500">
+                        {" "}
+                        · {project.technologies.slice(0, 3).join(" · ")}
+                      </span>
+                    )}
+                  </p>
+                  <p>
+                    <span className="text-emerald-400">$</span>{" "}
+                    <span className="inline-block w-2 h-3.5 bg-gray-500/80 animate-pulse align-middle" />
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent" />
