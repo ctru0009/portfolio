@@ -25,14 +25,6 @@ const fieldClass = (invalid?: string) =>
     invalid ? "border-dashed border-[#777]" : "border-ink"
   }`;
 
-/**
- * The dark SquareButton recipe, inline: the submit control needs the native
- * `disabled` attribute (submitting / unconfigured) and SquareButton's
- * signature has no `disabled` prop.
- */
-const submitClass =
-  "border-2 border-ink bg-ink px-[10px] py-[5px] text-[11px] text-paper shadow-hard-dark hover:bg-paper hover:text-ink active:translate-x-px active:translate-y-px active:shadow-[2px_2px_0_#777] disabled:cursor-not-allowed disabled:bg-paper disabled:text-muted disabled:shadow-none disabled:hover:bg-paper disabled:hover:text-muted";
-
 const ContactForm = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -183,7 +175,7 @@ const ContactForm = () => {
               Thank you for reaching out! I'll get back to you as soon as
               possible.
             </p>
-            <SquareButton onClick={resetForm}>
+            <SquareButton onClick={resetForm} variant="dark">
               Send Another Message
             </SquareButton>
           </Callout>
@@ -307,13 +299,13 @@ const ContactForm = () => {
 
           {/* Submit Button */}
           <div className="mt-3.5">
-            <button
+            <SquareButton
               type="submit"
+              variant="dark"
               disabled={isSubmitting || !isConfigured}
-              className={submitClass}
             >
               {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
+            </SquareButton>
           </div>
         </form>
       )}

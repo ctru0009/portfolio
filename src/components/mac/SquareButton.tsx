@@ -4,6 +4,7 @@ interface SquareButtonProps {
   variant?: "light" | "dark";
   href?: string;
   type?: "button" | "submit";
+  disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   children: ReactNode;
@@ -17,10 +18,14 @@ const variantClass = {
   dark: "bg-ink text-paper shadow-hard-dark hover:bg-paper hover:text-ink active:translate-x-px active:translate-y-px active:shadow-[2px_2px_0_#777]",
 };
 
+const disabledClass =
+  "disabled:cursor-not-allowed disabled:bg-paper disabled:text-muted disabled:shadow-none disabled:hover:bg-paper disabled:hover:text-muted";
+
 const SquareButton = ({
   variant = "light",
   href,
   type = "button",
+  disabled = false,
   onClick,
   className = "",
   children,
@@ -41,7 +46,12 @@ const SquareButton = ({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className={`${classes} ${disabledClass}`.trim()}
+    >
       {children}
     </button>
   );

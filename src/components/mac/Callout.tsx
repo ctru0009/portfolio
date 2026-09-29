@@ -13,7 +13,10 @@ const toneClass = {
 
 const Callout = ({ tone = "default", children }: CalloutProps) => {
   return (
-    <div className={`text-[11px] leading-[1.6] ${toneClass[tone]}`}>
+    <div
+      role={tone === "warning" ? "alert" : undefined}
+      className={`text-[11px] leading-[1.6] ${toneClass[tone]}`}
+    >
       {children}
     </div>
   );
