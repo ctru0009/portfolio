@@ -1,61 +1,39 @@
-import { motion } from "framer-motion";
 import { WorkInterface } from "../../data/data";
+import TagChip from "../mac/TagChip";
 
-const WorkCard = ({ work, index }: { work: WorkInterface; index: number }) => {
-  const isCurrent = work.period.includes("Present");
+interface WorkCardProps {
+  work: WorkInterface;
+  /**
+   * Unused. Kept optional so the orphaned legacy `components/work/Work.tsx`
+   * (which still imports this component) keeps type-checking.
+   */
+  index?: number;
+}
 
+const WorkCard = ({ work }: WorkCardProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-      whileHover={{ y: -5 }}
-      className="bg-gray-900/40 backdrop-blur-sm rounded-2xl p-8 w-full max-w-[380px] sm:w-[380px] border border-white/5 hover:border-white/10 transition-all duration-300 hover:shadow-xl hover:shadow-black/50"
-    >
-      <div className="flex flex-col h-full">
-        <div className="mb-6 pb-6 border-b border-white/5">
-          <h3 className="text-2xl font-medium text-white mb-2 flex items-center gap-2">
-            {work.title}
-            {isCurrent && (
-              <span className="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded-full border border-emerald-500/20">
-                Present
-              </span>
-            )}
-          </h3>
-          <p className="text-gray-400 text-lg mb-1">{work.company}</p>
-          <p className="text-sm text-gray-500 mb-1">{work.location}</p>
-          <p className="text-sm text-gray-500 tracking-wide uppercase">
-            {work.period}
-          </p>
-        </div>
-
-        <div className="flex-grow mb-6">
-          <ul className="space-y-3">
-            {work.responsibilities.map((responsibility, idx) => (
-              <li
-                key={idx}
-                className="flex gap-3 text-gray-400 leading-relaxed"
-              >
-                <span className="text-white/20 mt-1.5">•</span>
-                <span>{responsibility}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {work.technologies.map((tech, idx) => (
-            <span
-              key={idx}
-              className="px-3 py-1.5 text-sm bg-gray-800/50 text-gray-300 rounded-lg border border-white/5 font-normal tracking-wide hover:bg-gray-700/50 hover:text-white transition-colors duration-200"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+    <article className="border border-ink">
+      <div className="flex justify-between gap-2.5 border-b border-ink bg-chrome px-2.5 py-2 text-[11px]">
+        <span>
+          {work.title} — {work.company}
+        </span>
+        <span className="whitespace-nowrap">{work.period}</span>
       </div>
-    </motion.div>
+
+      <p className="px-2.5 pt-1.5 text-[10px] text-muted">{work.location}</p>
+
+      <ul className="mb-2 mt-1.5 list-disc space-y-1 pl-[26px] pr-2.5 text-[11px] leading-[1.6]">
+        {work.responsibilities.map((responsibility, index) => (
+          <li key={index}>{responsibility}</li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-1 px-2.5 pb-2.5">
+        {work.technologies.map((technology, index) => (
+          <TagChip key={index}>{technology}</TagChip>
+        ))}
+      </div>
+    </article>
   );
 };
 
