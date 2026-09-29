@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
       <MenuBar />
-      <div className="mx-auto max-w-[1120px] px-4 pb-2 pt-6 sm:px-6">
+      <div className="mx-auto max-w-[1120px] px-4 pb-2 pt-6 sm:px-6 min-[800px]:pb-36">
         <main id="home">
           <MacWindow title="congchuongtruong.net — Software Engineer">
             <MetaBar

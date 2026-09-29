@@ -35,3 +35,38 @@ Offsets are the section target's top relative to the sticky menu's bottom, in CS
 ## Remaining review
 
 The social image description is factual based on the supplied `public/og-image.png`. Visual/content suitability and permission review remain with the owner. Existing desktop Contact bottom-of-page alignment remains constrained by maximum scroll and was intentionally not “fixed” with additional page space/layout changes.
+
+---
+
+## Reviewer fix round 1 — Contact anchor end spacing and axe gate
+
+### Changes
+
+- Increased the outer page wrapper's desktop-only bottom padding from 8px to Tailwind `pb-36` (144px), an additional 136px of page-end scroll room at widths ≥800px. The mobile padding is unchanged. No section IDs, navigation logic, focus behavior, Contact content, or footer content changed.
+- Replaced the desktop Contact anchor exception (151px) with the same absolute target as the other desktop anchors: 16px from the sticky menu bottom, ±8px. Kept the mobile target at 10px (the 46px menu plus 10px, within the 16px ±8px gate). Click, reload, and back measurements all retain absolute checks.
+- Restored the explicit zero-critical axe assertion while retaining the zero-serious and no-moderate-region checks.
+- This resolves the prior report's intentionally retained max-scroll limitation above.
+
+### Evidence and validation
+
+- Before screenshots at 1440×900 and 390×844 showed the Contact section at 151px and 10px from the menu bottom respectively. On desktop, the page was at maximum scroll with the Contact section still 135px below its 16px target.
+- Red check: `npx playwright test tests/e2e/smoke.spec.ts --grep "section links keep their anchor offset|accessibility violations"` — the new Contact absolute assertion failed as expected (deviation 135px); the axe test passed.
+- Focused green check: same command after the spacing change — **2 passed**. Logged offsets for every section across click, reload, and back: **16px at 1440px** and **10px at 390px**.
+- `npm run check` — passed (ESLint and TypeScript/Vite build).
+- `npm run format:check` — passed.
+- `npm run test:e2e` — first run: 12 passed, one intermittent reload-anchor assertion failed at the reload measurement; immediate rerun: **13 passed**. Follow-up `npx playwright test tests/e2e/smoke.spec.ts --grep "section links keep their anchor offset" --repeat-each=5 --workers=3` — **5 passed**, with reload offsets stable at 16px/10px.
+- `git diff --check` — passed.
+
+### Visual review
+
+Captured and inspected before/after Contact-and-footer views at both requested viewport sizes:
+
+- Before: `/private/var/folders/qg/s7ncn_z15fn_qmk8b33qky900000gn/T/opencode/task6-before-1440.png` and `task6-before-390.png`.
+- After: `/private/var/folders/qg/s7ncn_z15fn_qmk8b33qky900000gn/T/opencode/task6-after-1440.png` and `task6-after-390.png`.
+- Footer-at-page-end captures: `task6-before-{1440,390}-footer.png` and `task6-after-{1440,390}-footer.png` in the same directory.
+
+After the change, the `#contact` container is 16px below the desktop menu and 10px below the mobile menu. The desktop Mac window and footer remain visually intact; the extra runway is the dotted desktop canvas after the footer, not a blank gap inside the window. It measures about 144px at the bottom edge and is the minimum practical page-end room for this page's existing layout to let the Contact target reach the requested range. The captures show this as a clear but contained desktop end margin, not whitespace interrupting the Contact content or Mac window. Mobile layout and footer position are unchanged: before and after, the footer occupies y=734–836 of the 844px viewport. No motion or other visual changes were introduced.
+
+### Concern
+
+- The full E2E suite had one non-reproducible reload-anchor failure on its first parallel run; the full rerun and five repeated focused anchor runs all passed. Keep an eye on the existing reload-scroll check if it becomes flaky again.

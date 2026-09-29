@@ -133,27 +133,23 @@ test.describe("portfolio smoke", () => {
         await expect(page).toHaveURL(new RegExp(`#${id}$`));
         const offset = await measureOffset(id);
         measurements[`${width}-${id}-navigation`] = [offset];
-        const baselineOffset =
-          width === 1440 ? (id === "contact" ? 151 : 16) : 10;
-        expect(Math.abs(offset - baselineOffset)).toBeLessThanOrEqual(8);
+        const expectedOffset = width === 1440 ? 16 : 10;
+        expect(Math.abs(offset - expectedOffset)).toBeLessThanOrEqual(8);
       }
 
       const lastId = "contact";
       await page.reload();
       const reloadOffset = await measureOffset(lastId);
       measurements[`${width}-${lastId}-reload`] = [reloadOffset];
-      expect(
-        Math.abs(reloadOffset - (width === 1440 ? 151 : 10)),
-      ).toBeLessThanOrEqual(8);
+      const expectedOffset = width === 1440 ? 16 : 10;
+      expect(Math.abs(reloadOffset - expectedOffset)).toBeLessThanOrEqual(8);
 
       for (const id of [...sections.slice(1)].reverse().slice(1)) {
         await page.goBack();
         await expect(page).toHaveURL(new RegExp(`#${id}$`));
         const backOffset = await measureOffset(id);
         measurements[`${width}-${id}-back`] = [backOffset];
-        const baselineOffset =
-          width === 1440 ? (id === "contact" ? 151 : 16) : 10;
-        expect(Math.abs(backOffset - baselineOffset)).toBeLessThanOrEqual(8);
+        expect(Math.abs(backOffset - expectedOffset)).toBeLessThanOrEqual(8);
       }
     }
 
@@ -601,13 +597,16 @@ test.describe("portfolio smoke", () => {
     ).toHaveAttribute("href", "https://github.com/ctru0009/pocket-lab");
   });
 
-  test("landing page has no serious or moderate region accessibility violations", async ({
+  test("landing page has no critical, serious, or moderate region accessibility violations", async ({
     page,
   }) => {
     await page.goto("/");
     await expect(page.locator("#contact")).toBeVisible();
 
     const results = await new AxeBuilder({ page }).analyze();
+    expect(
+      results.violations.filter((violation) => violation.impact === "critical"),
+    ).toEqual([]);
     const relevant = results.violations.filter(
       (violation) =>
         violation.impact === "serious" ||
