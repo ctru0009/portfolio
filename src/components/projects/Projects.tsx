@@ -15,7 +15,7 @@ const Projects = () => {
     <div id="projects" className="px-[25px] py-6 min-[800px]:px-[30px]">
       <StepTitle number={4} label="Projects" />
 
-      <p className="mb-4 text-12">
+      <p className="mb-4 max-w-prose text-13">
         Public work that shows how I bound AI inside ordinary software.
       </p>
 
@@ -32,7 +32,7 @@ const Projects = () => {
       </section>
 
       <section aria-label="More projects" className="mt-6">
-        <h2 className="mb-1 text-12 font-bold">More projects</h2>
+        <h2 className="mb-1 text-16 font-bold">More projects</h2>
         {remainingProjects.map((project) => (
           <CompactProject
             key={project.id}

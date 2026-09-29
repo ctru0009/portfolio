@@ -33,6 +33,9 @@ export default {
         30: ["30px", "1.16"],
         33: ["33px", "1.16"],
       },
+      maxWidth: {
+        prose: "70ch",
+      },
       boxShadow: {
         hard: "7px 7px 0 #111",
         "hard-callout": "4px 4px 0 #111",

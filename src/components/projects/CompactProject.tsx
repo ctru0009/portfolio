@@ -15,8 +15,8 @@ const CompactProject = ({ project, onPreview }: CompactProjectProps) => {
       className="grid gap-x-4 border-b border-ink/20 py-3 min-[600px]:grid-cols-[minmax(0,1fr)_auto] min-[600px]:items-center"
     >
       <div>
-        <h3 className="text-11 font-bold">{project.title}</h3>
-        <p className="mt-1 text-11 text-muted">{project.summary}</p>
+        <h3 className="text-16 font-bold">{project.title}</h3>
+        <p className="mt-1 max-w-prose text-13 text-muted">{project.summary}</p>
       </div>
 
       <ul className="mt-1 flex flex-wrap items-center gap-x-3 min-[600px]:mt-0">

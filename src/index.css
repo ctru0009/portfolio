@@ -28,6 +28,7 @@
     color: theme(colors.ink);
     font-size: 13px;
     font-family: Departure, ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    line-height: 1.6;
     min-height: 100vh;
   }
 

@@ -34,7 +34,7 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
         </div>
       ) : null}
 
-      <p className={`${project.image ? "mt-3" : ""} text-11`}>
+      <p className={`${project.image ? "mt-3" : ""} max-w-prose text-13`}>
         {project.description}
       </p>
     </MacDialog>

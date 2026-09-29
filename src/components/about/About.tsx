@@ -8,9 +8,9 @@ const About = () => {
     <div id="about" className="px-[25px] py-6 min-[800px]:px-[30px]">
       <StepTitle number={1} label="About" />
 
-      <h3 className="mb-3 text-13 font-normal">Hey, I'm Cong.</h3>
+      <h3 className="mb-3 text-16 font-normal">Hey, I'm Cong.</h3>
 
-      <p className="mb-3 text-12">
+      <p className="mb-3 max-w-prose text-13">
         I'm a Melbourne-based software engineer with 3+ years of professional
         experience across .NET, TypeScript, React, Node.js, PostgreSQL, Azure
         and AWS-backed AI systems. I started in full-stack .NET; more recently I
@@ -18,7 +18,7 @@ const About = () => {
         privacy and delivery.
       </p>
 
-      <p className="mb-3 text-12">
+      <p className="mb-3 max-w-prose text-13">
         AI interprets. Deterministic software acts. I use models where
         interpretation, summarisation or classification creates value, and I
         keep state changes, permissions and workflow transitions in ordinary
@@ -26,7 +26,7 @@ const About = () => {
         high-risk ambiguity stays reviewable.
       </p>
 
-      <p className="mb-4 text-12">
+      <p className="mb-4 max-w-prose text-13">
         I use coding agents for investigation, implementation, testing and
         review, and I keep architecture, acceptance criteria and production
         checks human-owned. Outside work I'm usually with friends or playing

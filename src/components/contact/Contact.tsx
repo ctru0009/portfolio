@@ -23,14 +23,14 @@ const contactInfo = [
 ];
 
 const panelHeadClass =
-  "border-b border-ink bg-chrome px-2.5 py-2 text-11 font-normal";
+  "border-b border-ink bg-chrome px-2.5 py-2 text-16 font-normal";
 
 const Contact = () => {
   return (
     <div id="contact" className="px-[25px] py-6 min-[800px]:px-[30px]">
       <StepTitle number={5} label="Contact" />
 
-      <p className="mb-4 text-12">
+      <p className="mb-4 max-w-prose text-13">
         Open to full-time software engineering roles across Australia, including
         applied AI, backend and full-stack work. Based in Melbourne.
       </p>
@@ -53,7 +53,7 @@ const Contact = () => {
         <div className="border border-ink">
           <h3 className={panelHeadClass}>Let's work together</h3>
           <div className="p-2.5">
-            <p className="mb-2.5 text-11">
+            <p className="mb-2.5 max-w-prose text-13">
               If you're hiring for a software engineering role — applied AI,
               backend or full-stack — get in touch.
             </p>

@@ -24,7 +24,7 @@ const Sidebar = () => {
           Hi, I'm {HeroData.name}
         </h1>
 
-        <p className="mb-2.5 text-12">
+        <p className="mb-2.5 text-13">
           Building reliable AI-integrated products.
         </p>
         <p className="text-11 text-muted">

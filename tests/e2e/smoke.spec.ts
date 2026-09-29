@@ -26,6 +26,7 @@ const expectSummaryTextFits = async (container: Locator) => {
           clientWidth: paragraph.clientWidth,
           scrollWidth: paragraph.scrollWidth,
           overflow: getComputedStyle(paragraph).overflow,
+          fontSize: getComputedStyle(paragraph).fontSize,
         };
       }),
     );
@@ -36,6 +37,7 @@ const expectSummaryTextFits = async (container: Locator) => {
     expect(summary.scrollHeight).toBeLessThanOrEqual(summary.clientHeight);
     expect(summary.scrollWidth).toBeLessThanOrEqual(summary.clientWidth);
     expect(summary.overflow).not.toMatch(/hidden|clip/);
+    expect(summary.fontSize).toBe("13px");
   }
 };
 
@@ -144,6 +146,12 @@ test.describe("portfolio smoke", () => {
       );
     expect(featuredIds).toEqual(featuredProjectIds);
     expect(compactIds).toEqual(remainingProjectIds);
+    await expect(compact.locator("h3").first()).toHaveCSS("font-size", "16px");
+    const featuredSummaries = featured.locator("[data-project-id] p");
+    await expect(featuredSummaries).toHaveCount(3);
+    for (let index = 0; index < 3; index += 1) {
+      await expect(featuredSummaries.nth(index)).toBeVisible();
+    }
     await expectSummaryTextFits(featured);
     await expectSummaryTextFits(compact);
 

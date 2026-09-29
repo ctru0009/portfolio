@@ -16,7 +16,7 @@ const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
       className="relative flex flex-col border-2 border-ink bg-paper shadow-hard-sm hover:shadow-hard-callout"
     >
       <div className="mac-titlebar-stripes m-1 flex h-4 flex-shrink-0 items-center px-1">
-        <span className="mx-auto truncate bg-paper px-1.5 py-px text-10">
+        <span className="mx-auto truncate bg-paper px-1.5 py-px text-11 leading-none">
           {project.title}
         </span>
       </div>
@@ -32,7 +32,9 @@ const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
         </div>
       ) : null}
 
-      <p className="px-2.5 pt-2 text-11 text-muted">{project.summary}</p>
+      <p className="max-w-prose px-2.5 pt-2 text-13 text-muted">
+        {project.summary}
+      </p>
 
       <div className="flex flex-wrap gap-1 px-2.5 pt-2">
         {project.technologies.map((technology, index) => (
