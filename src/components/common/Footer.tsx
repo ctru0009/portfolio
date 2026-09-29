@@ -11,7 +11,7 @@ const Footer = () => {
           href={HeroData.github}
           target="_blank"
           rel="noopener noreferrer"
-          className={linkClass}
+          className={`${linkClass} inline-flex min-h-[44px] items-center`}
         >
           GitHub
         </a>
@@ -19,11 +19,11 @@ const Footer = () => {
           href={HeroData.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className={linkClass}
+          className={`${linkClass} inline-flex min-h-[44px] items-center`}
         >
           LinkedIn
         </a>
-        <a href={`mailto:${HeroData.email}`} className={linkClass}>
+        <a href={`mailto:${HeroData.email}`} className={`${linkClass} inline-flex min-h-[44px] items-center`}>
           Email
         </a>
       </div>
