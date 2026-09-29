@@ -3,11 +3,6 @@ import TagChip from "../mac/TagChip";
 
 interface WorkCardProps {
   work: WorkInterface;
-  /**
-   * Unused. Kept optional so the orphaned legacy `components/work/Work.tsx`
-   * (which still imports this component) keeps type-checking.
-   */
-  index?: number;
 }
 
 const WorkCard = ({ work }: WorkCardProps) => {

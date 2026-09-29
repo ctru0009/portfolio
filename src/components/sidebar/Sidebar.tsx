@@ -1,12 +1,10 @@
 import { AboutData, HeroData, WorkData } from "../../data/data";
 import FactRow from "../mac/FactRow";
+import { linkClass } from "../mac/linkClass";
 import SquareLink from "../mac/SquareLink";
 
 const currentJob = WorkData[0];
 const education = AboutData.education[0];
-
-const linkClass =
-  "underline underline-offset-[3px] hover:bg-ink hover:text-paper hover:decoration-paper";
 
 const Sidebar = () => {
   return (

@@ -1,7 +1,5 @@
 import { HeroData } from "../../data/data";
-
-const linkClass =
-  "underline underline-offset-[3px] hover:bg-ink hover:text-paper hover:decoration-paper";
+import { linkClass } from "../mac/linkClass";
 
 const Footer = () => {
   return (
@@ -23,7 +21,10 @@ const Footer = () => {
         >
           LinkedIn
         </a>
-        <a href={`mailto:${HeroData.email}`} className={`${linkClass} inline-flex min-h-[44px] items-center`}>
+        <a
+          href={`mailto:${HeroData.email}`}
+          className={`${linkClass} inline-flex min-h-[44px] items-center`}
+        >
           Email
         </a>
       </div>

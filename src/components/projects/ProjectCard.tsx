@@ -1,13 +1,11 @@
 import { ProjectInterface } from "../../data/data";
+import { linkClass } from "../mac/linkClass";
 import TagChip from "../mac/TagChip";
 
 interface ProjectCardProps {
   project: ProjectInterface;
   onPreview: () => void;
 }
-
-const linkClass =
-  "underline underline-offset-[3px] hover:bg-ink hover:text-paper hover:decoration-paper";
 
 const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
   const hasLiveDemo = project.liveLink !== project.githubLink;
