@@ -2,7 +2,7 @@
 
 Working notes for coding agents. `CLAUDE.md` imports this file — keep it the single source of truth.
 
-Static portfolio: React 18 + Vite 5 + TypeScript + Tailwind 3, 1-bit Macintosh design. No backend, no environment variables, no motion by design.
+Static portfolio: React 18 + Vite 8 + TypeScript + Tailwind 3, 1-bit Macintosh design. No backend, no environment variables, no motion by design.
 
 ## Commands
 
