@@ -20,13 +20,13 @@ This document contains deployment and infrastructure-related documentation for t
 
 ### Development Environment
 - **Local Development**: `npm run dev` with hot module replacement
-- **Environment Variables**: `.env` file for local configuration
+- **No Environment Variables**: the site builds and runs without any env configuration
 - **Type Checking**: Real-time TypeScript compilation
 - **Linting**: ESLint integration for code quality
 
 ### Production Environment
 - **Environment Secrets**: GitHub Actions secrets for sensitive data
-- **Web3Forms Integration**: Secure API key management via environment variables
+- **Legacy CI Secret**: a `WEB3FORMS_ACCESS_KEY` secret may remain wired but unused (tidy deferred)
 - **Asset Optimization**: Automatic minification and optimization
 - **Build Outputs**: Optimized bundle in `dist/` directory
 
@@ -46,8 +46,8 @@ This document contains deployment and infrastructure-related documentation for t
 ```
 
 ### Environment Variables
-- **VITE_WEB3FORMS_ACCESS_KEY**: Web3Forms API key for contact form
-- **NODE_ENV**: Environment identifier (development/production)
+- **None required**: the site needs no environment variables to build or run
+- **Legacy**: a `WEB3FORMS_ACCESS_KEY` CI secret may remain wired but unused (tidy deferred)
 - **GitHub Actions**: Automatic secret injection during deployment
 
 ## CI/CD Pipeline
@@ -94,7 +94,7 @@ This document contains deployment and infrastructure-related documentation for t
 
 ### Runtime Monitoring
 - **GitHub Pages**: Built-in analytics and uptime monitoring
-- **Form Submissions**: Web3Forms submission tracking
+- **No Runtime Telemetry**: no trackers or submission endpoints
 - **Performance**: Core Web Vitals monitoring capabilities
 - **Accessibility**: Automated accessibility testing opportunities
 
@@ -107,9 +107,9 @@ This document contains deployment and infrastructure-related documentation for t
 - **Dependency Security**: Regular npm audit and updates
 
 ### Application Security
-- **Form Security**: Honeypot fields and Web3Forms validation
-- **No Direct API Exposure**: All external communication through secure services
-- **Input Validation**: Client-side validation with sanitization
+- **No User-Submitted Data**: no forms or server-side processing
+- **No Direct API Exposure**: the site makes no runtime network requests
+- **Client-Only Input**: the Find dialog filters local data; nothing is transmitted
 - **Secure Headers**: GitHub Pages default security headers
 
 ## Scaling Considerations

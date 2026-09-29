@@ -28,3 +28,6 @@ dist-ssr
 
 # Playwright MCP generated files
 .playwright-mcp/
+
+# Superpowers brainstorm mockup session files (visual companion)
+.superpowers/

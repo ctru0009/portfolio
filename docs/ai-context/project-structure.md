@@ -8,14 +8,11 @@ This document provides the complete technology stack and file tree structure for
 - **TypeScript 5.x** with **npm** - Type-safe JavaScript development and dependency management
 - **React 18.3.1** - UI framework with hooks and concurrent features
 - **Vite 5.4.10** - Development server and build tool with fast hot reload
-- **TailwindCSS** - Utility-first CSS framework for rapid styling
-- **Framer Motion 11.11.10** - Animation library for smooth transitions and interactions
+- **TailwindCSS 3.4.14** - Utility-first CSS framework; 1-bit design tokens in `tailwind.config.js`
 
-### Integration Services & APIs
-- **Web3Forms** - Secure form submission service for contact form functionality
-- **React Icons 5.3.0** - Icon library for UI components
-- **React Syntax Highlighter** - Code syntax highlighting for projects section
-- **React Intersection Observer** - Scroll-triggered animations and visibility detection
+### Runtime Integrations
+- **None** - the site is fully static; contact is via external links (email, LinkedIn, GitHub, resume)
+- A legacy `WEB3FORMS_ACCESS_KEY` CI secret may remain wired but unused (tidy deferred)
 
 ### Development & Quality Tools
 - **ESLint** - Code quality and linting for React/TypeScript
@@ -25,12 +22,11 @@ This document provides the complete technology stack and file tree structure for
 
 ### Development Patterns
 - **Component-Based Architecture** - Modular React components organized by feature
-- **Section-Based Layout** - Portfolio organized into distinct sections (Hero, About, Skills, Work, Projects, Contact)
-- **Data Centralization** - All content data managed in `src/data/data.ts` with TypeScript interfaces
-- **Responsive Design** - Mobile-first approach with TailwindCSS responsive utilities
-- **Animation Integration** - Framer Motion for scroll-based animations and micro-interactions
-- **Security-First Forms** - Honeypot fields and Web3Forms integration for secure contact functionality
-- **Advanced Navigation** - Search functionality and scroll spy for enhanced user experience
+- **Section-Based Layout** - Portfolio organized into numbered step sections (About, Skills, Work, Projects, Contact)
+- **Data Centralization** - Content data managed in `src/data/data.ts`; find entries in `src/data/searchIndex.ts`
+- **Macintosh Design Language** - 1-bit window chrome primitives in `src/components/mac/`
+- **Zero Motion** - No transitions or animations anywhere in `src/`
+- **Keyboard Accessibility** - Focus-trapped dialogs, keyboard-navigable Find, 44px mobile tap targets
 
 ## Complete Project Structure
 
@@ -42,11 +38,10 @@ portfolio/
 ├── package-lock.json                   # Locked dependency versions
 ├── vite.config.ts                      # Vite build configuration
 ├── tsconfig.json                       # TypeScript configuration
-├── tailwind.config.js                  # TailwindCSS configuration
+├── tailwind.config.js                  # Design tokens (palette, type ladder, shadows)
 ├── postcss.config.js                   # PostCSS configuration for Tailwind
 ├── .gitignore                          # Git ignore patterns
-├── .env.example                        # Environment variable template
-├── .env                                # Environment variables (gitignored)
+├── .env.example                        # Legacy environment template (unused)
 ├── docs/                               # Documentation directory
 │   └── ai-context/                     # AI-specific documentation
 │       ├── project-structure.md        # This file - project architecture
@@ -55,70 +50,67 @@ portfolio/
 │       ├── deployment-infrastructure.md # Deployment patterns
 │       └── handoff.md                  # Session continuity
 ├── public/                             # Static assets
-│   ├── index.html                      # Main HTML template
-│   ├── favicon.ico                     # Site favicon
-│   └── CNAME                           # Custom domain configuration
+│   ├── favicon.svg                     # Mac-window favicon
+│   └── og-image.png                    # Social sharing card (1200×630)
+├── index.html                          # Vite entry with SEO/OpenGraph meta
 ├── src/                                # Source code
 │   ├── main.tsx                        # Application entry point
-│   ├── App.tsx                         # Root component with section routing
+│   ├── App.tsx                         # Root composition (MenuBar → MacWindow → StatusBar → Footer)
 │   ├── index.css                       # Global styles and Tailwind imports
 │   ├── vite-env.d.ts                   # Vite TypeScript definitions
-│   ├── components/                     # React components organized by section
+│   ├── components/                     # React components organized by feature
 │   │   ├── common/                     # Shared components
-│   │   │   ├── NavBar.tsx              # Navigation with search, scroll spy, and mobile menu
-│   │   │   ├── Footer.tsx              # Footer with navigation links
-│   │   │   └── ScrollProgress.tsx      # Reading progress indicator
-│   │   ├── hero/                       # Hero section components
-│   │   │   └── Hero.tsx                # Introduction section with avatar and links
-│   │   ├── about/                      # About section components
-│   │   │   └── About.tsx               # Education background section
-│   │   ├── skills/                     # Skills section components
-│   │   │   ├── Skills.tsx              # Technical skills display
-│   │   │   └── SkillItem.tsx           # Individual skill component
-│   │   ├── work/                       # Work experience components
-│   │   │   ├── Work.tsx                # Work experience section
-│   │   │   └── WorkCard.tsx            # Individual work experience card
-│   │   ├── works/                      # Alternative work components
+│   │   │   └── Footer.tsx              # Footer with contact links
+│   │   ├── mac/                        # Macintosh chrome primitives
+│   │   │   ├── MacWindow.tsx           # Window chrome + MetaBar
+│   │   │   ├── MacDialog.tsx           # Focus-trapped dialog shell
+│   │   │   ├── FindDialog.tsx          # Keyboard-navigable find dialog
+│   │   │   ├── MenuBar.tsx             # Sticky menu bar with scroll spy
+│   │   │   ├── SquareButton.tsx        # Square action button
+│   │   │   ├── SquareLink.tsx          # Square external link
+│   │   │   ├── TitleBar.tsx            # Shared title bar
+│   │   │   ├── FactRow.tsx             # Label/value row
+│   │   │   ├── TagChip.tsx             # Tag chip
+│   │   │   ├── StepTitle.tsx           # Numbered section title
+│   │   │   ├── StatusBar.tsx           # Window status bar
+│   │   │   ├── linkClass.ts            # Shared link styling
+│   │   │   └── squareClass.ts          # Shared button/link classes
+│   │   ├── sidebar/                    # Identity sidebar
+│   │   │   └── Sidebar.tsx             # Sticky identity block with facts and links
+│   │   ├── about/                      # About section
+│   │   │   └── About.tsx               # About copy and education
+│   │   ├── skills/                     # Skills section
+│   │   │   └── Skills.tsx              # Skills table
+│   │   ├── works/                      # Work history section
 │   │   │   ├── Work.tsx                # Work section
-│   │   │   └── WorkCard.tsx            # Work experience card
-│   │   ├── projects/                   # Projects section components
-│   │   │   ├── Projects.tsx            # Projects showcase section
+│   │   │   └── WorkCard.tsx            # Individual work experience card
+│   │   ├── projects/                   # Projects section
+│   │   │   ├── Projects.tsx            # Projects grid
 │   │   │   ├── ProjectCard.tsx         # Individual project card
-│   │   │   └── ProjectDetails.tsx      # Project details modal
-│   │   └── contact/                    # Contact section components
-│   │       ├── Contact.tsx             # Contact information and layout
-│   │       ├── ContactForm.tsx         # Web3Forms-powered contact form with honeypot
+│   │   │   └── ProjectPreview.tsx      # Wider preview dialog
+│   │   └── contact/                    # Contact section
+│   │       ├── Contact.tsx             # Contact rows and links
 │   │       └── ContactItem.tsx         # Individual contact information item
 │   ├── data/                           # Content data management
-│   │   └── data.ts                     # Centralized portfolio data with TypeScript interfaces
+│   │   ├── data.ts                     # Centralized portfolio data with TypeScript interfaces
+│   │   └── searchIndex.ts              # Find-dialog search entries
 │   ├── assets/                         # Static assets
-│   │   └── images/                     # Image assets
-│   │       ├── avatar.webp             # Profile picture
-│   │       ├── project1.webp           # Project 1 screenshot
-│   │       ├── project2.webp           # Project 2 screenshot
-│   │       ├── project3.webp           # Project 3 screenshot
-│   │       └── project4.webp           # Project 4 screenshot
-│   └── utils/                          # Utility functions
-│       └── web3Forms.ts                # Web3Forms integration utilities
-├── dist/                               # Build output directory
-├── docs/                               # Additional documentation
-│   ├── WEB3FORMS_SETUP.md              # Web3Forms configuration guide
-│   └── deployment-guide.md             # GitHub Pages deployment instructions
+│   │   ├── fonts/                      # Departure Mono webfont
+│   │   └── images/                     # Image assets (avatar, project screenshots)
+├── dist/                               # Build output directory (gitignored)
 └── node_modules/                       # Dependencies (gitignored)
 ```
 
 ---
 
-*This document reflects the current state of the portfolio project with Web3Forms integration, advanced navigation features, and component-based architecture.*
+*This document reflects the current state of the portfolio project: Macintosh design, zero motion, keyboard-accessible dialogs, and static output.*
 
 ## Known Technical Debt
 
-- **Work Component Duplication**: Work components exist in both `/work/` and `/works/` directories (needs consolidation)
-- **Lint Warning**: NavBar.tsx has a minor useEffect dependency warning
-- **Unused Imports**: Styled Components imported but not actively used
+- **Unbundled legacy assets**: screenshots for removed projects remain in `src/assets/images` (not built into the bundle)
 
 ## Security Features
 
-- **Honeypot Field**: Spam protection in contact form
-- **Web3Forms Integration**: Secure form submission without exposing email addresses
-- **Environment Variables**: Sensitive configuration handled via GitHub Actions secrets
+- **No forms or user-submitted data**: contact is via external links only; nothing is transmitted to a server
+- **No secrets in the client**: the bundle contains no keys or endpoints
+- **Legacy CI secret**: `WEB3FORMS_ACCESS_KEY` may remain wired but unused (tidy deferred)

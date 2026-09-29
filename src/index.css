@@ -13,23 +13,28 @@
         color-scheme: light;
     }
 
+    html {
+        scrollbar-color: theme(colors.ink) theme(colors.chrome);
+        scrollbar-width: thin;
+    }
+
     body {
-        background-color: #d8d8d8;
-        background-image: radial-gradient(#999 .65px, transparent .65px);
+        background-color: theme(colors.desktop);
+        background-image: radial-gradient(theme(colors.faint) .65px, transparent .65px);
         background-size: 4px 4px;
-        color: #111;
+        color: theme(colors.ink);
         font-size: 13px;
         font-family: Departure, ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
         min-height: 100vh;
     }
 
     ::selection {
-        background: #111;
-        color: #fff;
+        background: theme(colors.ink);
+        color: theme(colors.paper);
     }
 
     :focus-visible {
-        outline: 3px solid #111;
+        outline: 3px solid theme(colors.ink);
         outline-offset: 4px;
     }
 
@@ -39,11 +44,21 @@
 }
 
 @layer components {
+    .mac-scroll {
+        scrollbar-color: theme(colors.ink) theme(colors.chrome);
+        scrollbar-width: thin;
+    }
+
+    .mac-hatch {
+        background-image: repeating-conic-gradient(theme(colors.desktop) 0% 25%, theme(colors.paper) 0% 50%);
+        background-size: 8px 8px;
+    }
+
     .mac-titlebar-stripes {
         background: repeating-linear-gradient(
             to bottom,
-            #fff 0 2px,
-            #111 2px 3px
+            theme(colors.paper) 0 2px,
+            theme(colors.ink) 2px 3px
         );
     }
 
@@ -55,14 +70,14 @@
 
     .mac-table th,
     .mac-table td {
-        border: 1px solid #111;
+        border: 1px solid theme(colors.ink);
         padding: 8px;
         text-align: left;
         vertical-align: top;
     }
 
     .mac-table th {
-        background: #eee;
+        background: theme(colors.chrome);
         font-weight: normal;
         white-space: nowrap;
     }

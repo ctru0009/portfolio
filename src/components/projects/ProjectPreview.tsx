@@ -1,6 +1,7 @@
 import { ProjectInterface } from "../../data/data";
 import MacDialog from "../mac/MacDialog";
 import SquareButton from "../mac/SquareButton";
+import SquareLink from "../mac/SquareLink";
 
 interface ProjectPreviewProps {
   project: ProjectInterface;
@@ -13,12 +14,13 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
       title={`Preview — ${project.title}`}
       open
       onClose={onClose}
+      className="min-[800px]:max-w-[860px]"
       footer={
         <>
           <SquareButton onClick={onClose}>Close</SquareButton>
-          <SquareButton variant="dark" href={project.githubLink}>
+          <SquareLink variant="dark" href={project.githubLink}>
             Open on GitHub ↗
-          </SquareButton>
+          </SquareLink>
         </>
       }
     >
@@ -30,14 +32,11 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
             className="block w-full"
           />
         ) : (
-          <div
-            className="aspect-[2.8/1] w-full [background-image:repeating-conic-gradient(#ececec_0%_25%,#fbfbfb_0%_50%)] [background-size:8px_8px]"
-            aria-hidden="true"
-          />
+          <div className="mac-hatch aspect-[2.8/1] w-full" aria-hidden="true" />
         )}
       </div>
 
-      <p className="mt-3 text-[11px] leading-[1.7]">{project.description}</p>
+      <p className="mt-3 text-11">{project.description}</p>
     </MacDialog>
   );
 };

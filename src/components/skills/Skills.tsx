@@ -43,7 +43,7 @@ const Skills = () => {
     <div id="skills" className="px-[25px] py-6 min-[800px]:px-[30px]">
       <StepTitle number={2} label="Skills" />
 
-      <p className="mb-4 text-[12px] leading-[1.75]">
+      <p className="mb-4 text-12">
         Technologies I use in professional work across backend, full-stack,
         cloud and applied AI.
       </p>

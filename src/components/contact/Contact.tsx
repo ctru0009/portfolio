@@ -1,8 +1,7 @@
 import { HeroData } from "../../data/data";
 import StepTitle from "../mac/StepTitle";
-import SquareButton from "../mac/SquareButton";
+import SquareLink from "../mac/SquareLink";
 import TagChip from "../mac/TagChip";
-import ContactForm from "./ContactForm";
 import ContactItem from "./ContactItem";
 
 const contactInfo = [
@@ -24,17 +23,22 @@ const contactInfo = [
 ];
 
 const panelHeadClass =
-  "border-b border-ink bg-chrome px-2.5 py-2 text-[11px] font-normal";
+  "border-b border-ink bg-chrome px-2.5 py-2 text-11 font-normal";
 
 const Contact = () => {
   return (
     <div id="contact" className="px-[25px] py-6 min-[800px]:px-[30px]">
       <StepTitle number={5} label="Contact" />
 
-      <p className="mb-4 text-[12px] leading-[1.75]">
+      <p className="mb-4 text-12">
         Open to full-time software engineering roles across Australia, including
         applied AI, backend and full-stack work. Based in Melbourne.
       </p>
+
+      <div className="mb-4 flex flex-wrap gap-1.5">
+        <TagChip>Open to full-time roles</TagChip>
+        <TagChip>Based in Melbourne</TagChip>
+      </div>
 
       <div className="flex flex-col gap-3.5">
         <div className="border border-ink">
@@ -47,25 +51,9 @@ const Contact = () => {
         </div>
 
         <div className="border border-ink">
-          <h3 className={panelHeadClass}>Let's Connect</h3>
-          <div className="p-2.5">
-            <p className="mb-2.5 text-[11px] leading-[1.7]">
-              Happy to talk about software engineering roles, applied AI
-              products and production backend problems.
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              <TagChip>Open to full-time roles</TagChip>
-              <TagChip>Based in Melbourne</TagChip>
-            </div>
-          </div>
-        </div>
-
-        <ContactForm />
-
-        <div className="border border-ink">
           <h3 className={panelHeadClass}>Let's work together</h3>
           <div className="p-2.5">
-            <p className="mb-2.5 text-[11px] leading-[1.7]">
+            <p className="mb-2.5 text-11">
               If you're hiring for a software engineering role — applied AI,
               backend or full-stack — get in touch.
             </p>
@@ -74,15 +62,15 @@ const Contact = () => {
               role="group"
               aria-label="Social media links"
             >
-              <SquareButton href={HeroData.linkedin}>
+              <SquareLink href={HeroData.linkedin}>
                 Connect on LinkedIn
-              </SquareButton>
-              <SquareButton href={HeroData.github}>
+              </SquareLink>
+              <SquareLink href={HeroData.github}>
                 Check out my GitHub
-              </SquareButton>
-              <SquareButton variant="dark" href={HeroData.resume}>
+              </SquareLink>
+              <SquareLink variant="dark" href={HeroData.resume}>
                 View Resume
-              </SquareButton>
+              </SquareLink>
             </div>
           </div>
         </div>

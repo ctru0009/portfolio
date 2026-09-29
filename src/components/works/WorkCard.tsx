@@ -3,26 +3,21 @@ import TagChip from "../mac/TagChip";
 
 interface WorkCardProps {
   work: WorkInterface;
-  /**
-   * Unused. Kept optional so the orphaned legacy `components/work/Work.tsx`
-   * (which still imports this component) keeps type-checking.
-   */
-  index?: number;
 }
 
 const WorkCard = ({ work }: WorkCardProps) => {
   return (
-    <article className="border border-ink">
-      <div className="flex justify-between gap-2.5 border-b border-ink bg-chrome px-2.5 py-2 text-[11px]">
+    <article className="border-2 border-ink">
+      <div className="flex flex-col gap-0.5 border-b border-ink bg-chrome px-2.5 py-2 text-11 min-[800px]:flex-row min-[800px]:items-center min-[800px]:justify-between min-[800px]:gap-2.5">
         <span>
           {work.title} — {work.company}
         </span>
         <span className="whitespace-nowrap">{work.period}</span>
       </div>
 
-      <p className="px-2.5 pt-1.5 text-[10px] text-muted">{work.location}</p>
+      <p className="px-2.5 pt-1.5 text-10 text-muted">{work.location}</p>
 
-      <ul className="mb-2 mt-1.5 list-disc space-y-1 pl-[26px] pr-2.5 text-[11px] leading-[1.6]">
+      <ul className="mb-2 mt-1.5 list-disc space-y-1 pl-[26px] pr-2.5 text-11">
         {work.responsibilities.map((responsibility, index) => (
           <li key={index}>{responsibility}</li>
         ))}

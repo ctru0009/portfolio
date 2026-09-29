@@ -1,4 +1,5 @@
 import FactRow from "../mac/FactRow";
+import { linkClass } from "../mac/linkClass";
 
 interface ContactItemProps {
   item: {
@@ -7,9 +8,6 @@ interface ContactItemProps {
     link?: string;
   };
 }
-
-const linkClass =
-  "underline underline-offset-[3px] hover:bg-ink hover:text-paper hover:decoration-paper";
 
 const ContactItem = ({ item }: ContactItemProps) => {
   return (
@@ -20,7 +18,7 @@ const ContactItem = ({ item }: ContactItemProps) => {
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={linkClass}
+            className={`${linkClass} inline-flex min-h-[44px] items-center`}
           >
             {item.value}
           </a>
