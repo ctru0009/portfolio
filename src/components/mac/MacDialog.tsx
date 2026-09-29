@@ -92,7 +92,7 @@ const MacDialog = ({
         onClick={(event) => event.stopPropagation()}
       >
         <TitleBar variant="dialog" leftBoxes={1}>
-          <span className="mx-auto truncate bg-paper px-3 py-[3px] text-[11px]">
+          <span className="mx-auto truncate bg-paper px-3 py-[3px] text-11">
             {title}
           </span>
         </TitleBar>

@@ -73,15 +73,15 @@ const MenuBar = () => {
     <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper">
       <div
         ref={barRef}
-        className="relative mx-auto flex h-[44px] max-w-[1120px] items-center gap-4 px-[17px] text-[11px] min-[800px]:h-[38px] min-[1000px]:px-[26px]"
+        className="relative mx-auto flex h-[44px] max-w-[1120px] items-center gap-4 px-[17px] text-11 min-[800px]:h-[38px] min-[1000px]:px-[26px]"
       >
-        <span className="text-[20px] leading-none" aria-hidden="true">
+        <span className="text-20" aria-hidden="true">
           ⌘
         </span>
-        <span className="hidden text-[12px] min-[800px]:inline">
+        <span className="hidden text-12 min-[800px]:inline">
           {HeroData.name}
         </span>
-        <span className="text-[12px] min-[800px]:hidden">Cong C. Truong</span>
+        <span className="text-12 min-[800px]:hidden">Cong C. Truong</span>
 
         <nav
           className="hidden items-center gap-1.5 min-[800px]:flex"
@@ -112,7 +112,7 @@ const MenuBar = () => {
           ⌕ Find…
         </button>
 
-        <span className="ml-auto hidden min-w-0 truncate text-[11px] min-[1024px]:inline">
+        <span className="ml-auto hidden min-w-0 truncate text-11 min-[1024px]:inline">
           Melbourne · Open to full-time roles
         </span>
 

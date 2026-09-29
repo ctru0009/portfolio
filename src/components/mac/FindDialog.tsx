@@ -79,14 +79,14 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
         onKeyDown={handleKeyDown}
         placeholder="Search skills, projects, experience…"
         aria-label="Search"
-        className="w-full border border-ink bg-paper px-2.5 py-2 text-[11px] placeholder:text-muted"
+        className="w-full border border-ink bg-paper px-2.5 py-2 text-11 placeholder:text-muted"
       />
       <div
         ref={listRef}
         className="mac-scroll mt-3 max-h-[280px] overflow-y-auto"
       >
         {results.length === 0 ? (
-          <p className="px-2.5 py-2 text-[11px] text-muted">
+          <p className="px-2.5 py-2 text-11 text-muted">
             No results found for &quot;{query}&quot;
           </p>
         ) : (
@@ -96,7 +96,7 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
               type="button"
               onClick={() => handleSelect(entry.section)}
               onMouseEnter={() => setActiveIndex(index)}
-              className={`group flex w-full justify-between gap-3 border-t border-chrome px-2.5 py-[7px] text-left text-[11px] first:border-t-0 ${
+              className={`group flex w-full justify-between gap-3 border-t border-chrome px-2.5 py-[7px] text-left text-11 first:border-t-0 ${
                 index === activeIndex
                   ? "bg-ink text-paper"
                   : "hover:bg-ink hover:text-paper"

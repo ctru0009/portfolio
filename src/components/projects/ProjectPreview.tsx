@@ -36,7 +36,7 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
         )}
       </div>
 
-      <p className="mt-3 text-[11px] leading-[1.7]">{project.description}</p>
+      <p className="mt-3 text-11">{project.description}</p>
     </MacDialog>
   );
 };

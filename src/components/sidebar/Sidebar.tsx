@@ -16,18 +16,18 @@ const Sidebar = () => {
           className="float-right mb-3 ml-[15px] h-[55px] w-[55px] border-2 border-ink object-cover min-[800px]:float-none min-[800px]:mb-4 min-[800px]:h-[70px] min-[800px]:w-[70px]"
         />
 
-        <p className="mb-[19px] text-[11px] uppercase tracking-[1px]">
+        <p className="mb-[19px] text-11 uppercase tracking-[1px]">
           {HeroData.title}
         </p>
 
-        <h1 className="mb-[22px] text-[30px] font-normal leading-[1.16] tracking-[-1px] min-[800px]:text-[33px]">
+        <h1 className="mb-[22px] text-30 font-normal tracking-[-1px] min-[800px]:text-33">
           Hi, I'm {HeroData.name}
         </h1>
 
-        <p className="mb-2.5 text-[12px] leading-[1.8]">
+        <p className="mb-2.5 text-12">
           Building reliable AI-integrated products.
         </p>
-        <p className="text-[11px] leading-[1.8] text-muted">
+        <p className="text-11 text-muted">
           Open to software engineering opportunities
         </p>
 
@@ -80,7 +80,7 @@ const Sidebar = () => {
           </SquareLink>
           <a
             href={`mailto:${HeroData.email}`}
-            className={`break-words text-[10px] leading-[1.6] ${linkClass}`}
+            className={`break-words text-10 ${linkClass}`}
           >
             …or email me — {HeroData.email}
           </a>

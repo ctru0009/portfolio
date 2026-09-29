@@ -3,7 +3,7 @@ import { linkClass } from "../mac/linkClass";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col gap-2 pt-[21px] pb-3 text-[11px] min-[800px]:flex-row min-[800px]:justify-between min-[800px]:gap-4">
+    <footer className="flex flex-col gap-2 pt-[21px] pb-3 text-11 min-[800px]:flex-row min-[800px]:justify-between min-[800px]:gap-4">
       <div className="flex flex-wrap gap-4">
         <a
           href={HeroData.github}

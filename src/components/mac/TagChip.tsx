@@ -6,7 +6,7 @@ interface TagChipProps {
 
 const TagChip = ({ children }: TagChipProps) => {
   return (
-    <span className="border border-ink bg-paper px-1.5 py-px text-[10px]">
+    <span className="border border-ink bg-paper px-1.5 py-px text-10">
       {children}
     </span>
   );
