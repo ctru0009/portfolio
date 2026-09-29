@@ -13,6 +13,7 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
       title={`Preview — ${project.title}`}
       open
       onClose={onClose}
+      className="min-[800px]:max-w-[860px]"
       footer={
         <>
           <SquareButton onClick={onClose}>Close</SquareButton>

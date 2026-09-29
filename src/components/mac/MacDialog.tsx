@@ -7,6 +7,7 @@ interface MacDialogProps {
   onClose: () => void;
   children: ReactNode;
   footer?: ReactNode;
+  className?: string;
 }
 
 const boxClass = "h-[13px] w-[13px] flex-shrink-0 border-2 border-ink bg-paper";
@@ -20,6 +21,7 @@ const MacDialog = ({
   onClose,
   children,
   footer,
+  className = "",
 }: MacDialogProps) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
@@ -87,7 +89,7 @@ const MacDialog = ({
         aria-modal="true"
         aria-label={title}
         tabIndex={-1}
-        className="w-full max-w-[520px] border-2 border-ink bg-paper shadow-hard outline-none"
+        className={`w-full max-w-[520px] border-2 border-ink bg-paper shadow-hard outline-none ${className}`}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mac-titlebar-stripes m-1 flex h-[30px] items-center gap-3 px-[7px]">
