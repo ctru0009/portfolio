@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import TitleBar from "./TitleBar";
 
 interface MacWindowProps {
   title: string;
@@ -10,27 +11,19 @@ interface MetaBarProps {
   right: string;
 }
 
-const boxClass = "h-[15px] w-[15px] flex-shrink-0 border-2 border-ink bg-paper";
-
 export const MacWindow = ({ title, children }: MacWindowProps) => {
   const [shortTitle] = title.split(" — ");
 
   return (
     <div className="border-2 border-ink bg-paper shadow-hard">
-      <div className="mac-titlebar-stripes m-1 flex h-[34px] items-center gap-3 px-[7px]">
-        <span className={boxClass} aria-hidden="true" />
-        <span className={boxClass} aria-hidden="true" />
+      <TitleBar variant="window" leftBoxes={2}>
         <span className="mx-auto hidden truncate bg-paper px-3 py-[3px] text-[11px] min-[800px]:inline">
           {title}
         </span>
         <span className="mx-auto whitespace-nowrap bg-paper px-3 py-[3px] text-[11px] min-[800px]:hidden">
           {shortTitle}
         </span>
-        <span
-          className={`${boxClass} shadow-[inset_3px_3px_#fff,inset_4px_4px_#111]`}
-          aria-hidden="true"
-        />
-      </div>
+      </TitleBar>
       {children}
     </div>
   );

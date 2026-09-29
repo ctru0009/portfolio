@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
+import TitleBar from "./TitleBar";
 
 interface MacDialogProps {
   title: string;
@@ -9,8 +10,6 @@ interface MacDialogProps {
   footer?: ReactNode;
   className?: string;
 }
-
-const boxClass = "h-[13px] w-[13px] flex-shrink-0 border-2 border-ink bg-paper";
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -92,16 +91,11 @@ const MacDialog = ({
         className={`w-full max-w-[520px] border-2 border-ink bg-paper shadow-hard outline-none ${className}`}
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="mac-titlebar-stripes m-1 flex h-[30px] items-center gap-3 px-[7px]">
-          <span className={boxClass} aria-hidden="true" />
+        <TitleBar variant="dialog" leftBoxes={1}>
           <span className="mx-auto truncate bg-paper px-3 py-[3px] text-[11px]">
             {title}
           </span>
-          <span
-            className={`${boxClass} shadow-[inset_3px_3px_#fff,inset_4px_4px_#111]`}
-            aria-hidden="true"
-          />
-        </div>
+        </TitleBar>
         <div className="px-3.5 py-3">{children}</div>
         {footer ? (
           <div className="flex justify-end gap-2 border-t-2 border-ink px-3.5 py-2.5">

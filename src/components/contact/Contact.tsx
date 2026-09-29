@@ -1,6 +1,6 @@
 import { HeroData } from "../../data/data";
 import StepTitle from "../mac/StepTitle";
-import SquareButton from "../mac/SquareButton";
+import SquareLink from "../mac/SquareLink";
 import TagChip from "../mac/TagChip";
 import ContactItem from "./ContactItem";
 
@@ -62,15 +62,15 @@ const Contact = () => {
               role="group"
               aria-label="Social media links"
             >
-              <SquareButton href={HeroData.linkedin}>
+              <SquareLink href={HeroData.linkedin}>
                 Connect on LinkedIn
-              </SquareButton>
-              <SquareButton href={HeroData.github}>
+              </SquareLink>
+              <SquareLink href={HeroData.github}>
                 Check out my GitHub
-              </SquareButton>
-              <SquareButton variant="dark" href={HeroData.resume}>
+              </SquareLink>
+              <SquareLink variant="dark" href={HeroData.resume}>
                 View Resume
-              </SquareButton>
+              </SquareLink>
             </div>
           </div>
         </div>

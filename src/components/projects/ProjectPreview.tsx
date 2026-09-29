@@ -1,6 +1,7 @@
 import { ProjectInterface } from "../../data/data";
 import MacDialog from "../mac/MacDialog";
 import SquareButton from "../mac/SquareButton";
+import SquareLink from "../mac/SquareLink";
 
 interface ProjectPreviewProps {
   project: ProjectInterface;
@@ -17,9 +18,9 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
       footer={
         <>
           <SquareButton onClick={onClose}>Close</SquareButton>
-          <SquareButton variant="dark" href={project.githubLink}>
+          <SquareLink variant="dark" href={project.githubLink}>
             Open on GitHub ↗
-          </SquareButton>
+          </SquareLink>
         </>
       }
     >
@@ -31,10 +32,7 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
             className="block w-full"
           />
         ) : (
-          <div
-            className="mac-hatch aspect-[2.8/1] w-full"
-            aria-hidden="true"
-          />
+          <div className="mac-hatch aspect-[2.8/1] w-full" aria-hidden="true" />
         )}
       </div>
 

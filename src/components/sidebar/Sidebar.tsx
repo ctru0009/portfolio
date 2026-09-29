@@ -1,6 +1,6 @@
 import { AboutData, HeroData, WorkData } from "../../data/data";
 import FactRow from "../mac/FactRow";
-import SquareButton from "../mac/SquareButton";
+import SquareLink from "../mac/SquareLink";
 
 const currentJob = WorkData[0];
 const education = AboutData.education[0];
@@ -77,9 +77,9 @@ const Sidebar = () => {
         </div>
 
         <div className="mt-5 flex flex-col items-start gap-2 border border-ink bg-chrome p-3">
-          <SquareButton variant="dark" href={HeroData.resume}>
+          <SquareLink variant="dark" href={HeroData.resume}>
             Download CV
-          </SquareButton>
+          </SquareLink>
           <a
             href={`mailto:${HeroData.email}`}
             className={`break-words text-[10px] leading-[1.6] ${linkClass}`}

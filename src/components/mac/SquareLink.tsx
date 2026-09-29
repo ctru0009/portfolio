@@ -1,28 +1,29 @@
-import type { MouseEventHandler, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { squareBaseClass, squareVariantClass } from "./squareClass";
 
-interface SquareButtonProps {
+interface SquareLinkProps {
   variant?: "light" | "dark";
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  href: string;
   className?: string;
   children: ReactNode;
 }
 
-const SquareButton = ({
+const SquareLink = ({
   variant = "light",
-  onClick,
+  href,
   className = "",
   children,
-}: SquareButtonProps) => {
+}: SquareLinkProps) => {
   return (
-    <button
-      type="button"
-      onClick={onClick}
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`${squareBaseClass} ${squareVariantClass[variant]} ${className}`.trim()}
     >
       {children}
-    </button>
+    </a>
   );
 };
 
-export default SquareButton;
+export default SquareLink;
