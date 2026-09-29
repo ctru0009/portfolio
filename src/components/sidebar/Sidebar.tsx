@@ -80,7 +80,7 @@ const Sidebar = () => {
           </SquareLink>
           <a
             href={`mailto:${HeroData.email}`}
-            className={`break-words text-10 ${linkClass}`}
+            className={`inline-flex min-h-[44px] items-center break-words text-10 ${linkClass}`}
           >
             …or email me — {HeroData.email}
           </a>

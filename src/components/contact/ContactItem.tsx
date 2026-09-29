@@ -18,7 +18,7 @@ const ContactItem = ({ item }: ContactItemProps) => {
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={linkClass}
+            className={`${linkClass} inline-flex min-h-[44px] items-center`}
           >
             {item.value}
           </a>
