@@ -2,92 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Departure';
+    src: url('./assets/fonts/DepartureMono-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
 @layer base {
+    :root {
+        color-scheme: light;
+    }
+
     body {
-        @apply bg-gradient-to-br from-gray-950 via-gray-950 to-gray-900 text-white min-h-screen;
+        background-color: #d8d8d8;
+        background-image: radial-gradient(#999 .65px, transparent .65px);
+        background-size: 4px 4px;
+        color: #111;
+        font-size: 13px;
+        font-family: Departure, ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+        min-height: 100vh;
+    }
+
+    ::selection {
+        background: #111;
+        color: #fff;
+    }
+
+    :focus-visible {
+        outline: 3px solid #111;
+        outline-offset: 4px;
+    }
+
+    section[id], div[id] {
+        scroll-margin-top: 56px;
     }
 }
 
 @layer components {
-    .hamburger-menu {
-        position: relative;
-        width: 28px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .mac-titlebar-stripes {
+        background: repeating-linear-gradient(
+            to bottom,
+            #fff 0 2px,
+            #111 2px 3px
+        );
     }
 
-    .hamburger-menu span {
-        position: absolute;
+    .mac-table {
         width: 100%;
-        height: 2.5px;
-        background-color: currentColor;
-        border-radius: 2px;
-        transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        transform-origin: center;
-        left: 0;
+        border-collapse: collapse;
+        font-size: 11px;
     }
 
-    .hamburger-menu span:first-child {
-        top: 0;
+    .mac-table th,
+    .mac-table td {
+        border: 1px solid #111;
+        padding: 8px;
+        text-align: left;
+        vertical-align: top;
     }
 
-    .hamburger-menu span:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: 1;
-    }
-
-    .hamburger-menu span:last-child {
-        bottom: 0;
-    }
-
-    .hamburger-menu.open span:first-child {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-    }
-
-    .hamburger-menu.open span:nth-child(2) {
-        opacity: 0;
-        transform: translateY(-50%) translateX(10px);
-    }
-
-    .hamburger-menu.open span:last-child {
-        bottom: auto;
-        top: 50%;
-        transform: translateY(-50%) rotate(-45deg);
-    }
-
-    .section-light {
-        @apply bg-gray-900/40;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    .section-dark {
-        @apply bg-gray-950/50;
-    }
-
-    .hero-button {
-        @apply px-6 py-3
-           text-sm text-white/90
-           border border-white/10
-           rounded-full
-           transition-all duration-300 ease-premium
-           hover:border-white/20 hover:bg-white/5 hover:scale-[1.02]
-           active:scale-[0.98]
-           backdrop-blur-sm;
-    }
-
-    .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    .hide-scrollbar::-webkit-scrollbar {
-        display: none;
+    .mac-table th {
+        background: #eee;
+        font-weight: normal;
+        white-space: nowrap;
     }
 }

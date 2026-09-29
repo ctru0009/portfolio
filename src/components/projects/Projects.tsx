@@ -1,54 +1,37 @@
-import { ProjectsData } from "../../data/data";
+import { useState } from "react";
+import { ProjectsData, ProjectInterface } from "../../data/data";
+import StepTitle from "../mac/StepTitle";
 import ProjectCard from "./ProjectCard";
-import { motion } from "framer-motion";
+import ProjectPreview from "./ProjectPreview";
 
 const Projects = () => {
-  const projects = ProjectsData;
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectInterface | null>(null);
 
   return (
-    <div id="projects" className="section-dark py-20 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-100 mb-4">
-            <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
-              Projects
-            </span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Public work that shows how I bound AI inside ordinary software.
-          </p>
-        </motion.div>
+    <div id="projects" className="px-[25px] py-6 min-[800px]:px-[30px]">
+      <StepTitle number={4} label="Projects" />
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.5,
-                ease: "easeOut",
-                delay: index * 0.1,
-              }}
-            >
-              <ProjectCard project={project} index={index} />
-            </motion.div>
-          ))}
-        </motion.div>
+      <p className="mb-4 text-[12px] leading-[1.75]">
+        Public work that shows how I bound AI inside ordinary software.
+      </p>
+
+      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+        {ProjectsData.map((project, index) => (
+          <ProjectCard
+            key={index}
+            project={project}
+            onPreview={() => setSelectedProject(project)}
+          />
+        ))}
       </div>
+
+      {selectedProject ? (
+        <ProjectPreview
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      ) : null}
     </div>
   );
 };
