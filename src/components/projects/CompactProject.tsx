@@ -11,8 +11,10 @@ const CompactProject = ({ project, onPreview }: CompactProjectProps) => {
 
   return (
     <article
+      id={`project-${project.id}`}
       data-project-id={project.id}
-      className="grid gap-x-4 border-b border-ink/20 py-3 min-[600px]:grid-cols-[minmax(0,1fr)_auto] min-[600px]:items-center"
+      tabIndex={-1}
+      className="grid scroll-mt-[56px] gap-x-4 border-b border-ink/20 py-3 min-[600px]:grid-cols-[minmax(0,1fr)_auto] min-[600px]:items-center"
     >
       <div>
         <h3 className="text-16 font-bold">{project.title}</h3>

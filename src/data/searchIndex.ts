@@ -1,71 +1,104 @@
+import { ProjectsData } from "./data";
+
 export interface SearchIndexEntry {
   label: string;
-  section: string;
+  targetId: string;
+  keywords?: string[];
 }
 
+const skillNames = [
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Tailwind CSS",
+  "C#",
+  ".NET",
+  "ASP.NET Core",
+  "Node.js",
+  "Fastify",
+  "REST APIs",
+  "PostgreSQL",
+  "SQL",
+  "Redis",
+  "Prisma",
+  "AWS",
+  "Azure",
+  "Docker",
+  "GitHub Actions",
+  "Azure DevOps",
+  "Git",
+  "AWS Bedrock",
+  "Zod",
+];
+
+export const skillTargetId = (name: string) =>
+  `skill-${name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")}`;
+
+const skillKeywords: Record<string, string[]> = {
+  "C#": ["backend"],
+  ".NET": ["backend"],
+  "ASP.NET Core": ["backend"],
+  "Node.js": ["backend"],
+  Fastify: ["backend"],
+  PostgreSQL: ["database", "backend"],
+  AWS: ["cloud"],
+  Azure: ["cloud"],
+  Docker: ["cloud"],
+  "GitHub Actions": ["CI/CD"],
+  "Azure DevOps": ["CI/CD", "cloud"],
+  "AWS Bedrock": ["applied AI", "LLM"],
+};
+
+const projectKeywords: Record<string, string[]> = {
+  "resource-planning": ["applied AI", "Gemini", "planning"],
+  "ai-product-enrichment": ["AI", "data enrichment"],
+  "venueops-lite": ["applied AI", "AI", "catering workflow"],
+  "catalogue-qa": ["LLM", "applied AI", "taxonomy"],
+  tradeflow: ["electrical enquiries", "job intake"],
+  ccswap: ["AI", "Go CLI", "Claude Code"],
+  "pocket-lab": ["remote development", "task notifications"],
+  "expense-report": ["backend", "receipt processing"],
+  "invoice-approval": ["frontend", "dashboard design"],
+};
+
+const sectionEntries: SearchIndexEntry[] = [
+  { label: "Home", targetId: "home" },
+  {
+    label: "About",
+    targetId: "about",
+    keywords: ["Melbourne", "experience"],
+  },
+  { label: "Skills", targetId: "skills" },
+  {
+    label: "Work Experience",
+    targetId: "works",
+    keywords: ["AI Registrar", "Jung Talents", "backend", "CI/CD", "cloud"],
+  },
+  { label: "Projects", targetId: "projects" },
+  {
+    label: "Contact",
+    targetId: "contact",
+    keywords: ["CV", "resume", "Melbourne"],
+  },
+];
+
+const skillEntries: SearchIndexEntry[] = skillNames.map((name) => ({
+  label: name,
+  targetId: skillTargetId(name),
+  keywords: skillKeywords[name],
+}));
+
+const projectEntries: SearchIndexEntry[] = ProjectsData.map((project) => ({
+  label: project.title,
+  targetId: `project-${project.id}`,
+  keywords: [...project.technologies, ...(projectKeywords[project.id] ?? [])],
+}));
+
 export const searchIndex: SearchIndexEntry[] = [
-  { label: "React", section: "skills" },
-  { label: "TypeScript", section: "skills" },
-  { label: "JavaScript", section: "skills" },
-  { label: "Tailwind CSS", section: "skills" },
-  { label: "C#", section: "skills" },
-  { label: ".NET", section: "skills" },
-  { label: "ASP.NET Core", section: "skills" },
-  { label: "Node.js", section: "skills" },
-  { label: "Fastify", section: "skills" },
-  { label: "REST APIs", section: "skills" },
-  { label: "PostgreSQL", section: "skills" },
-  { label: "SQL", section: "skills" },
-  { label: "Redis", section: "skills" },
-  { label: "Prisma", section: "skills" },
-  { label: "AWS", section: "skills" },
-  { label: "Azure", section: "skills" },
-  { label: "Docker", section: "skills" },
-  { label: "GitHub Actions", section: "skills" },
-  { label: "Azure DevOps", section: "skills" },
-  { label: "Git", section: "skills" },
-  { label: "AWS Bedrock", section: "skills" },
-  { label: "Zod", section: "skills" },
-  { label: "AI-Powered Resource Planning System", section: "projects" },
-  { label: "AI Product Data Enrichment Pipeline", section: "projects" },
-  { label: "React", section: "projects" },
-  { label: "JavaScript", section: "projects" },
-  { label: "Node.js", section: "projects" },
-  { label: "Express", section: "projects" },
-  { label: "Gemini API", section: "projects" },
-  { label: "Zod", section: "projects" },
-  { label: "SQLite", section: "projects" },
-  { label: "TypeScript", section: "projects" },
-  { label: "CSV", section: "projects" },
-  { label: "VenueOps Lite", section: "projects" },
-  { label: "LLM-Assisted Catalogue QA", section: "projects" },
-  { label: "TradeFlow — Electrical Enquiry Intake", section: "projects" },
-  { label: "ccswap", section: "projects" },
-  { label: "pocket-lab", section: "projects" },
-  { label: "Expense Report Management System", section: "projects" },
-  { label: "Invoice Approval Dashboard", section: "projects" },
-  { label: "NestJS", section: "projects" },
-  { label: "Next.js", section: "projects" },
-  { label: "PostgreSQL", section: "projects" },
-  { label: "Prisma", section: "projects" },
-  { label: "OpenRouter", section: "projects" },
-  { label: "Docker", section: "projects" },
-  { label: "Fastify", section: "projects" },
-  { label: "n8n", section: "projects" },
-  { label: "OpenAI-compatible API", section: "projects" },
-  { label: "Go", section: "projects" },
-  { label: "CLI", section: "projects" },
-  { label: "Claude Code", section: "projects" },
-  { label: "Tailwind CSS", section: "projects" },
-  { label: "Shadcn UI", section: "projects" },
-  { label: "Pencil.dev", section: "projects" },
-  { label: "Bash", section: "projects" },
-  { label: "PowerShell", section: "projects" },
-  { label: "Tailscale", section: "projects" },
-  { label: "ntfy", section: "projects" },
-  { label: "Telegram", section: "projects" },
-  { label: "AI Engineer (Contractor)", section: "works" },
-  { label: "AI Registrar", section: "works" },
-  { label: "Software Engineer", section: "works" },
-  { label: "Jung Talents", section: "works" },
+  ...sectionEntries,
+  ...skillEntries,
+  ...projectEntries,
 ];

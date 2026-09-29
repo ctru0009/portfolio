@@ -1,3 +1,4 @@
+import { skillTargetId } from "../../data/searchIndex";
 import StepTitle from "../mac/StepTitle";
 
 interface Skill {
@@ -56,8 +57,18 @@ const Skills = () => {
               <td>
                 {skills
                   .filter((skill) => skill.category === row.category)
-                  .map((skill) => skill.name)
-                  .join(" · ")}
+                  .map((skill, index) => (
+                    <span key={skill.name}>
+                      {index > 0 ? " · " : null}
+                      <span
+                        id={skillTargetId(skill.name)}
+                        tabIndex={-1}
+                        className="scroll-mt-[56px]"
+                      >
+                        {skill.name}
+                      </span>
+                    </span>
+                  ))}
               </td>
             </tr>
           ))}

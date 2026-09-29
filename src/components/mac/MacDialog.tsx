@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import TitleBar from "./TitleBar";
 
@@ -9,6 +9,7 @@ interface MacDialogProps {
   children: ReactNode;
   footer?: ReactNode;
   className?: string;
+  restoreFocusOnClose?: boolean;
 }
 
 const FOCUSABLE =
@@ -21,9 +22,15 @@ const MacDialog = ({
   children,
   footer,
   className = "",
+  restoreFocusOnClose = true,
 }: MacDialogProps) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
+  const restoreFocusRef = useRef(restoreFocusOnClose);
+
+  useLayoutEffect(() => {
+    restoreFocusRef.current = restoreFocusOnClose;
+  }, [restoreFocusOnClose]);
 
   useEffect(() => {
     if (!open) return;
@@ -72,7 +79,11 @@ const MacDialog = ({
         preventScroll: true,
       });
     }
-    return () => openerRef.current?.focus({ preventScroll: true });
+    return () => {
+      if (restoreFocusRef.current) {
+        openerRef.current?.focus({ preventScroll: true });
+      }
+    };
   }, [open]);
 
   if (!open) return null;

@@ -12,8 +12,10 @@ const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
 
   return (
     <article
+      id={`project-${project.id}`}
       data-project-id={project.id}
-      className="relative flex flex-col border-2 border-ink bg-paper shadow-hard-sm hover:shadow-hard-callout"
+      tabIndex={-1}
+      className="relative flex scroll-mt-[56px] flex-col border-2 border-ink bg-paper shadow-hard-sm hover:shadow-hard-callout"
     >
       <div className="mac-titlebar-stripes m-1 flex h-4 flex-shrink-0 items-center px-1">
         <span className="mx-auto truncate bg-paper px-1.5 py-px text-11 leading-none">

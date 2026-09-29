@@ -67,15 +67,158 @@ test.describe("portfolio smoke", () => {
     await expect(dialog).toBeVisible();
 
     const search = dialog.getByRole("textbox", { name: "Search" });
+    await page.keyboard.press("Shift+Tab");
+    await expect(dialog.getByRole("button", { name: "Close" })).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(search).toBeFocused();
     await search.fill("React");
 
-    await expect(dialog.getByRole("button", { name: /^React/ })).toHaveCount(2);
-    await expect(dialog.getByRole("button", { name: /^Docker/ })).toHaveCount(
-      0,
+    const reactTargets = await dialog
+      .locator("[data-target-id]")
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getAttribute("data-target-id")),
+      );
+    expect(reactTargets.sort()).toEqual(
+      [
+        "skill-react",
+        "project-resource-planning",
+        "project-tradeflow",
+        "project-expense-report",
+        "project-invoice-approval",
+      ].sort(),
     );
 
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();
+  });
+
+  test("Find gives an empty hint, meaningful item results, and no-results feedback", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await page.getByRole("button", { name: "≡ Menu" }).click();
+    await page
+      .locator("#menu-bar-dropdown")
+      .getByRole("button", { name: /Find/ })
+      .click();
+
+    const dialog = page.getByRole("dialog", { name: "Find" });
+    const search = dialog.getByRole("textbox", { name: "Search" });
+    await expect(dialog.getByText(/↑↓.*Enter.*Esc/)).toBeVisible();
+    await expect(dialog.locator("[data-target-id]")).toHaveCount(0);
+    const skillIds = await page
+      .locator('table.mac-table [id^="skill-"]')
+      .evaluateAll((elements) => elements.map((element) => element.id));
+    expect(skillIds).toHaveLength(22);
+    expect(new Set(skillIds).size).toBe(22);
+
+    await search.fill("Docker");
+    const dockerTargetIds = await dialog
+      .locator("[data-target-id]")
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getAttribute("data-target-id")),
+      );
+    expect(dockerTargetIds).toContain("skill-docker");
+    expect(dockerTargetIds).toContain("project-venueops-lite");
+    expect(dockerTargetIds).toContain("project-catalogue-qa");
+    expect(new Set(dockerTargetIds).size).toBe(dockerTargetIds.length);
+    const resultHeights = await dialog
+      .locator("[data-target-id]")
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getBoundingClientRect().height),
+      );
+    expect(resultHeights.every((height) => height >= 44)).toBe(true);
+
+    const credibleQueries: [string, string[]][] = [
+      ["backend", ["skill-node-js", "works"]],
+      ["applied AI", ["skill-aws-bedrock", "project-venueops-lite"]],
+      ["LLM", ["project-catalogue-qa"]],
+      ["cloud", ["skill-aws", "skill-azure", "skill-docker"]],
+      ["CI/CD", ["skill-github-actions", "skill-azure-devops"]],
+      ["Melbourne", ["about", "contact"]],
+      ["CV", ["contact"]],
+    ];
+    for (const [term, expectedTargets] of credibleQueries) {
+      await search.fill(term);
+      const targetIds = await dialog
+        .locator("[data-target-id]")
+        .evaluateAll((elements) =>
+          elements.map((element) => element.getAttribute("data-target-id")),
+        );
+      for (const targetId of expectedTargets) {
+        expect(targetIds).toContain(targetId);
+      }
+    }
+
+    await search.fill("no-such-portfolio-result");
+    await expect(dialog.getByText(/No results found/)).toBeVisible();
+  });
+
+  test("Find selection focuses items without changing history and clears highlights", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+    const originalUrl = page.url();
+    const originalHistoryLength = await page.evaluate(() => history.length);
+
+    await page.getByRole("button", { name: /Find/ }).first().click();
+    const dialog = page.getByRole("dialog", { name: "Find" });
+    const search = dialog.getByRole("textbox", { name: "Search" });
+    await search.fill("Bedrock");
+    await search.press("Enter");
+
+    const bedrockSkill = page.locator("#skill-aws-bedrock");
+    await expect(dialog).toBeHidden();
+    await expect(bedrockSkill).toHaveAttribute("tabindex", "-1");
+    await expect(bedrockSkill).toBeFocused();
+    await expect(bedrockSkill).toHaveCSS("background-color", "rgb(17, 17, 17)");
+    expect(page.url()).toBe(originalUrl);
+    expect(await page.evaluate(() => history.length)).toBe(
+      originalHistoryLength,
+    );
+    const targetTop = await bedrockSkill.evaluate(
+      (element) => element.getBoundingClientRect().top,
+    );
+    const menuBottom = await page
+      .locator("header")
+      .evaluate((element) => element.getBoundingClientRect().bottom);
+    expect(targetTop).toBeGreaterThanOrEqual(menuBottom);
+
+    await page.keyboard.press("Tab");
+    await expect(bedrockSkill).not.toHaveCSS(
+      "background-color",
+      "rgb(17, 17, 17)",
+    );
+    await page.getByRole("button", { name: /Find/ }).click();
+    await expect(bedrockSkill).not.toBeFocused();
+    await page
+      .getByRole("dialog", { name: "Find" })
+      .getByRole("textbox", { name: "Search" })
+      .fill("AWS");
+    await page.keyboard.press("Escape");
+
+    await page.getByRole("button", { name: /Find/ }).click();
+    const pointerSearch = page
+      .getByRole("dialog", { name: "Find" })
+      .getByRole("textbox", { name: "Search" });
+    await pointerSearch.fill("Docker");
+    await page
+      .getByRole("dialog", { name: "Find" })
+      .locator('[data-target-id="project-venueops-lite"]')
+      .click();
+
+    const venueOps = page.locator("#project-venueops-lite");
+    await expect(venueOps).toBeFocused();
+    await expect(venueOps).toHaveCSS("background-color", "rgb(17, 17, 17)");
+    expect(page.url()).toBe(originalUrl);
+    expect(await page.evaluate(() => history.length)).toBe(
+      originalHistoryLength,
+    );
+    await page.getByRole("link", { name: "Projects", exact: true }).click();
+    await expect(venueOps).not.toBeFocused();
+    expect(new URL(page.url()).hash).toBe("#projects");
   });
 
   test("projects separate featured work from the compact list", async ({
@@ -104,7 +247,13 @@ test.describe("portfolio smoke", () => {
       .evaluateAll((elements) =>
         elements.map((element) => element.getAttribute("data-project-id")),
       );
-    expect(projectIds.sort()).toEqual([...expectedProjectIds].sort());
+    expect([...projectIds].sort()).toEqual([...expectedProjectIds].sort());
+    const projectDomIds = await page
+      .locator("[data-project-id]")
+      .evaluateAll((elements) => elements.map((element) => element.id));
+    expect(projectDomIds).toEqual(
+      projectIds.map((projectId) => `project-${projectId}`),
+    );
 
     const longSummary = featured.locator('[data-project-id="venueops-lite"] p');
     await expect(longSummary).toBeVisible();
