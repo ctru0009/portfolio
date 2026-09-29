@@ -56,6 +56,110 @@ test.describe("portfolio smoke", () => {
     }
   });
 
+  test("landmarks, share metadata, and project images reserve their space", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    await expect(page.getByRole("main")).toHaveCount(1);
+    await expect(page.locator("main aside")).toHaveCount(1);
+    await expect(page.locator("main aside img")).toHaveAttribute(
+      "width",
+      "140",
+    );
+    await expect(page.locator("main aside img")).toHaveAttribute(
+      "height",
+      "152",
+    );
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      "https://www.congchuongtruong.net/",
+    );
+    await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute(
+      "content",
+      /.+/,
+    );
+    await expect(
+      page.locator('meta[name="twitter:image:alt"]'),
+    ).toHaveAttribute("content", /.+/);
+
+    const projectImages = page.locator("[data-project-id] img");
+    await expect(projectImages).toHaveCount(3);
+    const imageDimensions = await projectImages.evaluateAll((images) =>
+      images.map((image) => ({
+        width: (image as HTMLImageElement).getAttribute("width"),
+        height: (image as HTMLImageElement).getAttribute("height"),
+      })),
+    );
+    expect(imageDimensions.every(({ width, height }) => width && height)).toBe(
+      true,
+    );
+  });
+
+  test("section links keep their anchor offset through navigation, reload, and back", async ({
+    page,
+  }) => {
+    const measurements: Record<string, number[]> = {};
+    const measureOffset = async (id: string) =>
+      page.evaluate((sectionId) => {
+        const menu = document.querySelector("header")!;
+        const section = document.getElementById(sectionId)!;
+        return Math.round(
+          section.getBoundingClientRect().top -
+            menu.getBoundingClientRect().bottom,
+        );
+      }, id);
+
+    for (const width of [1440, 390]) {
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+      await page.goto("/");
+
+      for (const id of sections.slice(1)) {
+        const label =
+          id === "works" ? "Work" : id[0].toUpperCase() + id.slice(1);
+        if (width < 800) {
+          await page.getByRole("button", { name: "≡ Menu" }).click();
+          await page
+            .locator("#menu-bar-dropdown")
+            .getByRole("link", { name: label, exact: true })
+            .click();
+        } else {
+          await page
+            .getByRole("navigation", { name: "Contents" })
+            .getByRole("link", { name: new RegExp(label) })
+            .click();
+        }
+
+        await expect(page).toHaveURL(new RegExp(`#${id}$`));
+        const offset = await measureOffset(id);
+        measurements[`${width}-${id}-navigation`] = [offset];
+        const baselineOffset =
+          width === 1440 ? (id === "contact" ? 151 : 16) : 10;
+        expect(Math.abs(offset - baselineOffset)).toBeLessThanOrEqual(8);
+      }
+
+      const lastId = "contact";
+      await page.reload();
+      const reloadOffset = await measureOffset(lastId);
+      measurements[`${width}-${lastId}-reload`] = [reloadOffset];
+      expect(
+        Math.abs(reloadOffset - (width === 1440 ? 151 : 10)),
+      ).toBeLessThanOrEqual(8);
+
+      for (const id of [...sections.slice(1)].reverse().slice(1)) {
+        await page.goBack();
+        await expect(page).toHaveURL(new RegExp(`#${id}$`));
+        const backOffset = await measureOffset(id);
+        measurements[`${width}-${id}-back`] = [backOffset];
+        const baselineOffset =
+          width === 1440 ? (id === "contact" ? 151 : 16) : 10;
+        expect(Math.abs(backOffset - baselineOffset)).toBeLessThanOrEqual(8);
+      }
+    }
+
+    console.log("Anchor offsets (px from menu bottom):", measurements);
+  });
+
   test("navigation labels, anchors, and work dates stay concise and consistent", async ({
     page,
   }) => {
@@ -425,6 +529,19 @@ test.describe("portfolio smoke", () => {
     );
     await expectSummaryTextFits(featured);
     await expectSummaryTextFits(compact);
+
+    await featured
+      .getByRole("button", {
+        name: "Preview AI-Powered Resource Planning System",
+      })
+      .click();
+    const preview = page.getByRole("dialog", {
+      name: "Preview — AI-Powered Resource Planning System",
+    });
+    await expect(preview.locator("img")).toHaveAttribute("width", "1870");
+    await expect(preview.locator("img")).toHaveAttribute("height", "992");
+    await preview.getByRole("button", { name: "Close" }).click();
+
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -484,17 +601,19 @@ test.describe("portfolio smoke", () => {
     ).toHaveAttribute("href", "https://github.com/ctru0009/pocket-lab");
   });
 
-  test("landing page has no critical accessibility violations", async ({
+  test("landing page has no serious or moderate region accessibility violations", async ({
     page,
   }) => {
     await page.goto("/");
     await expect(page.locator("#contact")).toBeVisible();
 
     const results = await new AxeBuilder({ page }).analyze();
-    const critical = results.violations.filter(
-      (violation) => violation.impact === "critical",
+    const relevant = results.violations.filter(
+      (violation) =>
+        violation.impact === "serious" ||
+        (violation.impact === "moderate" && violation.id === "region"),
     );
 
-    expect(critical).toEqual([]);
+    expect(relevant).toEqual([]);
   });
 });

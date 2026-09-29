@@ -34,6 +34,8 @@ interface ProjectInterface {
   featured: boolean;
   description: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   technologies: string[];
   githubLink: string;
   liveLink: string;
@@ -149,6 +151,8 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "A resource-planning MVP where capacity, dependency and skill constraints are enforced in application code while Gemini provides bounded impact and risk analysis. Zod validates model responses before they reach the React UI, and deterministic planning remains available without AI-generated analysis.",
     image: projectImage5,
+    imageWidth: 1870,
+    imageHeight: 992,
     technologies: [
       "React",
       "JavaScript",
@@ -170,6 +174,8 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "A TypeScript CLI that classifies DummyJSON product records with Gemini. Every model response is Zod-validated; batches retry with backoff; checkpoints and row-level isolation mean a bad row or provider blip does not kill the run.",
     image: projectImage6,
+    imageWidth: 2818,
+    imageHeight: 976,
     technologies: ["Node.js", "TypeScript", "Gemini API", "Zod", "CSV"],
     githubLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
     liveLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
@@ -183,6 +189,8 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "A catering enquiry workflow where the model interprets and software acts: an OpenRouter tool call turns each Google Sheets row into a schema-validated extraction, deterministic rules enforce notice and minimum-order constraints, and a human approves every reply — with at most one follow-up and an append-only activity log.",
     image: venueOpsImage,
+    imageWidth: 1600,
+    imageHeight: 572,
     technologies: [
       "TypeScript",
       "NestJS",
@@ -204,6 +212,8 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "An n8n-orchestrated catalogue QA workflow that keeps rules and models in their lanes: deterministic validation runs first and only ambiguous taxonomy reaches an OpenAI-compatible model, whose Zod-validated suggestion still waits for human approval.",
     image: catalogueQaImage,
+    imageWidth: 1600,
+    imageHeight: 572,
     technologies: [
       "TypeScript",
       "Fastify",
@@ -224,6 +234,8 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "A consultancy-style demo that sits in front of a fictional electrical shop's job system: free text becomes a structured summary, routine jobs are created, incomplete ones park for review, emergency language blocks approval until acknowledged, and quote follow-ups are tracked as explicit state instead of memory.",
     image: tradeflowImage,
+    imageWidth: 1600,
+    imageHeight: 571,
     technologies: [
       "TypeScript",
       "Next.js",
@@ -245,6 +257,8 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "A single-binary Go CLI that switches Claude Code between provider profiles such as Anthropic, Z.ai, Ollama Cloud and OpenRouter. Every swap rewrites ~/.claude/settings.json atomically and never touches permissions, MCP servers or other config.",
     image: ccswapImage,
+    imageWidth: 1260,
+    imageHeight: 450,
     technologies: ["Go", "CLI", "Claude Code", "OpenRouter"],
     githubLink: "https://github.com/ctru0009/ccswap",
     liveLink: "https://github.com/ctru0009/ccswap",
@@ -270,6 +284,8 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "A full-stack expense workflow with JWT auth, a state-machine review flow and admin approval. Receipt uploads are extracted through an OpenAI-compatible service behind an interface, so the AI path can be swapped or mocked without touching the workflow.",
     image: expenseReportImage,
+    imageWidth: 1600,
+    imageHeight: 572,
     technologies: [
       "React",
       "TypeScript",
@@ -290,6 +306,8 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "A design-to-code proof of concept: the dashboard was composed visually in Pencil.dev with its Shadcn template, then generated into a working React + Tailwind page through the Pencil MCP server.",
     image: invoiceApprovalImage,
+    imageWidth: 1600,
+    imageHeight: 572,
     technologies: [
       "React",
       "TypeScript",

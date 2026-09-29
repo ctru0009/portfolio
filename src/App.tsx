@@ -14,27 +14,29 @@ function App() {
   return (
     <div>
       <MenuBar />
-      <div id="home" className="mx-auto max-w-[1120px] px-4 pb-2 pt-6 sm:px-6">
-        <MacWindow title="congchuongtruong.net — Software Engineer">
-          <MetaBar
-            left="SOFTWARE ENGINEER — APPLIED AI"
-            right="OPEN TO SOFTWARE ENGINEERING OPPORTUNITIES"
-          />
-          <div className="grid grid-cols-1 min-[800px]:grid-cols-[310px_1fr]">
-            <Sidebar />
-            <main className="min-w-0">
-              <About />
-              <Skills />
-              <Work />
-              <Projects />
-              <Contact />
-            </main>
-          </div>
-          <StatusBar
-            left="2026 · Cong Chuong Truong"
-            right="React · Vite · GitHub Pages — no trackers"
-          />
-        </MacWindow>
+      <div className="mx-auto max-w-[1120px] px-4 pb-2 pt-6 sm:px-6">
+        <main id="home">
+          <MacWindow title="congchuongtruong.net — Software Engineer">
+            <MetaBar
+              left="SOFTWARE ENGINEER — APPLIED AI"
+              right="OPEN TO SOFTWARE ENGINEERING OPPORTUNITIES"
+            />
+            <div className="grid grid-cols-1 min-[800px]:grid-cols-[310px_1fr]">
+              <Sidebar />
+              <div className="min-w-0">
+                <About />
+                <Skills />
+                <Work />
+                <Projects />
+                <Contact />
+              </div>
+            </div>
+            <StatusBar
+              left="2026 · Cong Chuong Truong"
+              right="React · Vite · GitHub Pages — no trackers"
+            />
+          </MacWindow>
+        </main>
         <Footer />
       </div>
     </div>

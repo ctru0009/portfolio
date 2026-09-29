@@ -61,6 +61,8 @@ const Sidebar = () => {
         <img
           src={HeroData.avatarURL}
           alt="Profile image"
+          width={140}
+          height={152}
           className="float-right mb-3 ml-[15px] h-[55px] w-[55px] border-2 border-ink object-cover min-[800px]:float-none min-[800px]:mb-4 min-[800px]:h-[70px] min-[800px]:w-[70px]"
         />
 

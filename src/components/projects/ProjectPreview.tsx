@@ -29,6 +29,8 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
           <img
             src={project.image}
             alt={`${project.title} screenshot`}
+            width={project.imageWidth}
+            height={project.imageHeight}
             className="block w-full"
           />
         </div>
