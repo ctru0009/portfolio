@@ -1,7 +1,43 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator } from "@playwright/test";
 
 const sections = ["home", "about", "skills", "works", "projects", "contact"];
+const featuredProjectIds = ["resource-planning", "venueops-lite", "ccswap"];
+const remainingProjectIds = [
+  "ai-product-enrichment",
+  "catalogue-qa",
+  "tradeflow",
+  "pocket-lab",
+  "expense-report",
+  "invoice-approval",
+];
+const expectedProjectIds = [...featuredProjectIds, ...remainingProjectIds];
+
+const expectSummaryTextFits = async (container: Locator) => {
+  const summaries = await container
+    .locator("[data-project-id] p")
+    .evaluateAll((elements) =>
+      elements.map((element) => {
+        const paragraph = element as HTMLParagraphElement;
+        return {
+          text: paragraph.innerText.trim(),
+          clientHeight: paragraph.clientHeight,
+          scrollHeight: paragraph.scrollHeight,
+          clientWidth: paragraph.clientWidth,
+          scrollWidth: paragraph.scrollWidth,
+          overflow: getComputedStyle(paragraph).overflow,
+        };
+      }),
+    );
+
+  expect(summaries.length).toBeGreaterThan(0);
+  for (const summary of summaries) {
+    expect(summary.text).not.toBe("");
+    expect(summary.scrollHeight).toBeLessThanOrEqual(summary.clientHeight);
+    expect(summary.scrollWidth).toBeLessThanOrEqual(summary.clientWidth);
+    expect(summary.overflow).not.toMatch(/hidden|clip/);
+  }
+};
 
 test.describe("portfolio smoke", () => {
   test("landing page loads with the expected title and section anchors", async ({
@@ -48,21 +84,33 @@ test.describe("portfolio smoke", () => {
 
     const featured = page.getByRole("region", { name: "Featured projects" });
     const compact = page.getByRole("region", { name: "More projects" });
-    await expect(featured.locator("[data-project-id]")).toHaveCount(3);
-    await expect(compact.locator("[data-project-id]")).toHaveCount(6);
+    const featuredIds = await featured
+      .locator("[data-project-id]")
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getAttribute("data-project-id")),
+      );
+    const compactIds = await compact
+      .locator("[data-project-id]")
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getAttribute("data-project-id")),
+      );
+    expect(featuredIds).toEqual(featuredProjectIds);
+    expect(compactIds).toEqual(remainingProjectIds);
 
     const projectIds = await page
       .locator("[data-project-id]")
       .evaluateAll((elements) =>
         elements.map((element) => element.getAttribute("data-project-id")),
       );
-    expect(projectIds).toHaveLength(9);
-    expect(new Set(projectIds).size).toBe(9);
+    expect(projectIds.sort()).toEqual([...expectedProjectIds].sort());
 
     const longSummary = featured.locator('[data-project-id="venueops-lite"] p');
     await expect(longSummary).toBeVisible();
-    await expect(longSummary).not.toHaveClass(/line-clamp/);
-    await expect(longSummary).toContainText("Google Sheets");
+    await expect(longSummary).toHaveText(
+      "Turns Google Sheets catering enquiries into reviewable draft replies while code enforces order rules and keeps a human in control.",
+    );
+    await expectSummaryTextFits(featured);
+    await expectSummaryTextFits(compact);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -84,8 +132,20 @@ test.describe("portfolio smoke", () => {
 
     const featured = page.getByRole("region", { name: "Featured projects" });
     const compact = page.getByRole("region", { name: "More projects" });
-    await expect(featured.locator("[data-project-id]")).toHaveCount(3);
-    await expect(compact.locator("[data-project-id]")).toHaveCount(6);
+    const featuredIds = await featured
+      .locator("[data-project-id]")
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getAttribute("data-project-id")),
+      );
+    const compactIds = await compact
+      .locator("[data-project-id]")
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getAttribute("data-project-id")),
+      );
+    expect(featuredIds).toEqual(featuredProjectIds);
+    expect(compactIds).toEqual(remainingProjectIds);
+    await expectSummaryTextFits(featured);
+    await expectSummaryTextFits(compact);
 
     const pocketLab = compact.locator('[data-project-id="pocket-lab"]');
     await expect(
