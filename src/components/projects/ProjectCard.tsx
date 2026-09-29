@@ -6,9 +6,6 @@ interface ProjectCardProps {
   onPreview: () => void;
 }
 
-const hatchedClass =
-  "aspect-[2.8/1] w-full [background-image:repeating-conic-gradient(#ececec_0%_25%,#fbfbfb_0%_50%)] [background-size:8px_8px]";
-
 const linkClass =
   "underline underline-offset-[3px] hover:bg-ink hover:text-paper hover:decoration-paper";
 
@@ -16,7 +13,7 @@ const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
   const hasLiveDemo = project.liveLink !== project.githubLink;
 
   return (
-    <article className="relative flex flex-col border-2 border-ink bg-paper shadow-hard-callout hover:shadow-hard">
+    <article className="relative flex flex-col border-2 border-ink bg-paper shadow-hard-sm hover:shadow-hard-callout">
       <div className="mac-titlebar-stripes m-1 flex h-4 flex-shrink-0 items-center px-1">
         <span className="mx-auto truncate bg-paper px-1.5 py-px text-[9px]">
           {project.title}
@@ -32,15 +29,11 @@ const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
             loading="lazy"
           />
         ) : (
-          <div className={hatchedClass} aria-hidden="true" />
+          <div className="mac-hatch aspect-[2.8/1] w-full" aria-hidden="true" />
         )}
       </div>
 
-      <h3 className="px-2.5 pt-2 text-[11px] font-normal">
-        {project.title}
-      </h3>
-
-      <p className="line-clamp-3 px-2.5 pt-1 text-[10px] leading-[1.6] text-muted">
+      <p className="line-clamp-3 px-2.5 pt-2 text-[10px] leading-[1.6] text-muted">
         {project.description}
       </p>
 
@@ -50,12 +43,12 @@ const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
         ))}
       </div>
 
-      <div className="mt-auto flex gap-3 px-2.5 pb-2.5 pt-2 text-[10px]">
+      <div className="mt-auto flex items-center justify-between gap-3 px-2.5 pb-2.5 pt-2 text-[10px]">
         <a
           href={project.githubLink}
           target="_blank"
           rel="noopener noreferrer"
-          className={`relative z-10 ${linkClass}`}
+          className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
         >
           GitHub ↗
         </a>
@@ -64,11 +57,14 @@ const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
             href={project.liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className={`relative z-10 ${linkClass}`}
+            className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
           >
             Live ↗
           </a>
         ) : null}
+        <span aria-hidden="true" className="underline underline-offset-[3px]">
+          Preview…
+        </span>
       </div>
 
       <button

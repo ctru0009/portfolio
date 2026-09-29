@@ -31,7 +31,7 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
           />
         ) : (
           <div
-            className="aspect-[2.8/1] w-full [background-image:repeating-conic-gradient(#ececec_0%_25%,#fbfbfb_0%_50%)] [background-size:8px_8px]"
+            className="mac-hatch aspect-[2.8/1] w-full"
             aria-hidden="true"
           />
         )}
