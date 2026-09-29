@@ -5,22 +5,25 @@ This document provides the complete technology stack and file tree structure for
 ## Technology Stack
 
 ### Frontend Technologies
+
 - **TypeScript 5.x** with **npm** - Type-safe JavaScript development and dependency management
 - **React 18.3.1** - UI framework with hooks and concurrent features
 - **Vite 5.4.10** - Development server and build tool with fast hot reload
 - **TailwindCSS 3.4.14** - Utility-first CSS framework; 1-bit design tokens in `tailwind.config.js`
 
 ### Runtime Integrations
+
 - **None** - the site is fully static; contact is via external links (email, LinkedIn, GitHub, resume)
-- A legacy `WEB3FORMS_ACCESS_KEY` CI secret may remain wired but unused (tidy deferred)
 
 ### Development & Quality Tools
+
 - **ESLint** - Code quality and linting for React/TypeScript
 - **TypeScript Compiler** - Static type checking and compilation
 - **GitHub Pages** - Static site hosting and deployment
 - **gh-pages** - npm package for automated GitHub Pages deployment
 
 ### Development Patterns
+
 - **Component-Based Architecture** - Modular React components organized by feature
 - **Section-Based Layout** - Portfolio organized into numbered step sections (About, Skills, Work, Projects, Contact)
 - **Data Centralization** - Content data managed in `src/data/data.ts`; find entries in `src/data/searchIndex.ts`
@@ -41,7 +44,7 @@ portfolio/
 ├── tailwind.config.js                  # Design tokens (palette, type ladder, shadows)
 ├── postcss.config.js                   # PostCSS configuration for Tailwind
 ├── .gitignore                          # Git ignore patterns
-├── .env.example                        # Legacy environment template (unused)
+├── .nvmrc                              # Node version for CI and local dev (22)
 ├── docs/                               # Documentation directory
 │   └── ai-context/                     # AI-specific documentation
 │       ├── project-structure.md        # This file - project architecture
@@ -103,7 +106,7 @@ portfolio/
 
 ---
 
-*This document reflects the current state of the portfolio project: Macintosh design, zero motion, keyboard-accessible dialogs, and static output.*
+_This document reflects the current state of the portfolio project: Macintosh design, zero motion, keyboard-accessible dialogs, and static output._
 
 ## Known Technical Debt
 
@@ -113,4 +116,4 @@ portfolio/
 
 - **No forms or user-submitted data**: contact is via external links only; nothing is transmitted to a server
 - **No secrets in the client**: the bundle contains no keys or endpoints
-- **Legacy CI secret**: `WEB3FORMS_ACCESS_KEY` may remain wired but unused (tidy deferred)
+- **No CI secrets**: the workflows inject no secrets
