@@ -12,8 +12,8 @@ interface WorkCardProps {
 
 const WorkCard = ({ work }: WorkCardProps) => {
   return (
-    <article className="border border-ink">
-      <div className="flex justify-between gap-2.5 border-b border-ink bg-chrome px-2.5 py-2 text-[11px]">
+    <article className="border-2 border-ink">
+      <div className="flex flex-col gap-0.5 border-b border-ink bg-chrome px-2.5 py-2 text-[11px] min-[800px]:flex-row min-[800px]:items-center min-[800px]:justify-between min-[800px]:gap-2.5">
         <span>
           {work.title} — {work.company}
         </span>
