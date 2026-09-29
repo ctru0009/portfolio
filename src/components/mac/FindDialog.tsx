@@ -88,7 +88,10 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
 
     const whiteText = Array.from(
       target.querySelectorAll<HTMLElement>("p, h3, a"),
-    );
+    ).filter((element) => {
+      const paperSurface = element.closest(".bg-paper");
+      return paperSurface === null || paperSurface === target;
+    });
     const paperElements = Array.from(
       target.querySelectorAll<HTMLElement>(".bg-paper"),
     );

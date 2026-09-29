@@ -484,6 +484,62 @@ test.describe("portfolio smoke", () => {
     expect(new URL(page.url()).hash).toBe("#projects");
   });
 
+  test("Find section highlights preserve featured-card contrast and item search", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+    const originalUrl = page.url();
+    await page.getByRole("button", { name: /Find/ }).click();
+
+    const dialog = page.getByRole("dialog", { name: "Find" });
+    const search = dialog.getByRole("textbox", { name: "Search" });
+    await search.fill("Projects");
+    await dialog.locator('[data-target-id="projects"]').click();
+
+    const projects = page.locator("#projects");
+    const featuredCard = page.locator("#project-resource-planning");
+    await expect(projects).toBeFocused();
+    expect(page.url()).toBe(originalUrl);
+
+    const cardColors = await featuredCard.evaluate((card) => {
+      const title = card.querySelector(".mac-titlebar-stripes span")!;
+      const summary = card.querySelector("p")!;
+      const link = card.querySelector("a")!;
+      return {
+        background: getComputedStyle(card).backgroundColor,
+        title: getComputedStyle(title).color,
+        summary: getComputedStyle(summary).color,
+        link: getComputedStyle(link).color,
+      };
+    });
+    expect(cardColors.background).toBe("rgb(255, 255, 255)");
+    expect(cardColors.title).toBe("rgb(17, 17, 17)");
+    expect(cardColors.summary).toBe("rgb(68, 68, 68)");
+    expect(cardColors.link).toBe("rgb(17, 17, 17)");
+
+    await page.mouse.click(1, 50);
+    await expect(projects).not.toBeFocused();
+    await expect(featuredCard).toHaveCSS(
+      "background-color",
+      "rgb(255, 255, 255)",
+    );
+    const restoredSummaryColor = await featuredCard
+      .locator("p")
+      .evaluate((summary) => getComputedStyle(summary).color);
+    expect(restoredSummaryColor).toBe("rgb(68, 68, 68)");
+
+    await page.getByRole("button", { name: /Find/ }).click();
+    const itemDialog = page.getByRole("dialog", { name: "Find" });
+    const itemSearch = itemDialog.getByRole("textbox", { name: "Search" });
+    await itemSearch.fill("Bedrock");
+    await itemSearch.press("Enter");
+
+    const bedrockSkill = page.locator("#skill-aws-bedrock");
+    await expect(bedrockSkill).toBeFocused();
+    await expect(bedrockSkill).toHaveCSS("background-color", "rgb(17, 17, 17)");
+  });
+
   test("projects separate featured work from the compact list", async ({
     page,
   }) => {
