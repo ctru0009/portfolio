@@ -156,9 +156,18 @@ test.describe("portfolio smoke", () => {
       await page.setViewportSize({ width, height: 900 });
       const hasContents = width >= 800;
       if (hasContents) {
-        await expect(
-          page.getByRole("navigation", { name: "Contents" }),
-        ).toBeVisible();
+        const contents = page.getByRole("navigation", { name: "Contents" });
+        await expect(contents).toBeVisible();
+        const linkVisibility = await contents
+          .getByRole("link")
+          .evaluateAll((links) =>
+            links.map((link) => {
+              const rect = link.getBoundingClientRect();
+              return rect.bottom > 0 && rect.top < window.innerHeight;
+            }),
+          );
+        expect(linkVisibility).toHaveLength(5);
+        expect(linkVisibility.every(Boolean)).toBe(true);
         expect(
           await page
             .locator("aside")

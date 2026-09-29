@@ -30,6 +30,34 @@ const Sidebar = () => {
   return (
     <aside className="border-b-2 border-ink px-[25px] py-[25px] min-[800px]:border-b-0 min-[800px]:border-r-2 min-[800px]:px-[26px] min-[800px]:py-[32px]">
       <div className="min-[800px]:sticky min-[800px]:top-[48px]">
+        <nav
+          aria-label="Contents"
+          className="mb-5 hidden border-b border-ink pb-3 min-[800px]:block"
+        >
+          <h2 className="mb-1 text-13 font-bold">Contents</h2>
+          <ul className="grid grid-cols-2 gap-x-2">
+            {contents.map((item) => {
+              const isActive = activeSection === item.target;
+              return (
+                <li key={item.target}>
+                  <a
+                    href={`#${item.target}`}
+                    aria-current={isActive ? "location" : undefined}
+                    className={`flex min-h-[36px] items-center gap-2 px-1 text-11 ${
+                      isActive
+                        ? "bg-ink text-paper"
+                        : "hover:bg-ink hover:text-paper"
+                    }`}
+                  >
+                    <span className="text-10">{item.number}</span>
+                    <span>{item.label}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
         <img
           src={HeroData.avatarURL}
           alt="Profile image"
@@ -105,34 +133,6 @@ const Sidebar = () => {
             …or email me — {HeroData.email}
           </a>
         </div>
-
-        <nav
-          aria-label="Contents"
-          className="mt-5 hidden border-t border-ink pt-3 min-[800px]:block"
-        >
-          <h2 className="mb-1 text-13 font-bold">Contents</h2>
-          <ul className="grid grid-cols-2 gap-x-2">
-            {contents.map((item) => {
-              const isActive = activeSection === item.target;
-              return (
-                <li key={item.target}>
-                  <a
-                    href={`#${item.target}`}
-                    aria-current={isActive ? "location" : undefined}
-                    className={`flex min-h-[36px] items-center gap-2 px-1 text-11 ${
-                      isActive
-                        ? "bg-ink text-paper"
-                        : "hover:bg-ink hover:text-paper"
-                    }`}
-                  >
-                    <span className="text-10">{item.number}</span>
-                    <span>{item.label}</span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
       </div>
     </aside>
   );
