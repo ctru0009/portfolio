@@ -18,7 +18,7 @@ A personal portfolio website in a 1-bit Macintosh design, built with React, Type
 ## Tech Stack
 
 - **Framework**: React 18.3.1 with TypeScript
-- **Build Tool**: Vite 5.4.10
+- **Build Tool**: Vite 8.3.1
 - **Styling**: TailwindCSS 3.4.14 with PostCSS
 - **Deployment**: GitHub Pages
 

@@ -8,7 +8,7 @@ This document provides the complete technology stack and file tree structure for
 
 - **TypeScript 5.x** with **npm** - Type-safe JavaScript development and dependency management
 - **React 18.3.1** - UI framework with hooks and concurrent features
-- **Vite 5.4.10** - Development server and build tool with fast hot reload
+- **Vite 8.3.1** - Development server and build tool with fast hot reload
 - **TailwindCSS 3.4.14** - Utility-first CSS framework; 1-bit design tokens in `tailwind.config.js`
 
 ### Runtime Integrations
