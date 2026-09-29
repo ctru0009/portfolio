@@ -4,8 +4,7 @@ import FindDialog from "./FindDialog";
 
 const sections = ["home", "about", "skills", "works", "projects", "contact"];
 
-const itemClass =
-  "whitespace-nowrap px-1.5 py-[3px] min-[1000px]:px-[9px]";
+const itemClass = "whitespace-nowrap px-1.5 py-[3px]";
 const itemHoverClass = "hover:bg-ink hover:text-paper";
 
 const MenuBar = () => {
@@ -64,7 +63,7 @@ const MenuBar = () => {
     <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper">
       <div
         ref={barRef}
-        className="relative mx-auto flex h-[38px] max-w-[1120px] items-center gap-3 px-[17px] text-[11px] min-[1000px]:gap-[26px] min-[1000px]:px-[26px]"
+        className="relative mx-auto flex h-[38px] max-w-[1120px] items-center gap-4 px-[17px] text-[11px] min-[1000px]:px-[26px]"
       >
         <span className="text-[20px] leading-none" aria-hidden="true">
           ⌘
@@ -75,7 +74,7 @@ const MenuBar = () => {
         <span className="text-[12px] min-[800px]:hidden">Cong C. Truong</span>
 
         <nav
-          className="hidden items-center gap-1.5 min-[800px]:flex min-[1000px]:gap-2.5"
+          className="hidden items-center gap-1.5 min-[800px]:flex"
           aria-label="Main navigation"
         >
           {NavigationData.map((item) => {
@@ -103,7 +102,7 @@ const MenuBar = () => {
           ⌕ Find…
         </button>
 
-        <span className="ml-auto hidden text-[11px] whitespace-nowrap min-[1150px]:inline">
+        <span className="ml-auto hidden min-w-0 truncate text-[11px] min-[1024px]:inline">
           Melbourne · Open to full-time roles
         </span>
 
