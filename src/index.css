@@ -39,14 +39,6 @@
 }
 
 @layer components {
-    .section-light {
-        @apply bg-gray-900/40;
-    }
-
-    .section-dark {
-        @apply bg-gray-950/50;
-    }
-
     .mac-titlebar-stripes {
         background: repeating-linear-gradient(
             to bottom,
@@ -73,14 +65,5 @@
         background: #eee;
         font-weight: normal;
         white-space: nowrap;
-    }
-
-    .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    .hide-scrollbar::-webkit-scrollbar {
-        display: none;
     }
 }
