@@ -1,18 +1,18 @@
 # Portfolio Website
 
-A modern, responsive personal portfolio website built with React, TypeScript, and Vite. Features smooth animations, interactive components, and a clean design powered by TailwindCSS and Framer Motion.
+A personal portfolio website in a 1-bit Macintosh design, built with React, TypeScript, and Vite. TailwindCSS carries the design language; the site ships zero motion by design.
 
 **Live Site**: [https://www.congchuongtruong.net/](https://www.congchuongtruong.net/)
 
 ## Features
 
 - **Responsive Design**: Mobile-first approach that looks great on all devices
-- **Smooth Animations**: Powered by Framer Motion for engaging user experience
-- **Interactive Navigation**: 
-  - Advanced search functionality across skills, projects, and experience
+- **Macintosh Desktop Design**: Window chrome, menu bar, and numbered step sections in a strict 1-bit palette
+- **Interactive Navigation**:
+  - Keyboard-navigable Find dialog across skills, projects, and experience
   - Scroll spy for active section highlighting
-  - Smooth scrolling navigation
-- **Contact Form**: Secure form submission via Web3Forms with spam protection
+  - Anchor navigation between sections
+- **Contact Links**: Email, LinkedIn, GitHub, and resume links
 - **Performance Optimized**: WebP images and optimized build configuration
 
 ## Tech Stack
@@ -20,9 +20,6 @@ A modern, responsive personal portfolio website built with React, TypeScript, an
 - **Framework**: React 18.3.1 with TypeScript
 - **Build Tool**: Vite 5.4.10
 - **Styling**: TailwindCSS 3.4.14 with PostCSS
-- **Animations**: Framer Motion 11.11.10
-- **Icons**: React Icons 5.3.0
-- **Form Handling**: Web3Forms API
 - **Deployment**: GitHub Pages
 
 ## Getting Started
@@ -42,16 +39,10 @@ cd portfolio
 
 2. Install dependencies:
 ```bash
-npm install
+npm ci
 ```
 
-3. Set up environment variables:
-Create a `.env` file in the root directory:
-```
-VITE_WEB3FORMS_ACCESS_KEY=your_access_key_here
-```
-
-Get your access key from [Web3Forms](https://web3forms.com/)
+3. No environment variables are required to build or run the site.
 
 ### Development
 
@@ -78,37 +69,35 @@ npm run preview
 
 ## Deployment
 
-This project is configured for GitHub Pages deployment. To deploy:
+This project is configured for GitHub Pages deployment. Pushing to `main` runs lint → build → deploy via GitHub Actions.
+
+To deploy manually:
 
 ```bash
 npm run deploy
 ```
 
-This will:
-1. Build the project
-2. Deploy to the `gh-pages` branch
-3. Be available at your GitHub Pages URL
-
 ## Project Structure
 
 ```
 portfolio/
-├── public/                 # Static assets
+├── public/                 # favicon.svg, og-image.png
+├── docs/                   # Project documentation
 ├── src/
 │   ├── components/         # React components
-│   │   ├── common/        # Shared components (NavBar, Footer)
+│   │   ├── common/        # Footer
+│   │   ├── mac/           # Macintosh chrome primitives (window, dialogs, buttons, labels)
+│   │   ├── sidebar/       # Identity sidebar
 │   │   ├── about/         # About section
-│   │   ├── contact/       # Contact section and form
-│   │   ├── hero/          # Hero/Landing section
+│   │   ├── skills/        # Skills section
+│   │   ├── works/         # Work history section
 │   │   ├── projects/      # Projects showcase
-│   │   ├── skills/        # Skills display
-│   │   └── work/          # Work experience
-│   ├── data/              # Centralized data management
-│   ├── assets/            # Images and static assets
-│   ├── utils/             # Utility functions
+│   │   └── contact/       # Contact section
+│   ├── data/              # data.ts (content) and searchIndex.ts (Find dialog)
+│   ├── assets/            # Fonts and images
 │   └── App.tsx            # Main app component
-├── .env.example           # Environment variables template
-├── CLAUDE.md              # Project documentation for AI
+├── index.html             # HTML entry with SEO/social meta
+├── tailwind.config.js     # Design tokens
 ├── package.json           # Dependencies and scripts
 └── vite.config.ts         # Vite configuration
 ```
@@ -117,21 +106,22 @@ portfolio/
 
 ### Updating Content
 
-All portfolio content is managed in `src/data/data.ts`. Edit this file to update:
+Portfolio content is managed in `src/data/data.ts`:
 
 - Personal information
 - Work experience
 - Projects
-- Skills
 - Education
 - Contact information
 
+Find-dialog search entries live in `src/data/searchIndex.ts`; skills are defined in `src/components/skills/Skills.tsx`.
+
 ### Styling
 
-The project uses TailwindCSS for styling. Customize the design by:
+The project uses TailwindCSS. Customize the design by:
 
 1. Editing component classes directly
-2. Modifying `tailwind.config.js` for theme customization
+2. Modifying `tailwind.config.js` for design tokens (colors, type ladder, shadows)
 3. Adding custom CSS in `src/index.css`
 
 ## Scripts
