@@ -61,9 +61,9 @@ const NavigationData: NavigationInterface[] = [
   { name: "Home", link: "#home" },
   { name: "About", link: "#about" },
   { name: "Skills", link: "#skills" },
-  { name: "Work Experience", link: "#works" },
+  { name: "Work", link: "#works" },
   { name: "Projects", link: "#projects" },
-  { name: "Contacts", link: "#contact" },
+  { name: "Contact", link: "#contact" },
 ];
 
 const HeroData = {
@@ -118,7 +118,7 @@ const WorkData: WorkInterface[] = [
     title: "Software Engineer",
     company: "Jung Talents",
     location: "Remote",
-    period: "January 2023 – February 2026",
+    period: "Jan 2023–Feb 2026",
     responsibilities: [
       "Led the .NET 8 → .NET 9 upgrade across the core API surface, updating dependencies, resolving breaking changes and expanding regression coverage.",
       "Refactored high-traffic ASP.NET Core endpoints using caching and query shaping, improving average dashboard response time by 10%.",

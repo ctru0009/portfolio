@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { HeroData, NavigationData } from "../../data/data";
 import FindDialog from "./FindDialog";
 
 const sections = ["home", "about", "skills", "works", "projects", "contact"];
+const activeSectionEvent = "portfolio:active-section-change";
 
 const itemClass = "whitespace-nowrap px-1.5 py-[3px]";
 const itemHoverClass = "hover:bg-ink hover:text-paper";
@@ -12,6 +13,19 @@ const MenuBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [findOpen, setFindOpen] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
+  const activeSectionRef = useRef("home");
+
+  const updateActiveSection = useCallback(
+    (section: string) => {
+      if (activeSectionRef.current === section) return;
+      activeSectionRef.current = section;
+      setActiveSection(section);
+      window.dispatchEvent(
+        new CustomEvent(activeSectionEvent, { detail: section }),
+      );
+    },
+    [setActiveSection],
+  );
 
   useEffect(() => {
     let raf = 0;
@@ -27,8 +41,14 @@ const MenuBar = () => {
         const top = element.getBoundingClientRect().top + window.scrollY;
         if (top <= position) current = section;
       }
+      if (
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 1
+      ) {
+        current = sections[sections.length - 1];
+      }
 
-      setActiveSection(current);
+      updateActiveSection(current);
     };
 
     const handleScroll = () => {
@@ -41,7 +61,7 @@ const MenuBar = () => {
       window.removeEventListener("scroll", handleScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [updateActiveSection]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -93,6 +113,7 @@ const MenuBar = () => {
               <a
                 key={item.name}
                 href={item.link}
+                onClick={() => updateActiveSection(item.link.slice(1))}
                 aria-current={isActive ? "true" : undefined}
                 className={`${itemClass} ${
                   isActive ? "bg-ink text-paper" : itemHoverClass
@@ -135,7 +156,10 @@ const MenuBar = () => {
               <a
                 key={item.name}
                 href={item.link}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  updateActiveSection(item.link.slice(1));
+                  setMenuOpen(false);
+                }}
                 className="flex min-h-[44px] items-center border-t border-chrome px-2.5 first:border-t-0 hover:bg-ink hover:text-paper"
               >
                 {item.name}

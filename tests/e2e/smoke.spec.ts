@@ -56,6 +56,130 @@ test.describe("portfolio smoke", () => {
     }
   });
 
+  test("navigation labels, anchors, and work dates stay concise and consistent", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+
+    const nav = page.getByRole("navigation", { name: "Main navigation" });
+    const workLink = nav.getByRole("link", { name: "Work", exact: true });
+    const contactLink = nav.getByRole("link", { name: "Contact", exact: true });
+    await expect(workLink).toHaveAttribute("href", "#works");
+    await expect(contactLink).toHaveAttribute("href", "#contact");
+    await workLink.click();
+    await expect(page).toHaveURL(/#works$/);
+    await contactLink.click();
+    await expect(page).toHaveURL(/#contact$/);
+
+    const workCards = page.locator("#works article");
+    await expect(workCards.nth(0)).toContainText("2026–Present");
+    await expect(workCards.nth(1)).toContainText("Jan 2023–Feb 2026");
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await expect(
+      page.getByRole("navigation", { name: "Contents" }),
+    ).toBeHidden();
+    await page.getByRole("button", { name: "≡ Menu" }).click();
+    const mobileMenu = page.locator("#menu-bar-dropdown");
+    const mobileWorkLink = mobileMenu.getByRole("link", {
+      name: "Work",
+      exact: true,
+    });
+    const mobileContactLink = mobileMenu.getByRole("link", {
+      name: "Contact",
+      exact: true,
+    });
+    await expect(mobileWorkLink).toHaveAttribute("href", "#works");
+    await expect(mobileContactLink).toHaveAttribute("href", "#contact");
+  });
+
+  test("desktop Contents links target the five numbered sections and track navigation", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+
+    const contents = page.getByRole("navigation", { name: "Contents" });
+    const expectedLinks = [
+      ["01 About", "#about"],
+      ["02 Skills", "#skills"],
+      ["03 Work", "#works"],
+      ["04 Projects", "#projects"],
+      ["05 Contact", "#contact"],
+    ];
+    await expect(contents).toBeVisible();
+    await expect(contents.getByRole("link")).toHaveCount(5);
+    for (const [label, href] of expectedLinks) {
+      await expect(contents.getByRole("link", { name: label })).toHaveAttribute(
+        "href",
+        href,
+      );
+    }
+
+    await contents.getByRole("link", { name: "03 Work" }).click();
+    await expect(page).toHaveURL(/#works$/);
+    await expect(
+      contents.getByRole("link", { name: "03 Work" }),
+    ).toHaveAttribute("aria-current", "location");
+    await expect(
+      page
+        .getByRole("navigation", { name: "Main navigation" })
+        .getByRole("link", { name: "Work", exact: true }),
+    ).toHaveAttribute("aria-current", "true");
+
+    await page.evaluate(() => {
+      const contact = document.getElementById("contact");
+      if (contact)
+        window.scrollTo(
+          0,
+          contact.getBoundingClientRect().top + window.scrollY,
+        );
+    });
+    await expect(
+      contents.getByRole("link", { name: "05 Contact" }),
+    ).toHaveAttribute("aria-current", "location");
+    await expect(
+      page
+        .getByRole("navigation", { name: "Main navigation" })
+        .getByRole("link", { name: "Contact", exact: true }),
+    ).toHaveAttribute("aria-current", "true");
+  });
+
+  test("navigation remains within the viewport at mobile, tablet, and desktop widths", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    for (const width of [390, 800, 900, 1000, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      const hasContents = width >= 800;
+      if (hasContents) {
+        await expect(
+          page.getByRole("navigation", { name: "Contents" }),
+        ).toBeVisible();
+        expect(
+          await page
+            .locator("aside")
+            .evaluate((aside) =>
+              Math.round(aside.getBoundingClientRect().width),
+            ),
+        ).toBe(310);
+      } else {
+        await expect(
+          page.getByRole("navigation", { name: "Contents" }),
+        ).toBeHidden();
+        await expect(page.locator("aside h1")).toBeVisible();
+      }
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= window.innerWidth,
+        ),
+      ).toBe(true);
+    }
+  });
+
   test("find dialog filters results and closes with Escape", async ({
     page,
   }) => {
