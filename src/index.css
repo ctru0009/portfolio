@@ -3,82 +3,89 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Departure';
-    src: url('./assets/fonts/DepartureMono-Regular.woff2') format('woff2');
-    font-display: swap;
+  font-family: "Departure";
+  src: url("./assets/fonts/DepartureMono-Regular.woff2") format("woff2");
+  font-display: swap;
 }
 
 @layer base {
-    :root {
-        color-scheme: light;
-    }
+  :root {
+    color-scheme: light;
+  }
 
-    html {
-        scrollbar-color: theme(colors.ink) theme(colors.chrome);
-        scrollbar-width: thin;
-    }
+  html {
+    scrollbar-color: theme(colors.ink) theme(colors.chrome);
+    scrollbar-width: thin;
+  }
 
-    body {
-        background-color: theme(colors.desktop);
-        background-image: radial-gradient(theme(colors.faint) .65px, transparent .65px);
-        background-size: 4px 4px;
-        color: theme(colors.ink);
-        font-size: 13px;
-        font-family: Departure, ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-        min-height: 100vh;
-    }
+  body {
+    background-color: theme(colors.desktop);
+    background-image: radial-gradient(
+      theme(colors.faint) 0.65px,
+      transparent 0.65px
+    );
+    background-size: 4px 4px;
+    color: theme(colors.ink);
+    font-size: 13px;
+    font-family: Departure, ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    min-height: 100vh;
+  }
 
-    ::selection {
-        background: theme(colors.ink);
-        color: theme(colors.paper);
-    }
+  ::selection {
+    background: theme(colors.ink);
+    color: theme(colors.paper);
+  }
 
-    :focus-visible {
-        outline: 3px solid theme(colors.ink);
-        outline-offset: 4px;
-    }
+  :focus-visible {
+    outline: 3px solid theme(colors.ink);
+    outline-offset: 4px;
+  }
 
-    section[id], div[id] {
-        scroll-margin-top: 56px;
-    }
+  section[id],
+  div[id] {
+    scroll-margin-top: 56px;
+  }
 }
 
 @layer components {
-    .mac-scroll {
-        scrollbar-color: theme(colors.ink) theme(colors.chrome);
-        scrollbar-width: thin;
-    }
+  .mac-scroll {
+    scrollbar-color: theme(colors.ink) theme(colors.chrome);
+    scrollbar-width: thin;
+  }
 
-    .mac-hatch {
-        background-image: repeating-conic-gradient(theme(colors.desktop) 0% 25%, theme(colors.paper) 0% 50%);
-        background-size: 8px 8px;
-    }
+  .mac-hatch {
+    background-image: repeating-conic-gradient(
+      theme(colors.desktop) 0% 25%,
+      theme(colors.paper) 0% 50%
+    );
+    background-size: 8px 8px;
+  }
 
-    .mac-titlebar-stripes {
-        background: repeating-linear-gradient(
-            to bottom,
-            theme(colors.paper) 0 2px,
-            theme(colors.ink) 2px 3px
-        );
-    }
+  .mac-titlebar-stripes {
+    background: repeating-linear-gradient(
+      to bottom,
+      theme(colors.paper) 0 2px,
+      theme(colors.ink) 2px 3px
+    );
+  }
 
-    .mac-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 11px;
-    }
+  .mac-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
 
-    .mac-table th,
-    .mac-table td {
-        border: 1px solid theme(colors.ink);
-        padding: 8px;
-        text-align: left;
-        vertical-align: top;
-    }
+  .mac-table th,
+  .mac-table td {
+    border: 1px solid theme(colors.ink);
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+  }
 
-    .mac-table th {
-        background: theme(colors.chrome);
-        font-weight: normal;
-        white-space: nowrap;
-    }
+  .mac-table th {
+    background: theme(colors.chrome);
+    font-weight: normal;
+    white-space: nowrap;
+  }
 }
