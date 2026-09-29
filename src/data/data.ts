@@ -217,7 +217,7 @@ const ProjectsData = [
       "Zod",
     ],
     githubLink: "https://github.com/ctru0009/tradeflow",
-    liveLink: "https://github.com/ctru0009/tradeflow",
+    liveLink: "https://tradeflow-fawn-three.vercel.app",
   },
   {
     title: "ccswap",
