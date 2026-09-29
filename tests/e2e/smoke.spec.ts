@@ -92,6 +92,30 @@ test.describe("portfolio smoke", () => {
     await expect(dialog).toBeHidden();
   });
 
+  test("Find ignores arrow and Enter keys with an empty query and closes with Escape", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const opener = page.getByRole("button", { name: /Find/ }).first();
+    await opener.click();
+
+    const dialog = page.getByRole("dialog", { name: "Find" });
+    const search = dialog.getByRole("textbox", { name: "Search" });
+    const originalUrl = page.url();
+    for (const key of ["ArrowDown", "ArrowUp", "Enter"]) {
+      await page.keyboard.press(key);
+      await expect(dialog).toBeVisible();
+      await expect(search).toBeFocused();
+      await expect(dialog.locator("[data-target-id]")).toHaveCount(0);
+      await expect(dialog.getByText(/↑↓.*Enter.*Esc/)).toBeVisible();
+      expect(page.url()).toBe(originalUrl);
+    }
+
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+    await expect(opener).toBeFocused();
+  });
+
   test("Find gives an empty hint, meaningful item results, and no-results feedback", async ({
     page,
   }) => {
@@ -191,6 +215,11 @@ test.describe("portfolio smoke", () => {
       "background-color",
       "rgb(17, 17, 17)",
     );
+    await expect(
+      page
+        .locator("#project-resource-planning")
+        .getByRole("link", { name: "GitHub ↗" }),
+    ).toBeFocused();
     await page.getByRole("button", { name: /Find/ }).click();
     await expect(bedrockSkill).not.toBeFocused();
     await page
@@ -218,6 +247,7 @@ test.describe("portfolio smoke", () => {
     );
     await page.getByRole("link", { name: "Projects", exact: true }).click();
     await expect(venueOps).not.toBeFocused();
+    await expect(venueOps).toHaveCSS("background-color", "rgb(255, 255, 255)");
     expect(new URL(page.url()).hash).toBe("#projects");
   });
 

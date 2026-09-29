@@ -39,13 +39,13 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
   const highlightStylesRef = useRef<HighlightStyleRecord[]>([]);
   const selectionEventRef = useRef<Event | null>(null);
 
-  const clearHighlight = useCallback(() => {
+  const clearHighlight = useCallback((blurTarget = true) => {
     for (const record of highlightStylesRef.current) {
       if (record.style === null) record.element.removeAttribute("style");
       else record.element.setAttribute("style", record.style);
     }
     highlightStylesRef.current = [];
-    selectedTargetRef.current?.blur();
+    if (blurTarget) selectedTargetRef.current?.blur();
     selectedTargetRef.current = null;
   }, []);
 
@@ -121,7 +121,7 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
         selectionEventRef.current = null;
         return;
       }
-      clearHighlight();
+      clearHighlight(event.key !== "Tab");
       window.removeEventListener("keydown", clearOnKeyDown);
     };
     window.addEventListener("pointerdown", clear, { once: true });
