@@ -8,6 +8,8 @@ const About = () => {
     <div id="about" className="px-[25px] py-6 min-[800px]:px-[30px]">
       <StepTitle number={1} label="About" />
 
+      <h3 className="mb-3 text-[13px] font-normal">Hey, I'm Cong.</h3>
+
       <p className="mb-3 text-[12px] leading-[1.75]">
         I'm a Melbourne-based software engineer with 3+ years of professional
         experience across .NET, TypeScript, React, Node.js, PostgreSQL, Azure and
