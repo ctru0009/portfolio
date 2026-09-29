@@ -33,7 +33,7 @@
         outline-offset: 4px;
     }
 
-    section[id] {
+    section[id], div[id] {
         scroll-margin-top: 56px;
     }
 }
