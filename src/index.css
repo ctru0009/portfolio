@@ -13,6 +13,11 @@
         color-scheme: light;
     }
 
+    html {
+        scrollbar-color: #111 #eee;
+        scrollbar-width: thin;
+    }
+
     body {
         background-color: #d8d8d8;
         background-image: radial-gradient(#999 .65px, transparent .65px);
@@ -39,6 +44,11 @@
 }
 
 @layer components {
+    .mac-scroll {
+        scrollbar-color: #111 #eee;
+        scrollbar-width: thin;
+    }
+
     .mac-titlebar-stripes {
         background: repeating-linear-gradient(
             to bottom,
