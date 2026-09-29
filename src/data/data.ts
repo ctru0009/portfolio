@@ -159,13 +159,7 @@ const ProjectsData = [
     description:
       "A TypeScript CLI that classifies DummyJSON product records with Gemini. Every model response is Zod-validated; batches retry with backoff; checkpoints and row-level isolation mean a bad row or provider blip does not kill the run.",
     image: projectImage6,
-    technologies: [
-      "Node.js",
-      "TypeScript",
-      "Gemini API",
-      "Zod",
-      "CSV",
-    ],
+    technologies: ["Node.js", "TypeScript", "Gemini API", "Zod", "CSV"],
     githubLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
     liveLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
   },
@@ -257,7 +251,13 @@ const ProjectsData = [
     description:
       "A design-to-code proof of concept: the dashboard was composed visually in Pencil.dev with its Shadcn template, then generated into a working React + Tailwind page through the Pencil MCP server.",
     image: invoiceApprovalImage,
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Shadcn UI", "Pencil.dev"],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "Pencil.dev",
+    ],
     githubLink: "https://github.com/ctru0009/invoice-approval-dashboard",
     liveLink: "https://github.com/ctru0009/invoice-approval-dashboard",
   },

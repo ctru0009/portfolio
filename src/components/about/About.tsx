@@ -12,18 +12,18 @@ const About = () => {
 
       <p className="mb-3 text-12">
         I'm a Melbourne-based software engineer with 3+ years of professional
-        experience across .NET, TypeScript, React, Node.js, PostgreSQL, Azure and
-        AWS-backed AI systems. I started in full-stack .NET; more recently I
+        experience across .NET, TypeScript, React, Node.js, PostgreSQL, Azure
+        and AWS-backed AI systems. I started in full-stack .NET; more recently I
         build AI-integrated product features with the same bar for reliability,
         privacy and delivery.
       </p>
 
       <p className="mb-3 text-12">
         AI interprets. Deterministic software acts. I use models where
-        interpretation, summarisation or classification creates value, and I keep
-        state changes, permissions and workflow transitions in ordinary software.
-        Model output is validated, failures degrade safely, and high-risk
-        ambiguity stays reviewable.
+        interpretation, summarisation or classification creates value, and I
+        keep state changes, permissions and workflow transitions in ordinary
+        software. Model output is validated, failures degrade safely, and
+        high-risk ambiguity stays reviewable.
       </p>
 
       <p className="mb-4 text-12">

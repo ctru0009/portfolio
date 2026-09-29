@@ -6,10 +6,18 @@
     <style>
       @font-face {
         font-family: "Departure";
-        src: url("../src/assets/fonts/DepartureMono-Regular.woff2") format("woff2");
+        src: url("../src/assets/fonts/DepartureMono-Regular.woff2")
+          format("woff2");
       }
-      * { margin: 0; box-sizing: border-box; }
-      html, body { width: 1200px; height: 630px; }
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+      }
       body {
         font-family: Departure, ui-monospace, Menlo, Consolas, monospace;
         background-color: #d8d8d8;
@@ -31,7 +39,11 @@
         height: 58px;
         flex: none;
         border-bottom: 4px solid #111;
-        background: repeating-linear-gradient(to bottom, #fff 0 4px, #111 4px 6px);
+        background: repeating-linear-gradient(
+          to bottom,
+          #fff 0 4px,
+          #111 4px 6px
+        );
         display: flex;
         align-items: center;
         gap: 10px;

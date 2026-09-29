@@ -26,18 +26,20 @@ A personal portfolio website in a 1-bit Macintosh design, built with React, Type
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js 22 (see `.nvmrc`)
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/ctru0009/portfolio.git
 cd portfolio
 ```
 
 2. Install dependencies:
+
 ```bash
 npm ci
 ```
@@ -47,6 +49,7 @@ npm ci
 ### Development
 
 Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -126,13 +129,17 @@ The project uses TailwindCSS. Customize the design by:
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with HMR |
-| `npm run build` | Build for production (TypeScript + Vite) |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint |
-| `npm run deploy` | Build and deploy to GitHub Pages |
+| Command                | Description                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| `npm run dev`          | Start development server with HMR                                                                |
+| `npm run build`        | Build for production (TypeScript + Vite)                                                         |
+| `npm run preview`      | Preview production build locally                                                                 |
+| `npm run lint`         | Run ESLint                                                                                       |
+| `npm run format`       | Format all files with Prettier                                                                   |
+| `npm run format:check` | Check formatting with Prettier                                                                   |
+| `npm run check`        | Run lint and the production build                                                                |
+| `npm run test:e2e`     | Run the Playwright smoke test (install the browser first with `npx playwright install chromium`) |
+| `npm run deploy`       | Build and deploy to GitHub Pages                                                                 |
 
 ## License
 

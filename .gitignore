@@ -29,5 +29,10 @@ dist-ssr
 # Playwright MCP generated files
 .playwright-mcp/
 
+# Playwright test artifacts
+test-results/
+playwright-report/
+blob-report/
+
 # Superpowers brainstorm mockup session files (visual companion)
 .superpowers/

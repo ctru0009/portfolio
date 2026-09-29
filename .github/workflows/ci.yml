@@ -1,24 +1,22 @@
-name: Deploy Portfolio to Github Pages
+name: CI
+
 on:
-  push:
+  pull_request:
     branches:
       - main
   workflow_dispatch:
 
 concurrency:
-  group: github-pages
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
-  contents: write
-
-env:
-  CUSTOM_DOMAIN: "www.congchuongtruong.net"
+  contents: read
 
 jobs:
-  build-deploy:
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v7
@@ -35,16 +33,14 @@ jobs:
       - name: Lint Project
         run: npm run lint
 
+      - name: Check Formatting
+        run: npm run format:check
+
       - name: Build Project
         run: npm run build
 
-      - name: Add CNAME file
-        run: echo "${{ env.CUSTOM_DOMAIN }}" > dist/CNAME
+      - name: Install Playwright Browser
+        run: npx playwright install --with-deps chromium
 
-      - name: Deploy to gh-pages Branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: dist
-          target-folder: .
-          clean: true
+      - name: Run E2E Smoke Test
+        run: npm run test:e2e
