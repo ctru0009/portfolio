@@ -11,29 +11,28 @@ const ProjectCard = ({ project, onPreview }: ProjectCardProps) => {
   const hasLiveDemo = project.liveLink !== project.githubLink;
 
   return (
-    <article className="relative flex flex-col border-2 border-ink bg-paper shadow-hard-sm hover:shadow-hard-callout">
+    <article
+      data-project-id={project.id}
+      className="relative flex flex-col border-2 border-ink bg-paper shadow-hard-sm hover:shadow-hard-callout"
+    >
       <div className="mac-titlebar-stripes m-1 flex h-4 flex-shrink-0 items-center px-1">
         <span className="mx-auto truncate bg-paper px-1.5 py-px text-10">
           {project.title}
         </span>
       </div>
 
-      <div className="mx-2.5 mt-1.5 flex-shrink-0 border border-ink">
-        {project.image ? (
+      {project.image ? (
+        <div className="mx-2.5 mt-1.5 flex-shrink-0 border border-ink">
           <img
             src={project.image}
             alt={`${project.title} screenshot`}
             className="block w-full"
             loading="lazy"
           />
-        ) : (
-          <div className="mac-hatch aspect-[2.8/1] w-full" aria-hidden="true" />
-        )}
-      </div>
+        </div>
+      ) : null}
 
-      <p className="line-clamp-3 px-2.5 pt-2 text-10 text-muted">
-        {project.description}
-      </p>
+      <p className="px-2.5 pt-2 text-11 text-muted">{project.summary}</p>
 
       <div className="flex flex-wrap gap-1 px-2.5 pt-2">
         {project.technologies.map((technology, index) => (

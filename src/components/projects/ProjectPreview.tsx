@@ -24,19 +24,19 @@ const ProjectPreview = ({ project, onClose }: ProjectPreviewProps) => {
         </>
       }
     >
-      <div className="border-2 border-ink shadow-hard-callout">
-        {project.image ? (
+      {project.image ? (
+        <div className="border-2 border-ink shadow-hard-callout">
           <img
             src={project.image}
             alt={`${project.title} screenshot`}
             className="block w-full"
           />
-        ) : (
-          <div className="mac-hatch aspect-[2.8/1] w-full" aria-hidden="true" />
-        )}
-      </div>
+        </div>
+      ) : null}
 
-      <p className="mt-3 text-11">{project.description}</p>
+      <p className={`${project.image ? "mt-3" : ""} text-11`}>
+        {project.description}
+      </p>
     </MacDialog>
   );
 };
