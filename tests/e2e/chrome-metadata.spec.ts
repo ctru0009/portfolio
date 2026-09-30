@@ -232,9 +232,9 @@ test.describe("chrome, metadata and work dates", () => {
   test("window chrome text sits inside named landmarks", async ({ page }) => {
     await page.goto("/");
 
-    const siteHeader = page.getByRole("banner", { name: "Site header" });
-    await expect(siteHeader).toBeVisible();
-    await expect(siteHeader).toContainText("congchuongtruong.net");
+    const windowTitle = page.getByRole("region", { name: "Window title" });
+    await expect(windowTitle).toBeVisible();
+    await expect(windowTitle).toContainText("congchuongtruong.net");
 
     const roleRegion = page.getByRole("region", { name: "Role and location" });
     await expect(roleRegion).toBeVisible();
@@ -255,18 +255,12 @@ test.describe("chrome, metadata and work dates", () => {
         violation.impact === "critical",
     );
 
-    // Two known pending nodes, both owned outside this spec's lane and
-    // resolved by the T6 integration / T7 zero-moderate gate:
-    // 1. StatusBar text is still outside a landmark until the App → Footer
-    //    handoff moves it into the footer landmark (spec §7, T6).
-    // 2. `landmark-no-duplicate-banner`: the new `Site header` banner and the
-    //    pre-existing MenuBar banner collide (axe rule is count-based, names
-    //    do not matter); MenuBar is T6-owned (R17/R18 reconciliation).
+    // One known pending node, owned outside this spec's lane and resolved by
+    // the T6 integration / T7 zero-moderate gate: StatusBar text is still
+    // outside a landmark until the App → Footer handoff moves it into the
+    // footer landmark (spec §7, T6). Any other node fails.
     const isKnownPending = (node: { id: string; html: string }) =>
-      (node.id === "region" && node.html.includes("no trackers")) ||
-      (node.id === "landmark-no-duplicate-banner" &&
-        (node.html.includes('aria-label="Site header"') ||
-          node.html.includes("sticky top-0")));
+      node.id === "region" && node.html.includes("no trackers");
 
     const unexpected = blocking
       .flatMap((violation) =>

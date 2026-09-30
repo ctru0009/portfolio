@@ -33,9 +33,9 @@ const TitleBar = ({ variant, leftBoxes, children }: TitleBarProps) => {
 
   if (variant === "window") {
     return (
-      <header aria-label="Site header" className={barClass}>
+      <section aria-label="Window title" className={barClass}>
         {content}
-      </header>
+      </section>
     );
   }
 
