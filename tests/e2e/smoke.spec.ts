@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const sections = ["home", "about", "skills", "works", "projects", "contact"];
+const sections = ["home", "works", "projects", "skills", "about", "contact"];
 
 test.describe("portfolio smoke", () => {
   test("landing page loads with the expected title and section anchors", async ({
@@ -40,17 +40,27 @@ test.describe("portfolio smoke", () => {
     await expect(dialog).toBeHidden();
   });
 
-  test("landing page has no critical accessibility violations", async ({
+  test("landing page has no moderate-or-higher accessibility violations", async ({
     page,
   }) => {
     await page.goto("/");
     await expect(page.locator("#contact")).toBeVisible();
 
     const results = await new AxeBuilder({ page }).analyze();
-    const critical = results.violations.filter(
-      (violation) => violation.impact === "critical",
+    const blocking = results.violations.filter(
+      (violation) =>
+        violation.impact === "moderate" ||
+        violation.impact === "serious" ||
+        violation.impact === "critical",
     );
 
-    expect(critical).toEqual([]);
+    expect(
+      blocking.map((violation) => ({
+        id: violation.id,
+        impact: violation.impact,
+        targets: violation.nodes.map((node) => node.target),
+      })),
+      "moderate-or-higher axe violations",
+    ).toEqual([]);
   });
 });

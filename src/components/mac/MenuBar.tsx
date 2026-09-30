@@ -2,46 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import { HeroData, NavigationData } from "../../data/data";
 import FindDialog from "./FindDialog";
 
-const sections = ["home", "about", "skills", "works", "projects", "contact"];
+interface MenuBarProps {
+  activeSection: string;
+}
 
 const itemClass = "whitespace-nowrap px-1.5 py-[3px]";
 const itemHoverClass = "hover:bg-ink hover:text-paper";
 
-const MenuBar = () => {
-  const [activeSection, setActiveSection] = useState("home");
+const MenuBar = ({ activeSection }: MenuBarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [findOpen, setFindOpen] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let raf = 0;
-
-    const update = () => {
-      raf = 0;
-      const position = window.scrollY + 100;
-      let current = "home";
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (!element) continue;
-        const top = element.getBoundingClientRect().top + window.scrollY;
-        if (top <= position) current = section;
-      }
-
-      setActiveSection(current);
-    };
-
-    const handleScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -113,7 +84,7 @@ const MenuBar = () => {
         </button>
 
         <span className="ml-auto hidden min-w-0 truncate text-11 min-[1024px]:inline">
-          Melbourne · Open to full-time roles
+          Open to backend/software engineering roles
         </span>
 
         <button
@@ -131,16 +102,23 @@ const MenuBar = () => {
             id="menu-bar-dropdown"
             className="absolute left-[17px] top-full w-[200px] border-2 border-ink bg-paper shadow-hard-callout min-[800px]:hidden"
           >
-            {NavigationData.map((item) => (
-              <a
-                key={item.name}
-                href={item.link}
-                onClick={() => setMenuOpen(false)}
-                className="flex min-h-[44px] items-center border-t border-chrome px-2.5 first:border-t-0 hover:bg-ink hover:text-paper"
-              >
-                {item.name}
-              </a>
-            ))}
+            <div className="bg-chrome px-2.5 py-2 text-11">
+              Open to backend/software engineering roles
+            </div>
+            {NavigationData.map((item) => {
+              const isActive = activeSection === item.link.replace("#", "");
+              return (
+                <a
+                  key={item.name}
+                  href={item.link}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={isActive ? "true" : undefined}
+                  className="flex min-h-[44px] items-center border-t border-chrome px-2.5 hover:bg-ink hover:text-paper"
+                >
+                  {item.name}
+                </a>
+              );
+            })}
             <button
               type="button"
               onClick={openFind}

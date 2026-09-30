@@ -12,7 +12,9 @@ const Sidebar = () => {
       <div className="min-[800px]:sticky min-[800px]:top-[48px]">
         <img
           src={HeroData.avatarURL}
-          alt="Profile image"
+          alt="Portrait of Cong Chuong Truong"
+          width={280}
+          height={280}
           className="float-right mb-3 ml-[15px] h-[55px] w-[55px] border-2 border-ink object-cover min-[800px]:float-none min-[800px]:mb-4 min-[800px]:h-[70px] min-[800px]:w-[70px]"
         />
 

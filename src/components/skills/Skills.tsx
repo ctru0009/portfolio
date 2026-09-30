@@ -41,7 +41,7 @@ const categoryRows: { label: string; category: Skill["category"] }[] = [
 const Skills = () => {
   return (
     <div id="skills" className="px-[25px] py-6 min-[800px]:px-[30px]">
-      <StepTitle number={2} label="Skills" />
+      <StepTitle number={3} label="Skills" />
 
       <p className="mb-4 text-12">
         Technologies I use in professional work across backend, full-stack,
