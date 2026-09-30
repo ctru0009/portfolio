@@ -36,4 +36,5 @@ For deployment topology and CI details, read `docs/ai-context/deployment-infrast
 ## CI
 
 - Pull requests: `.github/workflows/ci.yml` runs lint, format check, build, and the Playwright smoke test.
-- `main` pushes: `.github/workflows/main.yml` runs lint + build, then deploys to `gh-pages` (`www.congchuongtruong.net`).
+- `main` pushes: `.github/workflows/main.yml` runs the same suite, then deploys to `gh-pages` (`www.congchuongtruong.net`) only if every check passes; manual runs deploy from `main` only.
+- `main` is branch-protected: land changes via PR with the `verify` check green — direct and force pushes are rejected, admins included.
