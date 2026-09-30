@@ -174,7 +174,6 @@ for (const viewport of [
       await expect(viewCv).toBeInViewport();
 
       const box = await viewCv.boundingBox();
-      console.log(`[${viewport.name}] View CV rect: ${JSON.stringify(box)}`);
       expect(box).not.toBeNull();
       expect(box!.y).toBeGreaterThanOrEqual(0);
       expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height);

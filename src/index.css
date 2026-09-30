@@ -53,14 +53,6 @@
     scrollbar-width: thin;
   }
 
-  .mac-hatch {
-    background-image: repeating-conic-gradient(
-      theme(colors.desktop) 0% 25%,
-      theme(colors.paper) 0% 50%
-    );
-    background-size: 8px 8px;
-  }
-
   .mac-titlebar-stripes {
     background: repeating-linear-gradient(
       to bottom,
