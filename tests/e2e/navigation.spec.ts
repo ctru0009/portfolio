@@ -395,6 +395,10 @@ test("same-document anchors and back/forward traversal", async ({ page }) => {
 test("back/forward into a cold fragment entry", async ({ browser }) => {
   const { context, page } = await openPage(browser, DESKTOP);
   try {
+    // Browser scroll restoration must not mask a broken fragment handler.
+    await context.addInitScript(() => {
+      history.scrollRestoration = "manual";
+    });
     await page.goto("/#contact");
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(200);
@@ -487,6 +491,29 @@ test("mobile menu closes on navigation, Escape and outside click", async ({
   await expect(dropdown).toBeVisible();
   await page.mouse.click(8, 800);
   await expect(dropdown).toBeHidden();
+
+  await context.close();
+});
+
+test("mobile dropdown marks the active section", async ({ browser }) => {
+  const { context, page } = await openPage(browser, MOBILE);
+  await page.goto("/");
+  await page.evaluate(() => {
+    const works = document.getElementById("works");
+    if (!works) return;
+    window.scrollTo(
+      0,
+      Math.max(0, works.getBoundingClientRect().top + window.scrollY - 56),
+    );
+  });
+
+  await page.getByRole("button", { name: "≡ Menu" }).click();
+  const dropdown = page.locator("#menu-bar-dropdown");
+  await expect(dropdown).toBeVisible();
+  await expect
+    .poll(() => dropdown.locator('a[aria-current="true"]').getAttribute("href"))
+    .toBe("#works");
+  await expect(dropdown.locator('a[aria-current="true"]')).toHaveCount(1);
 
   await context.close();
 });
