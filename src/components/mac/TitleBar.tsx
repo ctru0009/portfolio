@@ -13,11 +13,9 @@ const sizeClass = {
 
 const TitleBar = ({ variant, leftBoxes, children }: TitleBarProps) => {
   const size = sizeClass[variant];
-
-  return (
-    <div
-      className={`mac-titlebar-stripes m-1 flex ${size.bar} items-center gap-3 px-[7px]`}
-    >
+  const barClass = `mac-titlebar-stripes m-1 flex ${size.bar} items-center gap-3 px-[7px]`;
+  const content = (
+    <>
       {Array.from({ length: leftBoxes }, (_, index) => (
         <span
           key={index}
@@ -30,8 +28,18 @@ const TitleBar = ({ variant, leftBoxes, children }: TitleBarProps) => {
         className={`${size.box} flex-shrink-0 border-2 border-ink bg-paper shadow-[inset_3px_3px_#fff,inset_4px_4px_#111]`}
         aria-hidden="true"
       />
-    </div>
+    </>
   );
+
+  if (variant === "window") {
+    return (
+      <header aria-label="Site header" className={barClass}>
+        {content}
+      </header>
+    );
+  }
+
+  return <div className={barClass}>{content}</div>;
 };
 
 export default TitleBar;

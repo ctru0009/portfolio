@@ -31,9 +31,12 @@ export const MacWindow = ({ title, children }: MacWindowProps) => {
 
 export const MetaBar = ({ left, right }: MetaBarProps) => {
   return (
-    <div className="flex justify-between gap-[15px] border-y-2 border-ink bg-chrome px-3 py-[9px] text-10 tracking-[1px] min-[800px]:gap-3 min-[800px]:px-[19px] min-[800px]:text-11">
+    <section
+      aria-label="Role and location"
+      className="flex justify-between gap-[15px] border-y-2 border-ink bg-chrome px-3 py-[9px] text-10 tracking-[1px] min-[800px]:gap-3 min-[800px]:px-[19px] min-[800px]:text-11"
+    >
       <span>{left}</span>
       <span>{right}</span>
-    </div>
+    </section>
   );
 };
