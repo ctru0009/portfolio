@@ -17,7 +17,7 @@ const WorkCard = ({ work }: WorkCardProps) => {
 
       <p className="px-2.5 pt-1.5 text-10 text-muted">{work.location}</p>
 
-      <ul className="mb-2 mt-1.5 list-disc space-y-1 pl-[26px] pr-2.5 text-11">
+      <ul className="mb-2 mt-1.5 max-w-[70ch] list-disc space-y-1 pl-[26px] pr-2.5 text-12">
         {work.responsibilities.map((responsibility, index) => (
           <li key={index}>{responsibility}</li>
         ))}

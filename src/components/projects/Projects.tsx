@@ -30,7 +30,7 @@ const Projects = () => {
 
   return (
     <div id="projects" className="px-[25px] py-6 min-[800px]:px-[30px]">
-      <StepTitle number={4} label="Projects" />
+      <StepTitle number={2} label="Projects" />
 
       <p className="mb-4 text-12">
         Public work that shows how I bound AI inside ordinary software.

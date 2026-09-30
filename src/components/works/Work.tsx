@@ -5,7 +5,7 @@ import WorkCard from "./WorkCard";
 const Work = () => {
   return (
     <div id="works" className="px-[25px] py-6 min-[800px]:px-[30px]">
-      <StepTitle number={3} label="Work" />
+      <StepTitle number={1} label="Work" />
 
       <p className="mb-4 text-12">
         Full-stack software engineering, production AI systems, cloud delivery
