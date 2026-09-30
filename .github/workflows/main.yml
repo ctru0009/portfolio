@@ -17,8 +17,9 @@ env:
 
 jobs:
   build-deploy:
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v7
@@ -35,8 +36,17 @@ jobs:
       - name: Lint Project
         run: npm run lint
 
+      - name: Check Formatting
+        run: npm run format:check
+
       - name: Build Project
         run: npm run build
+
+      - name: Install Playwright Browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E Smoke Test
+        run: npm run test:e2e
 
       - name: Add CNAME file
         run: echo "${{ env.CUSTOM_DOMAIN }}" > dist/CNAME

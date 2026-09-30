@@ -56,14 +56,16 @@ export default defineConfig({
 ### GitHub Actions Workflow
 
 - **Pull requests**: `.github/workflows/ci.yml` runs lint, format check, build, and the Playwright smoke test
-- **Trigger (deploy)**: push to main branch
+- **Trigger (deploy)**: push to main branch (manual runs only deploy from `main`)
+- **Branch protection**: `main` requires a pull request and a green `verify` check; direct and force pushes are rejected for everyone, admins included
 - **Steps**:
   1. Checkout repository
   2. Setup Node.js environment
   3. Install dependencies
-  4. Run linting
+  4. Run linting and the format check
   5. Build production bundle (type-checks via `tsc -b`)
-  6. Deploy to GitHub Pages
+  6. Install Playwright Chromium and run the smoke test
+  7. Deploy to GitHub Pages only when every check passes
 - **Secrets Management**: none — workflows inject no secrets
 - **Error Handling**: Failed build notifications and rollback capabilities
 
