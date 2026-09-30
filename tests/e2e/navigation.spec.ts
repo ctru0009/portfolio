@@ -36,14 +36,6 @@ const EXPECTED_NAV = [
   { text: "Contact", href: "#contact" },
 ];
 
-const EXPECTED_CONTENTS = [
-  { text: "01 Work", href: "#works" },
-  { text: "02 Projects", href: "#projects" },
-  { text: "03 Skills", href: "#skills" },
-  { text: "04 About", href: "#about" },
-  { text: "05 Contact", href: "#contact" },
-];
-
 const openPage = async (browser: Browser, viewport: ViewportSpec) => {
   const context = await browser.newContext({
     baseURL: BASE_URL,
@@ -54,19 +46,14 @@ const openPage = async (browser: Browser, viewport: ViewportSpec) => {
   return { context, page };
 };
 
-const activeHrefs = (page: Page) =>
-  page.evaluate(() => ({
-    nav: Array.from(
+const activeNavHrefs = (page: Page) =>
+  page.evaluate(() =>
+    Array.from(
       document.querySelectorAll(
         'nav[aria-label="Main navigation"] a[aria-current="true"]',
       ),
     ).map((link) => link.getAttribute("href")),
-    contents: Array.from(
-      document.querySelectorAll(
-        'nav[aria-labelledby="sidebar-contents-heading"] a[aria-current="true"]',
-      ),
-    ).map((link) => link.getAttribute("href")),
-  }));
+  );
 
 const measureLanding = (page: Page, fragment: string) =>
   page.evaluate((fragment) => {
@@ -212,9 +199,7 @@ test("sections render in Work → Contact order with unique ids", async ({
   }
 });
 
-test("navigation and Contents expose the new labels and order", async ({
-  page,
-}) => {
+test("navigation exposes the new labels and order", async ({ page }) => {
   await page.goto("/");
 
   const navItems = await page
@@ -226,40 +211,26 @@ test("navigation and Contents expose the new labels and order", async ({
       })),
     );
   expect(navItems).toEqual(EXPECTED_NAV);
-
-  const contentsItems = await page
-    .locator('nav[aria-labelledby="sidebar-contents-heading"] a')
-    .evaluateAll((links) =>
-      links.map((link) => ({
-        text: link.textContent?.trim(),
-        href: link.getAttribute("href"),
-      })),
-    );
-  expect(contentsItems).toEqual(EXPECTED_CONTENTS);
 });
 
-test("desktop nav and Contents share one active section", async ({
-  browser,
-}) => {
+test("the sidebar no longer renders a Contents list", async ({ page }) => {
+  await page.goto("/");
+
+  const sidebar = page.locator("aside");
+  await expect(sidebar.getByText("Contents", { exact: true })).toHaveCount(0);
+  await expect(sidebar.locator("nav")).toHaveCount(0);
+});
+
+test("desktop nav marks the active section", async ({ browser }) => {
   const { context, page } = await openPage(browser, DESKTOP);
   await page.goto("/");
   await page.waitForSelector("#home");
   await page.waitForTimeout(200);
 
-  await expect
-    .poll(() => activeHrefs(page))
-    .toEqual({ nav: ["#home"], contents: [] });
+  await expect.poll(() => activeNavHrefs(page)).toEqual(["#home"]);
 
-  const positions = [
-    { id: "works", expected: { nav: ["#works"], contents: ["#works"] } },
-    {
-      id: "projects",
-      expected: { nav: ["#projects"], contents: ["#projects"] },
-    },
-    { id: "skills", expected: { nav: ["#skills"], contents: ["#skills"] } },
-    { id: "about", expected: { nav: ["#about"], contents: ["#about"] } },
-  ];
-  for (const position of positions) {
+  const positions = ["works", "projects", "skills", "about"];
+  for (const id of positions) {
     await page.evaluate((id) => {
       const element = document.getElementById(id);
       if (!element) return;
@@ -267,16 +238,14 @@ test("desktop nav and Contents share one active section", async ({
         0,
         Math.max(0, element.getBoundingClientRect().top + window.scrollY - 56),
       );
-    }, position.id);
-    await expect.poll(() => activeHrefs(page)).toEqual(position.expected);
+    }, id);
+    await expect.poll(() => activeNavHrefs(page)).toEqual([`#${id}`]);
   }
 
   await page.evaluate(() =>
     window.scrollTo(0, document.documentElement.scrollHeight),
   );
-  await expect
-    .poll(() => activeHrefs(page))
-    .toEqual({ nav: ["#contact"], contents: ["#contact"] });
+  await expect.poll(() => activeNavHrefs(page)).toEqual(["#contact"]);
 
   await context.close();
 });
@@ -368,9 +337,7 @@ for (const viewport of [DESKTOP, MOBILE]) {
 
 test("same-document anchors and back/forward traversal", async ({ page }) => {
   await page.goto("/");
-  await expect
-    .poll(() => activeHrefs(page))
-    .toEqual({ nav: ["#home"], contents: [] });
+  await expect.poll(() => activeNavHrefs(page)).toEqual(["#home"]);
 
   await page
     .locator('nav[aria-label="Main navigation"] a[href="#projects"]')

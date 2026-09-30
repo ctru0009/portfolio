@@ -8,14 +8,6 @@ const GITHUB_URL = "https://github.com/ctru0009";
 const RESUME_URL =
   "https://drive.google.com/file/d/1AW3Mq0g6_rypW3C3K0cEpBbvGI6b6Gq3/view?usp=sharing";
 
-const CONTENTS = [
-  { label: "01 Work", href: "#works" },
-  { label: "02 Projects", href: "#projects" },
-  { label: "03 Skills", href: "#skills" },
-  { label: "04 About", href: "#about" },
-  { label: "05 Contact", href: "#contact" },
-];
-
 test.describe("contact", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
@@ -33,16 +25,20 @@ test.describe("contact", () => {
       }),
     ).toBeVisible();
 
-    const emailMe = page.getByRole("link", { name: "Email me", exact: true });
+    const emailMe = contact.getByRole("link", {
+      name: "Email me",
+      exact: true,
+    });
     await expect(emailMe).toHaveCount(1);
     await expect(emailMe).toHaveAttribute("href", `mailto:${EMAIL}`);
+
+    // The Contact block owns a single mailto action; the reverted sidebar keeps
+    // its own intentional pre-release links (asserted separately).
+    await expect(contact.locator('a[href^="mailto:"]')).toHaveCount(1);
 
     await expect(
       page.getByRole("button", { name: "Copy email address", exact: true }),
     ).toHaveCount(1);
-
-    // One contact home: a single mailto: action in the whole document.
-    await expect(page.locator('a[href^="mailto:"]')).toHaveCount(1);
 
     const actions = contact.getByRole("group", { name: "Contact actions" });
     await expect(actions).toHaveCount(1);
@@ -77,7 +73,7 @@ test.describe("contact", () => {
       contact.getByRole("link", { name: "ctru0009", exact: true }),
     ).toHaveAttribute("href", GITHUB_URL);
 
-    // The old duplicated panels and their copy are gone.
+    // The old duplicated Contact panels and their copy are gone.
     await expect(
       page.getByText("Contact Information", { exact: true }),
     ).toHaveCount(0);
@@ -87,23 +83,27 @@ test.describe("contact", () => {
     await expect(page.getByText("View Resume", { exact: true })).toHaveCount(0);
   });
 
-  test("removes the repeated availability and contact clusters", async ({
+  test("restores the intentional sidebar links and keeps the footer clean", async ({
     page,
   }) => {
     const sidebar = page.locator("aside");
     const footer = page.locator("footer");
 
-    for (const region of [sidebar, footer]) {
-      await expect(
-        region.getByRole("link", { name: /GitHub|LinkedIn|Email/i }),
-      ).toHaveCount(0);
-    }
-
+    // User revision: the pre-release sidebar availability line and links are
+    // intentionally back.
     await expect(
       sidebar.getByText("Open to software engineering opportunities"),
-    ).toHaveCount(0);
-    await expect(sidebar.getByText(EMAIL)).toHaveCount(0);
-    await expect(page.getByText("Download CV", { exact: true })).toHaveCount(0);
+    ).toBeVisible();
+    await expect(
+      sidebar.getByRole("link", { name: "GitHub", exact: true }),
+    ).toHaveAttribute("href", GITHUB_URL);
+    await expect(
+      sidebar.getByRole("link", { name: "LinkedIn", exact: true }),
+    ).toHaveAttribute("href", LINKEDIN_URL);
+    await expect(
+      sidebar.getByRole("link", { name: "Email", exact: true }),
+    ).toHaveAttribute("href", `mailto:${EMAIL}`);
+    await expect(sidebar.getByText(`…or email me — ${EMAIL}`)).toBeVisible();
 
     // The footer keeps no links or legacy copy of its own.
     await expect(footer.getByRole("link")).toHaveCount(0);
@@ -111,6 +111,7 @@ test.describe("contact", () => {
       footer.getByText("Melbourne, Australia", { exact: true }),
     ).toHaveCount(0);
 
+    // Contact keeps no availability restatement.
     const contact = page.locator("#contact");
     await expect(
       contact.getByText("Open to full-time roles", { exact: true }),
@@ -123,35 +124,20 @@ test.describe("contact", () => {
     ).toHaveCount(0);
   });
 
-  test("links Contents to the five numbered sections", async ({ page }) => {
-    const sidebar = page.locator("aside");
-    const contents = sidebar.getByRole("navigation", { name: "Contents" });
-
-    await expect(contents).toHaveCount(1);
-    await expect(sidebar.getByText("Contents", { exact: true })).toBeVisible();
-
-    for (const { label, href } of CONTENTS) {
-      const link = contents.getByRole("link", { name: label, exact: true });
-      await expect(link).toHaveCount(1);
-      await expect(link).toHaveAttribute("href", href);
-    }
-    await expect(contents.getByRole("link")).toHaveCount(5);
-
-    await contents
-      .getByRole("link", { name: "03 Skills", exact: true })
-      .click();
-    await expect(page.locator("#skills")).toBeInViewport();
-  });
-
-  test("keeps the early View CV action with the Drive URL", async ({
+  test("shows the pre-release sidebar CV box with the Drive URL", async ({
     page,
   }) => {
-    const viewCv = page
-      .locator("aside")
-      .getByRole("link", { name: "View CV", exact: true });
+    const sidebar = page.locator("aside");
+    const downloadCv = sidebar.getByRole("link", {
+      name: "Download CV",
+      exact: true,
+    });
 
-    await expect(viewCv).toHaveCount(1);
-    await expect(viewCv).toHaveAttribute("href", RESUME_URL);
+    await expect(downloadCv).toHaveCount(1);
+    await expect(downloadCv).toHaveAttribute("href", RESUME_URL);
+
+    // The release-era Contents list is intentionally gone.
+    await expect(sidebar.getByText("Contents", { exact: true })).toHaveCount(0);
   });
 });
 
@@ -162,18 +148,18 @@ for (const viewport of [
   test.describe(`initial viewport (${viewport.name})`, () => {
     test.use({ viewport: { width: viewport.width, height: viewport.height } });
 
-    test("keeps the sidebar View CV action inside the first screen", async ({
+    test("keeps the sidebar CV action inside the first screen", async ({
       page,
     }) => {
       await page.goto("/");
       await page.evaluate(() => window.scrollTo(0, 0));
 
-      const viewCv = page
+      const downloadCv = page
         .locator("aside")
-        .getByRole("link", { name: "View CV", exact: true });
-      await expect(viewCv).toBeInViewport();
+        .getByRole("link", { name: "Download CV", exact: true });
+      await expect(downloadCv).toBeInViewport();
 
-      const box = await viewCv.boundingBox();
+      const box = await downloadCv.boundingBox();
       expect(box).not.toBeNull();
       expect(box!.y).toBeGreaterThanOrEqual(0);
       expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height);
@@ -255,20 +241,21 @@ test.describe("copy email feedback", () => {
 test.describe("small screens", () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
-  test("keeps actions and Contents targets at 44px and the focus ring visible", async ({
+  test("keeps the contact and restored sidebar targets at 44px with a visible focus ring", async ({
     page,
   }) => {
     await page.goto("/");
 
     const sidebar = page.locator("aside");
-    const contents = sidebar.getByRole("navigation", { name: "Contents" });
     const targets = [
+      sidebar.getByRole("link", { name: "GitHub", exact: true }),
+      sidebar.getByRole("link", { name: "LinkedIn", exact: true }),
+      sidebar.getByRole("link", { name: "Email", exact: true }),
+      sidebar.getByRole("link", { name: /or email me/ }),
+      sidebar.getByRole("link", { name: "Download CV", exact: true }),
       page.getByRole("link", { name: "Email me", exact: true }),
       page.getByRole("button", { name: "Copy email address", exact: true }),
-      page.getByRole("link", { name: "View CV", exact: true }).first(),
-      ...CONTENTS.map(({ label }) =>
-        contents.getByRole("link", { name: label, exact: true }),
-      ),
+      page.getByRole("link", { name: "View CV", exact: true }),
     ];
 
     for (const target of targets) {

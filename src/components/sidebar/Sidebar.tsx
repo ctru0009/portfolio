@@ -1,23 +1,12 @@
 import { AboutData, HeroData, WorkData } from "../../data/data";
 import FactRow from "../mac/FactRow";
+import { linkClass } from "../mac/linkClass";
 import SquareLink from "../mac/SquareLink";
 
 const currentJob = WorkData[0];
 const education = AboutData.education[0];
 
-const contents = [
-  { number: "01", label: "Work", href: "#works" },
-  { number: "02", label: "Projects", href: "#projects" },
-  { number: "03", label: "Skills", href: "#skills" },
-  { number: "04", label: "About", href: "#about" },
-  { number: "05", label: "Contact", href: "#contact" },
-];
-
-interface SidebarProps {
-  activeSection: string;
-}
-
-const Sidebar = ({ activeSection }: SidebarProps) => {
+const Sidebar = () => {
   return (
     <aside className="border-b-2 border-ink px-[25px] py-[25px] min-[800px]:border-b-0 min-[800px]:border-r-2 min-[800px]:px-[26px] min-[800px]:py-[32px]">
       <div className="min-[800px]:sticky min-[800px]:top-[48px]">
@@ -40,6 +29,9 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
         <p className="mb-2.5 text-12">
           Building reliable AI-integrated products.
         </p>
+        <p className="text-11 text-muted">
+          Open to software engineering opportunities
+        </p>
 
         <div className="mt-[19px] flex flex-wrap gap-x-[25px] gap-y-1 border-t-2 border-ink pt-3 min-[800px]:mt-[31px] min-[800px]:block min-[800px]:pt-[15px]">
           <FactRow label="BASE">{HeroData.location}</FactRow>
@@ -56,42 +48,44 @@ const Sidebar = ({ activeSection }: SidebarProps) => {
             {"\u00A0· "}
             {education.period}
           </FactRow>
+          <FactRow label="LINKS">
+            <span className="flex flex-wrap justify-end gap-x-4">
+              <a
+                href={HeroData.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${linkClass} inline-flex min-h-[44px] items-center`}
+              >
+                GitHub
+              </a>
+              <a
+                href={HeroData.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${linkClass} inline-flex min-h-[44px] items-center`}
+              >
+                LinkedIn
+              </a>
+              <a
+                href={`mailto:${HeroData.email}`}
+                className={`${linkClass} inline-flex min-h-[44px] items-center`}
+              >
+                Email
+              </a>
+            </span>
+          </FactRow>
         </div>
 
         <div className="mt-5 flex flex-col items-start gap-2 border border-ink bg-chrome p-3">
           <SquareLink variant="dark" href={HeroData.resume}>
-            View CV
+            Download CV
           </SquareLink>
-
-          <nav aria-labelledby="sidebar-contents-heading" className="w-full">
-            <h2
-              id="sidebar-contents-heading"
-              className="text-11 font-normal text-muted"
-            >
-              Contents
-            </h2>
-
-            <ul className="mt-1">
-              {contents.map((item) => {
-                const isActive = activeSection === item.href.replace("#", "");
-                return (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      aria-current={isActive ? "true" : undefined}
-                      className={`flex items-center px-1.5 py-1 text-11 max-[800px]:min-h-[44px] ${
-                        isActive
-                          ? "bg-ink text-paper"
-                          : "hover:bg-ink hover:text-paper"
-                      }`}
-                    >
-                      {`${item.number} ${item.label}`}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+          <a
+            href={`mailto:${HeroData.email}`}
+            className={`inline-flex min-h-[44px] items-center break-words text-10 ${linkClass}`}
+          >
+            …or email me — {HeroData.email}
+          </a>
         </div>
       </div>
     </aside>

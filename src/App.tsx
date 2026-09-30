@@ -77,7 +77,7 @@ function App() {
             right="MELBOURNE, AUSTRALIA"
           />
           <div className="grid grid-cols-1 min-[800px]:grid-cols-[310px_1fr]">
-            <Sidebar activeSection={activeSection} />
+            <Sidebar />
             <main className="min-w-0">
               <Work />
               <Projects />
