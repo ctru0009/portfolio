@@ -241,9 +241,7 @@ test.describe("chrome, metadata and work dates", () => {
     await expect(roleRegion).toContainText("SOFTWARE ENGINEER — APPLIED AI");
   });
 
-  test("axe moderate-or-higher findings are limited to known pending chrome nodes", async ({
-    page,
-  }) => {
+  test("has no moderate-or-higher axe violations", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator("#contact")).toBeVisible();
 
@@ -255,27 +253,13 @@ test.describe("chrome, metadata and work dates", () => {
         violation.impact === "critical",
     );
 
-    // One known pending node, owned outside this spec's lane and resolved by
-    // the T6 integration / T7 zero-moderate gate: StatusBar text is still
-    // outside a landmark until the App → Footer handoff moves it into the
-    // footer landmark (spec §7, T6). Any other node fails.
-    const isKnownPending = (node: { id: string; html: string }) =>
-      node.id === "region" && node.html.includes("no trackers");
-
-    const unexpected = blocking
-      .flatMap((violation) =>
-        violation.nodes.map((node) => ({
-          id: violation.id,
-          impact: violation.impact,
-          target: node.target,
-          html: node.html,
-        })),
-      )
-      .filter((node) => !isKnownPending(node));
-
     expect(
-      unexpected,
-      "moderate-or-higher axe nodes outside the known pending chrome nodes",
+      blocking.map((violation) => ({
+        id: violation.id,
+        impact: violation.impact,
+        targets: violation.nodes.map((node) => node.target),
+      })),
+      "moderate-or-higher axe violations",
     ).toEqual([]);
   });
 });

@@ -58,11 +58,11 @@ interface WorkInterface {
 
 const NavigationData: NavigationInterface[] = [
   { name: "Home", link: "#home" },
-  { name: "About", link: "#about" },
-  { name: "Skills", link: "#skills" },
-  { name: "Work Experience", link: "#works" },
+  { name: "Work", link: "#works" },
   { name: "Projects", link: "#projects" },
-  { name: "Contacts", link: "#contact" },
+  { name: "Skills", link: "#skills" },
+  { name: "About", link: "#about" },
+  { name: "Contact", link: "#contact" },
 ];
 
 const HeroData = {

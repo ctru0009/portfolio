@@ -13,7 +13,11 @@ const contents = [
   { number: "05", label: "Contact", href: "#contact" },
 ];
 
-const Sidebar = () => {
+interface SidebarProps {
+  activeSection: string;
+}
+
+const Sidebar = ({ activeSection }: SidebarProps) => {
   return (
     <aside className="border-b-2 border-ink px-[25px] py-[25px] min-[800px]:border-b-0 min-[800px]:border-r-2 min-[800px]:px-[26px] min-[800px]:py-[32px]">
       <div className="min-[800px]:sticky min-[800px]:top-[48px]">
@@ -68,16 +72,24 @@ const Sidebar = () => {
             </h2>
 
             <ul className="mt-1">
-              {contents.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="flex items-center px-1.5 py-1 text-11 hover:bg-ink hover:text-paper max-[800px]:min-h-[44px]"
-                  >
-                    {`${item.number} ${item.label}`}
-                  </a>
-                </li>
-              ))}
+              {contents.map((item) => {
+                const isActive = activeSection === item.href.replace("#", "");
+                return (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`flex items-center px-1.5 py-1 text-11 max-[800px]:min-h-[44px] ${
+                        isActive
+                          ? "bg-ink text-paper"
+                          : "hover:bg-ink hover:text-paper"
+                      }`}
+                    >
+                      {`${item.number} ${item.label}`}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
