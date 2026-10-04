@@ -313,7 +313,7 @@ test("status bar content lives inside the footer landmark", async ({
   await expect(contentinfo).toHaveCount(1);
   await expect(contentinfo).toContainText("2026 · Cong Chuong Truong");
   await expect(contentinfo).toContainText(
-    "React · Vite · GitHub Pages — no trackers",
+    "React, Vite, GitHub Pages - no trackers",
   );
 });
 

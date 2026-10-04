@@ -15,7 +15,7 @@ const projectImageDimensions: Record<
   "AI Product Data Enrichment Pipeline": { width: 2818, height: 976 },
   "VenueOps Lite": { width: 1600, height: 572 },
   "LLM-Assisted Catalogue QA": { width: 1600, height: 572 },
-  "TradeFlow — Electrical Enquiry Intake": { width: 1600, height: 571 },
+  "TradeFlow - Electrical Enquiry Intake": { width: 1600, height: 571 },
   ccswap: { width: 1260, height: 450 },
   "Expense Report Management System": { width: 1600, height: 572 },
   "Invoice Approval Dashboard": { width: 1600, height: 572 },
@@ -38,7 +38,7 @@ const Projects = () => {
 
       <h3
         id="featured-projects-heading"
-        className="mb-2 text-11 uppercase tracking-[1px] text-muted"
+        className="mb-2 text-balance text-11 uppercase tracking-[1px] text-muted"
       >
         Featured
       </h3>
@@ -63,7 +63,7 @@ const Projects = () => {
 
       <h3
         id="other-projects-heading"
-        className="mb-1 mt-6 text-11 uppercase tracking-[1px] text-muted"
+        className="mb-1 mt-6 text-balance text-11 uppercase tracking-[1px] text-muted"
       >
         Other projects
       </h3>

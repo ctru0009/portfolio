@@ -2,6 +2,8 @@
 
 A personal portfolio website in a 1-bit Macintosh design, built with React, TypeScript, and Vite. TailwindCSS carries the design language; the site ships zero motion by design.
 
+The light-only 1-bit theme and pure-white paper are intentional: there is no dark mode and no paper tint.
+
 **Live Site**: [https://www.congchuongtruong.net/](https://www.congchuongtruong.net/)
 
 ## Features

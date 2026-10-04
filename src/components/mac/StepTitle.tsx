@@ -5,7 +5,7 @@ interface StepTitleProps {
 
 const StepTitle = ({ number, label }: StepTitleProps) => {
   return (
-    <h2 className="mb-2.5 flex items-center gap-3 text-16 font-normal">
+    <h2 className="mb-2.5 flex items-center gap-3 text-balance text-16 font-normal">
       <span
         aria-hidden="true"
         className="inline-grid h-7 w-7 flex-shrink-0 place-items-center bg-ink text-13 text-paper"

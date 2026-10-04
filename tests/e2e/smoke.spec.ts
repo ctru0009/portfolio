@@ -10,7 +10,7 @@ test.describe("portfolio smoke", () => {
     await page.goto("/");
 
     await expect(page).toHaveTitle(
-      "Cong Chuong Truong — Software Engineer | Applied AI & Backend",
+      "Cong Chuong Truong - Software Engineer | Applied AI & Backend",
     );
 
     for (const id of sections) {

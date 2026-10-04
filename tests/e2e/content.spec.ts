@@ -13,7 +13,7 @@ const TRIMMED_FIRST_PARAGRAPH =
 
 const KEPT_PARAGRAPHS = [
   "AI interprets. Deterministic software acts. I use models where interpretation, summarisation or classification creates value, and I keep state changes, permissions and workflow transitions in ordinary software. Model output is validated, failures degrade safely, and high-risk ambiguity stays reviewable.",
-  "I use coding agents for investigation, implementation, testing and review, and I keep architecture, acceptance criteria and production checks human-owned. Outside work I'm usually with friends or playing guitar.",
+  "I use coding agents for investigation, implementation, testing and review, and I keep architecture, acceptance criteria and production checks human-owned. Outside work I’m usually with friends or playing guitar.",
 ];
 
 test.describe("section step headings", () => {
@@ -67,7 +67,7 @@ test.describe("about copy", () => {
 
     await expect(
       about.getByText(
-        "Education — Bachelor of Computer Science, Monash University, 2021–2024",
+        "Education - Bachelor of Computer Science, Monash University, 2021-2024",
         { exact: true },
       ),
     ).toBeVisible();

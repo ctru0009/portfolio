@@ -74,7 +74,7 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
     trimmed === ""
       ? ""
       : results.length === 0
-        ? `No results for "${query}"`
+        ? `No results for “${query}”`
         : results.length > RESULT_LIMIT
           ? `Showing first ${RESULT_LIMIT} of ${results.length} results`
           : `${results.length} results`;

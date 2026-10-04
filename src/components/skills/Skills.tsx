@@ -57,7 +57,7 @@ const Skills = () => {
                 {skills
                   .filter((skill) => skill.category === row.category)
                   .map((skill) => skill.name)
-                  .join(" · ")}
+                  .join(", ")}
               </td>
             </tr>
           ))}

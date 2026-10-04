@@ -3,7 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 
 const CANONICAL_URL = "https://www.congchuongtruong.net/";
 const SOCIAL_IMAGE_ALT =
-  "Cong Chuong Truong — Software Engineer | Applied AI & Backend";
+  "Cong Chuong Truong - Software Engineer | Applied AI & Backend";
 
 interface ImageFacts {
   alt: string;
@@ -149,9 +149,9 @@ test.describe("chrome, metadata and work dates", () => {
     }
 
     // A project Details dialog renders its image at the intrinsic ratio.
-    await page.getByRole("button", { name: "Details — VenueOps Lite" }).click();
+    await page.getByRole("button", { name: "Details - VenueOps Lite" }).click();
     const details = page.getByRole("dialog", {
-      name: "Details — VenueOps Lite",
+      name: "Details - VenueOps Lite",
     });
     await expect(details).toBeVisible();
 
@@ -185,9 +185,9 @@ test.describe("chrome, metadata and work dates", () => {
     await page.keyboard.press("Escape");
 
     // pocket-lab has no image: Details stays useful text, never a placeholder.
-    await page.getByRole("button", { name: "Details — pocket-lab" }).click();
+    await page.getByRole("button", { name: "Details - pocket-lab" }).click();
     const pocketDialog = page.getByRole("dialog", {
-      name: "Details — pocket-lab",
+      name: "Details - pocket-lab",
     });
     await expect(pocketDialog).toBeVisible();
     await expect(pocketDialog.locator("img")).toHaveCount(0);
@@ -229,13 +229,13 @@ test.describe("chrome, metadata and work dates", () => {
     const works = page.locator("#works");
     await expect(works).toBeVisible();
     await expect(
-      works.getByText("2026–Present", { exact: true }),
+      works.getByText("2026-Present", { exact: true }),
     ).toBeVisible();
     await expect(
-      works.getByText("January 2023–February 2026", { exact: true }),
+      works.getByText("January 2023-February 2026", { exact: true }),
     ).toBeVisible();
 
-    await expect(page.locator("#about")).toContainText("2021–2024");
+    await expect(page.locator("#about")).toContainText("2021-2024");
   });
 
   test("window chrome text sits inside named landmarks", async ({ page }) => {
@@ -247,7 +247,7 @@ test.describe("chrome, metadata and work dates", () => {
 
     const roleRegion = page.getByRole("region", { name: "Role and location" });
     await expect(roleRegion).toBeVisible();
-    await expect(roleRegion).toContainText("SOFTWARE ENGINEER — APPLIED AI");
+    await expect(roleRegion).toContainText("SOFTWARE ENGINEER - APPLIED AI");
   });
 
   test("has no moderate-or-higher axe violations", async ({ page }) => {

@@ -52,7 +52,7 @@ const ProjectCard = ({
         <button
           type="button"
           onClick={onDetails}
-          aria-label={`Details — ${project.title}`}
+          aria-label={`Details - ${project.title}`}
           className="absolute inset-0 cursor-pointer"
         />
       </article>
@@ -110,7 +110,7 @@ const ProjectCard = ({
       <button
         type="button"
         onClick={onDetails}
-        aria-label={`Details — ${project.title}`}
+        aria-label={`Details - ${project.title}`}
         className="absolute inset-0 cursor-pointer"
       />
     </article>

@@ -22,30 +22,25 @@ const Sidebar = () => {
           {HeroData.title}
         </p>
 
-        <h1 className="mb-[22px] text-30 font-normal tracking-[-1px] min-[800px]:text-33">
-          Hi, I'm {HeroData.name}
+        <h1 className="mb-[22px] text-balance text-30 font-normal tracking-[-1px] min-[800px]:text-33">
+          Hi, I’m {HeroData.name}
         </h1>
 
         <p className="mb-2.5 text-12">
           Building reliable AI-integrated products.
         </p>
-        <p className="text-11 text-muted">
-          Open to software engineering opportunities
-        </p>
-
         <div className="mt-[19px] flex flex-wrap gap-x-[25px] gap-y-1 border-t-2 border-ink pt-3 min-[800px]:mt-[31px] min-[800px]:block min-[800px]:pt-[15px]">
-          <FactRow label="BASE">{HeroData.location}</FactRow>
           <FactRow label="EXPERIENCE">3+ years</FactRow>
           <FactRow label="CURRENT" layout="stacked">
             {currentJob.title}
-            {"\u00A0· "}
+            {", "}
             {currentJob.company}
           </FactRow>
           <FactRow label="EDUCATION" layout="stacked">
             {education.degree}
-            {"\u00A0· "}
+            {", "}
             {education.school}
-            {"\u00A0· "}
+            {", "}
             {education.period}
           </FactRow>
           <FactRow label="LINKS">
@@ -78,13 +73,13 @@ const Sidebar = () => {
 
         <div className="mt-5 flex flex-col items-start gap-2 border border-ink bg-chrome p-3">
           <SquareLink variant="dark" href={HeroData.resume}>
-            Download CV
+            View CV
           </SquareLink>
           <a
             href={`mailto:${HeroData.email}`}
             className={`inline-flex min-h-[44px] items-center break-words text-10 ${linkClass}`}
           >
-            …or email me — {HeroData.email}
+            …or email me - {HeroData.email}
           </a>
         </div>
       </div>

@@ -19,7 +19,7 @@ const ProjectPreview = ({
 
   return (
     <MacDialog
-      title={`Details — ${project.title}`}
+      title={`Details - ${project.title}`}
       open
       onClose={onClose}
       className="min-[800px]:max-w-[720px]"

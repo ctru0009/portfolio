@@ -24,12 +24,12 @@ const About = () => {
       <p className="mb-4 max-w-[70ch] text-12">
         I use coding agents for investigation, implementation, testing and
         review, and I keep architecture, acceptance criteria and production
-        checks human-owned. Outside work I'm usually with friends or playing
+        checks human-owned. Outside work I’m usually with friends or playing
         guitar.
       </p>
 
       <p className="text-11 text-muted">
-        Education — {education.degree}, {education.school}, {education.period}
+        Education - {education.degree}, {education.school}, {education.period}
       </p>
     </div>
   );

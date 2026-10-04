@@ -91,9 +91,9 @@ function App() {
       </a>
       <MenuBar activeSection={activeSection} />
       <div id="home" className="mx-auto max-w-[1120px] px-4 pt-6 sm:px-6">
-        <MacWindow title="congchuongtruong.net — Software Engineer">
+        <MacWindow title="congchuongtruong.net - Software Engineer">
           <MetaBar
-            left="SOFTWARE ENGINEER — APPLIED AI"
+            left="SOFTWARE ENGINEER - APPLIED AI"
             right="MELBOURNE, AUSTRALIA"
           />
           <div className="grid grid-cols-1 min-[800px]:grid-cols-[310px_1fr]">
@@ -110,7 +110,7 @@ function App() {
             statusBar={
               <StatusBar
                 left="2026 · Cong Chuong Truong"
-                right="React · Vite · GitHub Pages — no trackers"
+                right="React, Vite, GitHub Pages - no trackers"
               />
             }
           />

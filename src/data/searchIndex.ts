@@ -39,7 +39,7 @@ export const searchIndex: SearchIndexEntry[] = [
   { label: "CSV", section: "projects" },
   { label: "VenueOps Lite", section: "projects" },
   { label: "LLM-Assisted Catalogue QA", section: "projects" },
-  { label: "TradeFlow — Electrical Enquiry Intake", section: "projects" },
+  { label: "TradeFlow - Electrical Enquiry Intake", section: "projects" },
   { label: "ccswap", section: "projects" },
   { label: "pocket-lab", section: "projects" },
   { label: "Expense Report Management System", section: "projects" },
