@@ -83,6 +83,12 @@ function App() {
 
   return (
     <div>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:border-2 focus:border-ink focus:bg-paper focus:px-2.5 focus:py-1.5 focus:text-11 focus:shadow-hard-sm"
+      >
+        Skip to content
+      </a>
       <MenuBar activeSection={activeSection} />
       <div id="home" className="mx-auto max-w-[1120px] px-4 pt-6 sm:px-6">
         <MacWindow title="congchuongtruong.net — Software Engineer">
@@ -92,7 +98,7 @@ function App() {
           />
           <div className="grid grid-cols-1 min-[800px]:grid-cols-[310px_1fr]">
             <Sidebar />
-            <main className="min-w-0">
+            <main id="main-content" tabIndex={-1} className="min-w-0">
               <Work />
               <Projects />
               <Skills />

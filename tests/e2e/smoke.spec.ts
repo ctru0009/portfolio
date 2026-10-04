@@ -18,6 +18,17 @@ test.describe("portfolio smoke", () => {
     }
   });
 
+  test("skip link focuses main content", async ({ page }) => {
+    await page.goto("/");
+    await page.keyboard.press("Tab");
+    const skip = page.getByRole("link", { name: "Skip to content" });
+    await expect(skip).toBeFocused();
+    await page.keyboard.press("Enter");
+    expect(await page.evaluate(() => document.activeElement?.id)).toBe(
+      "main-content",
+    );
+  });
+
   test("find dialog filters results and closes with Escape", async ({
     page,
   }) => {
