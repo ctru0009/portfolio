@@ -8,10 +8,18 @@ Static portfolio: React 18 + Vite 8 + TypeScript + Tailwind 3, 1-bit Macintosh d
 
 - Install: `npm ci`
 - Dev server: `npm run dev`
-- **Definition of done: `npm run check`** — runs lint and the full build (`tsc -b && vite build`)
+- **Definition of done: `npm run check`** — zero-warning lint plus the full build (`tsc -b && vite build`)
 - Format: `npm run format` · verify: `npm run format:check`
 - Smoke test (requires a build; install the browser once with `npx playwright install chromium`): `npm run test:e2e`
 - No unit-test runner is configured. Use only these commands.
+
+## Lint and type gates
+
+- `npm run lint` runs ESLint with `--max-warnings 0` — warnings fail CI exactly like errors.
+- Type-aware `strictTypeChecked` applies to `src/**` and `vite.config.ts` (via `projectService`), with two deliberate tunings: `restrict-template-expressions` allows numbers, `no-confusing-void-expression` ignores arrow shorthand. `tests/**` and `playwright.config.ts` are type-checked by `tsc` but linted with the base rules only.
+- `complexity` is capped at 10 per function; MacDialog's focus trap sits exactly at the cap — split it before adding branches.
+- `@types/node` exists for the test and tooling projects only; `tsconfig.app.json` sets `"types": []` so node globals stay out of `src`.
+- Unused `eslint-disable` directives are errors: remove the directive instead of silencing it.
 
 ## Architecture
 
