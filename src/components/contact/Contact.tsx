@@ -51,7 +51,7 @@ const Contact = () => {
         <SquareLink variant="dark" href={`mailto:${HeroData.email}`}>
           Email me
         </SquareLink>
-        <SquareButton onClick={handleCopyEmail}>
+        <SquareButton onClick={() => void handleCopyEmail()}>
           Copy email address
         </SquareButton>
         <SquareLink href={HeroData.resume}>View CV</SquareLink>
