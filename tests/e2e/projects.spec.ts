@@ -272,6 +272,24 @@ test.describe("projects", () => {
     ).not.toBe("hidden");
     expect(await page.evaluate(() => window.scrollY)).toBe(before);
   });
+
+  test("dialog isolates the page behind it", async ({ page }) => {
+    await page.goto("/");
+    const opener = page.getByRole("button", { name: /^Details/ }).first();
+    await opener.scrollIntoViewIfNeeded();
+    await opener.click();
+    await expect(page.locator("#root")).toHaveAttribute("inert", "");
+    for (let i = 0; i < 12; i++) {
+      await page.keyboard.press("Tab");
+      expect(
+        await page.evaluate(
+          () => document.activeElement?.closest('[role="dialog"]') !== null,
+        ),
+      ).toBe(true);
+    }
+    await page.keyboard.press("Escape");
+    await expect(page.locator("#root")).not.toHaveAttribute("inert", "");
+  });
 });
 
 test.describe("projects details on mobile", () => {
