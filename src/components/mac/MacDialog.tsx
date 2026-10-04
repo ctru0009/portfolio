@@ -75,6 +75,19 @@ const MacDialog = ({
     return () => openerRef.current?.focus({ preventScroll: true });
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+    document.body.style.overflow = "hidden";
+    const gap = window.innerWidth - document.documentElement.clientWidth;
+    if (gap > 0) document.body.style.paddingRight = `${gap}px`;
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
+    };
+  }, [open]);
+
   if (!open) return null;
 
   return (

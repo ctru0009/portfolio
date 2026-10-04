@@ -51,6 +51,7 @@
   .mac-scroll {
     scrollbar-color: theme(colors.ink) theme(colors.chrome);
     scrollbar-width: thin;
+    overscroll-behavior: contain;
   }
 
   .mac-titlebar-stripes {

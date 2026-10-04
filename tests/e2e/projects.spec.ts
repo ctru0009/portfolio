@@ -251,6 +251,27 @@ test.describe("projects", () => {
       await expect(opener).toBeFocused();
     }
   });
+
+  test("an open dialog does not scroll the page behind it", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const opener = page.getByRole("button", { name: /^Details/ }).first();
+    await opener.scrollIntoViewIfNeeded();
+    await opener.click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    const before = await page.evaluate(() => window.scrollY);
+    await page.mouse.wheel(0, 800);
+    expect(await page.evaluate(() => window.scrollY)).toBe(before);
+    expect(
+      await page.evaluate(() => getComputedStyle(document.body).overflow),
+    ).toBe("hidden");
+    await page.keyboard.press("Escape");
+    expect(
+      await page.evaluate(() => getComputedStyle(document.body).overflow),
+    ).not.toBe("hidden");
+    expect(await page.evaluate(() => window.scrollY)).toBe(before);
+  });
 });
 
 test.describe("projects details on mobile", () => {
