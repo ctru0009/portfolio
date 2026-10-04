@@ -4,7 +4,7 @@ const FEATURED_PROJECTS = [
   "VenueOps Lite",
   "ccswap",
   "Expense Report Management System",
-];
+] as const;
 
 const COMPACT_PROJECTS = [
   "AI-Powered Resource Planning System",
@@ -13,12 +13,14 @@ const COMPACT_PROJECTS = [
   "TradeFlow - Electrical Enquiry Intake",
   "pocket-lab",
   "Invoice Approval Dashboard",
-];
+] as const;
 
 const ALL_PROJECTS = [...FEATURED_PROJECTS, ...COMPACT_PROJECTS];
 
+type ProjectTitle = (typeof ALL_PROJECTS)[number];
+
 // Exact strings from src/data/data.ts (summaries, descriptions and links).
-const SUMMARIES: Record<string, string> = {
+const SUMMARIES: Record<ProjectTitle, string> = {
   "AI-Powered Resource Planning System":
     "Capacity, dependency and skill constraints run in application code; Gemini adds Zod-validated impact analysis, and planning stays deterministic without it.",
   "AI Product Data Enrichment Pipeline":
@@ -39,7 +41,7 @@ const SUMMARIES: Record<string, string> = {
     "A design-to-code proof of concept: a dashboard composed in Pencil.dev and generated into a working React + Tailwind page through its MCP server.",
 };
 
-const DESCRIPTIONS: Record<string, string> = {
+const DESCRIPTIONS: Record<ProjectTitle, string> = {
   "AI-Powered Resource Planning System":
     "A resource-planning MVP where capacity, dependency and skill constraints are enforced in application code while Gemini provides bounded impact and risk analysis. Zod validates model responses before they reach the React UI, and deterministic planning remains available without AI-generated analysis.",
   "AI Product Data Enrichment Pipeline":
@@ -60,7 +62,7 @@ const DESCRIPTIONS: Record<string, string> = {
     "A design-to-code proof of concept: the dashboard was composed visually in Pencil.dev with its Shadcn template, then generated into a working React + Tailwind page through the Pencil MCP server.",
 };
 
-const GITHUB_LINKS: Record<string, string> = {
+const GITHUB_LINKS: Record<ProjectTitle, string> = {
   "AI-Powered Resource Planning System":
     "https://github.com/ctru0009/resource-planning-system",
   "AI Product Data Enrichment Pipeline":

@@ -17,6 +17,15 @@ interface ImageFacts {
   inDialog: boolean;
 }
 
+interface DialogImageFacts {
+  attrWidth: number;
+  attrHeight: number;
+  naturalWidth: number;
+  naturalHeight: number;
+  renderedWidth: number;
+  renderedHeight: number;
+}
+
 const collectImages = (page: Page) =>
   page.evaluate((): ImageFacts[] =>
     Array.from(document.images).map((img) => {
@@ -158,10 +167,18 @@ test.describe("chrome, metadata and work dates", () => {
     const dialogImage = details.locator("img");
     await expect(dialogImage).toHaveCount(1);
     await expect
-      .poll(async () => dialogImage.evaluate((img) => img.naturalWidth))
+      .poll(async () =>
+        dialogImage.evaluate<number, void, HTMLImageElement>(
+          (img) => img.naturalWidth,
+        ),
+      )
       .toBeGreaterThan(0);
 
-    const dialogFacts = await dialogImage.evaluate((img) => {
+    const dialogFacts = await dialogImage.evaluate<
+      DialogImageFacts,
+      void,
+      HTMLImageElement
+    >((img) => {
       const rect = img.getBoundingClientRect();
       return {
         attrWidth: Number(img.getAttribute("width")),
@@ -208,7 +225,9 @@ test.describe("chrome, metadata and work dates", () => {
     await expect(avatar).toHaveAttribute("height", "140");
     await expect
       .poll(async () =>
-        avatar.evaluate((img) => `${img.naturalWidth}x${img.naturalHeight}`),
+        avatar.evaluate<string, void, HTMLImageElement>(
+          (img) => `${img.naturalWidth}x${img.naturalHeight}`,
+        ),
       )
       .toBe("140x140");
 
