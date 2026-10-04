@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ProjectsData, ProjectInterface } from "../../data/data";
+import { itemId } from "../../data/searchIndex";
 import StepTitle from "../mac/StepTitle";
 import ProjectCard from "./ProjectCard";
 import ProjectPreview from "./ProjectPreview";
@@ -49,6 +50,8 @@ const Projects = () => {
         {featuredProjects.map((project, index) => (
           <li
             key={project.title}
+            id={`project-${itemId(project.title)}`}
+            tabIndex={-1}
             className={index === 0 ? "min-[1000px]:col-span-2" : undefined}
           >
             <ProjectCard
@@ -72,7 +75,11 @@ const Projects = () => {
         className="divide-y-2 divide-ink border-y-2 border-ink"
       >
         {compactProjects.map((project) => (
-          <li key={project.title}>
+          <li
+            key={project.title}
+            id={`project-${itemId(project.title)}`}
+            tabIndex={-1}
+          >
             <ProjectCard
               project={project}
               featured={false}

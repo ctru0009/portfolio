@@ -51,7 +51,7 @@ const Skills = () => {
       <table className="mac-table">
         <tbody>
           {categoryRows.map((row) => (
-            <tr key={row.category}>
+            <tr key={row.category} id={`skill-${row.category}`} tabIndex={-1}>
               <th scope="row">{row.label}</th>
               <td>
                 {skills

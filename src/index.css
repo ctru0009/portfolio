@@ -66,8 +66,7 @@
     -webkit-appearance: none;
   }
 
-  section[id],
-  div[id] {
+  [id] {
     scroll-margin-top: 56px;
   }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
-import { searchIndex } from "../../data/searchIndex";
+import { searchIndex, type SearchIndexEntry } from "../../data/searchIndex";
 import MacDialog from "./MacDialog";
 import SquareButton from "./SquareButton";
 
@@ -43,15 +43,28 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
     )?.scrollIntoView({ block: "nearest" });
   }, [activeIndex, visible]);
 
+  const pendingTarget = useRef<string | null>(null);
+
+  // The dialog restores focus to its opener when it closes, so the landing
+  // element can only take focus once that teardown has run.
+  useEffect(() => {
+    if (open) return;
+    const target = pendingTarget.current;
+    if (target === null) return;
+    pendingTarget.current = null;
+    document.getElementById(target)?.focus({ preventScroll: true });
+  }, [open]);
+
   const handleClose = () => {
     setQuery("");
     setActiveIndex(0);
     onClose();
   };
 
-  const handleSelect = (section: string) => {
+  const handleSelect = (entry: SearchIndexEntry) => {
+    pendingTarget.current = entry.target;
     handleClose();
-    document.getElementById(section)?.scrollIntoView();
+    document.getElementById(entry.target)?.scrollIntoView();
   };
 
   const handleKeyDown = (event: ReactKeyboardEvent<HTMLInputElement>) => {
@@ -65,7 +78,7 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
       setActiveIndex(Math.max(clamped - 1, 0));
     } else if (event.key === "Enter") {
       event.preventDefault();
-      handleSelect(visible[clamped].section);
+      handleSelect(visible[clamped]);
     }
   };
 
@@ -133,7 +146,7 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
               role="option"
               id={`find-option-${index}`}
               aria-selected={index === activeIndex}
-              onClick={() => handleSelect(entry.section)}
+              onClick={() => handleSelect(entry)}
               onMouseEnter={() => setActiveIndex(index)}
               className={`group flex w-full cursor-pointer justify-between gap-3 border-t border-chrome px-2.5 py-[7px] text-left text-11 first:border-t-0 ${
                 index === activeIndex

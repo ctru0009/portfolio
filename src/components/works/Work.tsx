@@ -1,4 +1,5 @@
 import { WorkData } from "../../data/data";
+import { itemId } from "../../data/searchIndex";
 import StepTitle from "../mac/StepTitle";
 import WorkCard from "./WorkCard";
 
@@ -14,7 +15,9 @@ const Work = () => {
 
       <div className="flex flex-col gap-3.5">
         {WorkData.map((work, index) => (
-          <WorkCard key={index} work={work} />
+          <div key={index} id={`work-${itemId(work.company)}`} tabIndex={-1}>
+            <WorkCard work={work} />
+          </div>
         ))}
       </div>
     </div>

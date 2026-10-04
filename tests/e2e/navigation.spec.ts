@@ -485,24 +485,40 @@ test("mobile dropdown marks the active section", async ({ browser }) => {
   await context.close();
 });
 
-test("Find remains section-oriented", async ({ page }) => {
+test("Find lands on the matched entry", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: /Find/ }).first().click();
+
   const dialog = page.getByRole("dialog", { name: "Find" });
   await expect(dialog).toBeVisible();
+
   await dialog.getByRole("combobox", { name: "Search" }).fill("Docker");
+  await expect(dialog.getByRole("option", { name: /^Docker/ })).toHaveCount(2);
+
   await dialog
     .getByRole("option", { name: /^Docker/ })
-    .first()
+    .filter({ hasText: "Skills" })
     .click();
   await expect(dialog).toBeHidden();
   await expect
     .poll(() =>
       page.evaluate(() =>
         Math.round(
-          document.getElementById("skills")!.getBoundingClientRect().top,
+          document.getElementById("skill-cloud")!.getBoundingClientRect().top,
         ),
       ),
     )
     .toBeLessThanOrEqual(64);
+  await expect
+    .poll(() => page.evaluate(() => document.activeElement?.id))
+    .toBe("skill-cloud");
+
+  await page.getByRole("button", { name: /Find/ }).first().click();
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole("combobox", { name: "Search" }).fill("ccswap");
+  await dialog.getByRole("option", { name: /^ccswap/ }).click();
+  await expect(dialog).toBeHidden();
+  await expect
+    .poll(() => page.evaluate(() => document.activeElement?.id))
+    .toBe("project-ccswap");
 });
