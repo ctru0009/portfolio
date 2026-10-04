@@ -490,9 +490,9 @@ test("Find remains section-oriented", async ({ page }) => {
   await page.getByRole("button", { name: /Find/ }).first().click();
   const dialog = page.getByRole("dialog", { name: "Find" });
   await expect(dialog).toBeVisible();
-  await dialog.getByRole("textbox", { name: "Search" }).fill("Docker");
+  await dialog.getByRole("combobox", { name: "Search" }).fill("Docker");
   await dialog
-    .getByRole("button", { name: /^Docker/ })
+    .getByRole("option", { name: /^Docker/ })
     .first()
     .click();
   await expect(dialog).toBeHidden();

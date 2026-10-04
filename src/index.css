@@ -54,6 +54,10 @@
     outline-offset: 4px;
   }
 
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
   section[id],
   div[id] {
     scroll-margin-top: 56px;
