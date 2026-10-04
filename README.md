@@ -74,7 +74,7 @@ npm run preview
 
 ## Deployment
 
-This project is configured for GitHub Pages deployment. Pushing to `main` runs lint → build → deploy via GitHub Actions.
+This project is configured for GitHub Pages deployment. Pushing to `main` runs lint, format check, build and the Playwright suite → deploy via GitHub Actions.
 
 To deploy manually:
 
@@ -102,6 +102,8 @@ portfolio/
 │   ├── assets/            # Fonts and images
 │   └── App.tsx            # Main app component
 ├── index.html             # HTML entry with SEO/social meta
+├── eslint.config.js       # ESLint flat config (type-aware strict rules)
+├── tsconfig.*.json        # App, tooling and test TypeScript projects
 ├── tailwind.config.js     # Design tokens
 ├── package.json           # Dependencies and scripts
 └── vite.config.ts         # Vite configuration
@@ -136,12 +138,18 @@ The project uses TailwindCSS. Customize the design by:
 | `npm run dev`          | Start development server with HMR                                                                |
 | `npm run build`        | Build for production (TypeScript + Vite)                                                         |
 | `npm run preview`      | Preview production build locally                                                                 |
-| `npm run lint`         | Run ESLint                                                                                       |
+| `npm run lint`         | Run ESLint with `--max-warnings 0`                                                               |
 | `npm run format`       | Format all files with Prettier                                                                   |
 | `npm run format:check` | Check formatting with Prettier                                                                   |
-| `npm run check`        | Run lint and the production build                                                                |
+| `npm run check`        | Definition of done: lint plus `tsc -b` (app, tooling and test projects) and the production build |
 | `npm run test:e2e`     | Run the Playwright smoke test (install the browser first with `npx playwright install chromium`) |
 | `npm run deploy`       | Build and deploy to GitHub Pages                                                                 |
+
+## Code Quality
+
+- **Lint**: ESLint flat config with type-aware `strictTypeChecked` rules for `src/**` and `vite.config.ts`, a per-function `complexity` cap of 10, and `--max-warnings 0` so warnings fail the run.
+- **Types**: `tsc -b` type-checks the app, tooling and test projects (`tsconfig.app.json`, `tsconfig.node.json`, `tsconfig.test.json`) — `tests/**` and `playwright.config.ts` included. `src` is pinned to browser-only typings.
+- **Tests**: the Playwright suite (`npm run test:e2e`) covers navigation, content, contact, chrome metadata and axe accessibility, and runs against the built `dist/` — build first.
 
 ## License
 
