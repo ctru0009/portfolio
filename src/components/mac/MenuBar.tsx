@@ -100,7 +100,7 @@ const MenuBar = ({ activeSection }: MenuBarProps) => {
         {menuOpen ? (
           <div
             id="menu-bar-dropdown"
-            className="absolute left-[17px] top-full w-[200px] border-2 border-ink bg-paper shadow-hard-callout min-[800px]:hidden"
+            className="absolute right-[17px] top-full w-[200px] border-2 border-ink bg-paper shadow-hard-callout min-[800px]:hidden"
           >
             <div className="bg-chrome px-2.5 py-2 text-11">
               Open to backend/software engineering roles

@@ -10,9 +10,9 @@ const WorkCard = ({ work }: WorkCardProps) => {
     <article className="border-2 border-ink">
       <div className="flex flex-col gap-0.5 border-b border-ink bg-chrome px-2.5 py-2 text-11 min-[800px]:flex-row min-[800px]:items-center min-[800px]:justify-between min-[800px]:gap-2.5">
         <span>
-          {work.title} — {work.company}
+          {work.title} - {work.company}
         </span>
-        <span className="whitespace-nowrap">{work.period}</span>
+        <span className="whitespace-nowrap tabular-nums">{work.period}</span>
       </div>
 
       <p className="px-2.5 pt-1.5 text-10 text-muted">{work.location}</p>

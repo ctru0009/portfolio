@@ -33,7 +33,7 @@ const Contact = () => {
       await navigator.clipboard.writeText(HeroData.email);
       setCopyFeedback("Email address copied.");
     } catch {
-      setCopyFeedback("Copy failed — use Email me.");
+      setCopyFeedback("Copy failed - use Email me.");
     }
   };
 

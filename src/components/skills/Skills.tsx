@@ -38,6 +38,17 @@ const categoryRows: { label: string; category: Skill["category"] }[] = [
   { label: "Also", category: "also" },
 ];
 
+// Joined once at module scope instead of on every render.
+const skillsByCategory = skills.reduce<Record<Skill["category"], string>>(
+  (joined, skill) => {
+    joined[skill.category] = joined[skill.category]
+      ? `${joined[skill.category]}, ${skill.name}`
+      : skill.name;
+    return joined;
+  },
+  { frontend: "", backend: "", database: "", cloud: "", also: "" },
+);
+
 const Skills = () => {
   return (
     <div id="skills" className="px-[25px] py-6 min-[800px]:px-[30px]">
@@ -51,14 +62,9 @@ const Skills = () => {
       <table className="mac-table">
         <tbody>
           {categoryRows.map((row) => (
-            <tr key={row.category}>
+            <tr key={row.category} id={`skill-${row.category}`} tabIndex={-1}>
               <th scope="row">{row.label}</th>
-              <td>
-                {skills
-                  .filter((skill) => skill.category === row.category)
-                  .map((skill) => skill.name)
-                  .join(" · ")}
-              </td>
+              <td>{skillsByCategory[row.category]}</td>
             </tr>
           ))}
         </tbody>

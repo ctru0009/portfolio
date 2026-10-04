@@ -32,7 +32,7 @@ const ProjectCard = ({
             rel="noopener noreferrer"
             className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
           >
-            GitHub ↗
+            GitHub <span aria-hidden="true">↗</span>
           </a>
           {hasLiveDemo ? (
             <a
@@ -41,7 +41,7 @@ const ProjectCard = ({
               rel="noopener noreferrer"
               className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
             >
-              Live demo ↗
+              Live demo <span aria-hidden="true">↗</span>
             </a>
           ) : null}
           <span aria-hidden="true" className="underline underline-offset-[3px]">
@@ -52,7 +52,7 @@ const ProjectCard = ({
         <button
           type="button"
           onClick={onDetails}
-          aria-label={`Details — ${project.title}`}
+          aria-label={`Details - ${project.title}`}
           className="absolute inset-0 cursor-pointer"
         />
       </article>
@@ -76,7 +76,7 @@ const ProjectCard = ({
             alt={`Screenshot of ${project.title}`}
             loading="lazy"
             decoding="async"
-            className="block h-full w-full object-cover"
+            className="block h-full w-full object-cover grayscale"
           />
         </div>
       ) : null}
@@ -90,7 +90,7 @@ const ProjectCard = ({
           rel="noopener noreferrer"
           className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
         >
-          GitHub ↗
+          GitHub <span aria-hidden="true">↗</span>
         </a>
         {hasLiveDemo ? (
           <a
@@ -99,7 +99,7 @@ const ProjectCard = ({
             rel="noopener noreferrer"
             className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
           >
-            Live demo ↗
+            Live demo <span aria-hidden="true">↗</span>
           </a>
         ) : null}
         <span aria-hidden="true" className="underline underline-offset-[3px]">
@@ -110,7 +110,7 @@ const ProjectCard = ({
       <button
         type="button"
         onClick={onDetails}
-        aria-label={`Details — ${project.title}`}
+        aria-label={`Details - ${project.title}`}
         className="absolute inset-0 cursor-pointer"
       />
     </article>

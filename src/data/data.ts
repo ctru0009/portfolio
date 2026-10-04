@@ -66,7 +66,6 @@ const NavigationData: NavigationInterface[] = [
 ];
 
 const HeroData = {
-  // avatarURL: "https://i.pravatar.cc/300",
   avatarURL: avatar,
   name: "Cong Chuong Truong",
   title: "Software Engineer",
@@ -83,7 +82,7 @@ const AboutData = {
     {
       degree: "Bachelor of Computer Science",
       school: "Monash University",
-      period: "2021–2024",
+      period: "2021-2024",
     },
   ],
 };
@@ -93,7 +92,7 @@ const WorkData: WorkInterface[] = [
     title: "AI Engineer (Contractor)",
     company: "AI Registrar",
     location: "Australia · Remote",
-    period: "2026–Present",
+    period: "2026-Present",
     responsibilities: [
       "Built clinical workflow features across patient triage, provider matching, referrals and clinician-facing AI-assisted experiences in a multi-tenant TypeScript/React/Node.js platform.",
       "Migrated clinical AI workloads to Australian-region AWS Bedrock with workload-specific routing and fail-closed provider and configuration validation.",
@@ -117,7 +116,7 @@ const WorkData: WorkInterface[] = [
     title: "Software Engineer",
     company: "Jung Talents",
     location: "Remote",
-    period: "January 2023–February 2026",
+    period: "January 2023-February 2026",
     responsibilities: [
       "Led the .NET 8 → .NET 9 upgrade across the core API surface, updating dependencies, resolving breaking changes and expanding regression coverage.",
       "Refactored high-traffic ASP.NET Core endpoints using caching and query shaping, improving average dashboard response time by 10%.",
@@ -164,7 +163,7 @@ const ProjectsData: ProjectInterface[] = [
     description:
       "A TypeScript CLI that classifies DummyJSON product records with Gemini. Every model response is Zod-validated; batches retry with backoff; checkpoints and row-level isolation mean a bad row or provider blip does not kill the run.",
     summary:
-      "A TypeScript CLI that Zod-validates every Gemini response, retries with backoff, and isolates failures per row so one bad row can't kill a run.",
+      "A TypeScript CLI that Zod-validates every Gemini response, retries with backoff, and isolates failures per row so one bad row can’t kill a run.",
     image: projectImage6,
     technologies: ["Node.js", "TypeScript", "Gemini API", "Zod", "CSV"],
     githubLink: "https://github.com/ctru0009/ai-enrichment-pipeline",
@@ -174,7 +173,7 @@ const ProjectsData: ProjectInterface[] = [
   {
     title: "VenueOps Lite",
     description:
-      "A catering enquiry workflow where the model interprets and software acts: an OpenRouter tool call turns each Google Sheets row into a schema-validated extraction, deterministic rules enforce notice and minimum-order constraints, and a human approves every reply — with at most one follow-up and an append-only activity log.",
+      "A catering enquiry workflow where the model interprets and software acts: an OpenRouter tool call turns each Google Sheets row into a schema-validated extraction, deterministic rules enforce notice and minimum-order constraints, and a human approves every reply - with at most one follow-up and an append-only activity log.",
     summary:
       "Each Google Sheets enquiry becomes a schema-validated extraction via an OpenRouter tool call; deterministic rules enforce notice and minimum-order constraints, and human approval gates every reply.",
     image: venueOpsImage,
@@ -211,9 +210,9 @@ const ProjectsData: ProjectInterface[] = [
     featured: false,
   },
   {
-    title: "TradeFlow — Electrical Enquiry Intake",
+    title: "TradeFlow - Electrical Enquiry Intake",
     description:
-      "A consultancy-style demo that sits in front of a fictional electrical shop's job system: free text becomes a structured summary, routine jobs are created, incomplete ones park for review, emergency language blocks approval until acknowledged, and quote follow-ups are tracked as explicit state instead of memory.",
+      "A consultancy-style demo that sits in front of a fictional electrical shop’s job system: free text becomes a structured summary, routine jobs are created, incomplete ones park for review, emergency language blocks approval until acknowledged, and quote follow-ups are tracked as explicit state instead of memory.",
     summary:
       "Free-text electrical enquiries become structured jobs; incomplete jobs park for review, and emergency language blocks approval until acknowledged.",
     image: tradeflowImage,

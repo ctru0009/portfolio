@@ -12,7 +12,7 @@ interface MetaBarProps {
 }
 
 export const MacWindow = ({ title, children }: MacWindowProps) => {
-  const [shortTitle] = title.split(" — ");
+  const [shortTitle] = title.split(" - ");
 
   return (
     <div className="border-2 border-ink bg-paper shadow-hard">

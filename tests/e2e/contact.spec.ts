@@ -32,8 +32,8 @@ test.describe("contact", () => {
     await expect(emailMe).toHaveCount(1);
     await expect(emailMe).toHaveAttribute("href", `mailto:${EMAIL}`);
 
-    // The Contact block owns a single mailto action; the reverted sidebar keeps
-    // its own intentional pre-release links (asserted separately).
+    // The Contact block owns a single mailto action; the sidebar keeps its own
+    // intentional pre-release links (asserted separately).
     await expect(contact.locator('a[href^="mailto:"]')).toHaveCount(1);
 
     await expect(
@@ -89,11 +89,11 @@ test.describe("contact", () => {
     const sidebar = page.locator("aside");
     const footer = page.locator("footer");
 
-    // User revision: the pre-release sidebar availability line and links are
-    // intentionally back.
+    // D1: the sidebar's duplicate availability line is removed; the
+    // pre-release links stay intentionally.
     await expect(
       sidebar.getByText("Open to software engineering opportunities"),
-    ).toBeVisible();
+    ).toHaveCount(0);
     await expect(
       sidebar.getByRole("link", { name: "GitHub", exact: true }),
     ).toHaveAttribute("href", GITHUB_URL);
@@ -103,7 +103,7 @@ test.describe("contact", () => {
     await expect(
       sidebar.getByRole("link", { name: "Email", exact: true }),
     ).toHaveAttribute("href", `mailto:${EMAIL}`);
-    await expect(sidebar.getByText(`…or email me — ${EMAIL}`)).toBeVisible();
+    await expect(sidebar.getByText(`…or email me - ${EMAIL}`)).toBeVisible();
 
     // The footer keeps no links or legacy copy of its own.
     await expect(footer.getByRole("link")).toHaveCount(0);
@@ -124,17 +124,17 @@ test.describe("contact", () => {
     ).toHaveCount(0);
   });
 
-  test("shows the pre-release sidebar CV box with the Drive URL", async ({
+  test("shows the pre-release sidebar CV box labelled View CV", async ({
     page,
   }) => {
     const sidebar = page.locator("aside");
-    const downloadCv = sidebar.getByRole("link", {
-      name: "Download CV",
+    const viewCv = sidebar.getByRole("link", {
+      name: "View CV",
       exact: true,
     });
 
-    await expect(downloadCv).toHaveCount(1);
-    await expect(downloadCv).toHaveAttribute("href", RESUME_URL);
+    await expect(viewCv).toHaveCount(1);
+    await expect(viewCv).toHaveAttribute("href", RESUME_URL);
 
     // The release-era Contents list is intentionally gone.
     await expect(sidebar.getByText("Contents", { exact: true })).toHaveCount(0);
@@ -154,12 +154,12 @@ for (const viewport of [
       await page.goto("/");
       await page.evaluate(() => window.scrollTo(0, 0));
 
-      const downloadCv = page
+      const viewCv = page
         .locator("aside")
-        .getByRole("link", { name: "Download CV", exact: true });
-      await expect(downloadCv).toBeInViewport();
+        .getByRole("link", { name: "View CV", exact: true });
+      await expect(viewCv).toBeInViewport();
 
-      const box = await downloadCv.boundingBox();
+      const box = await viewCv.boundingBox();
       expect(box).not.toBeNull();
       expect(box!.y).toBeGreaterThanOrEqual(0);
       expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height);
@@ -210,7 +210,7 @@ test.describe("copy email feedback", () => {
       .getByRole("button", { name: "Copy email address", exact: true })
       .click();
 
-    await expect(status).toHaveText("Copy failed — use Email me.");
+    await expect(status).toHaveText("Copy failed - use Email me.");
     await expect(
       page.locator("#contact").getByText(EMAIL, { exact: true }),
     ).toBeVisible();
@@ -233,7 +233,7 @@ test.describe("copy email feedback", () => {
       .click();
 
     await expect(page.locator("#contact").getByRole("status")).toHaveText(
-      "Copy failed — use Email me.",
+      "Copy failed - use Email me.",
     );
   });
 });
@@ -252,10 +252,12 @@ test.describe("small screens", () => {
       sidebar.getByRole("link", { name: "LinkedIn", exact: true }),
       sidebar.getByRole("link", { name: "Email", exact: true }),
       sidebar.getByRole("link", { name: /or email me/ }),
-      sidebar.getByRole("link", { name: "Download CV", exact: true }),
+      sidebar.getByRole("link", { name: "View CV", exact: true }),
       page.getByRole("link", { name: "Email me", exact: true }),
       page.getByRole("button", { name: "Copy email address", exact: true }),
-      page.getByRole("link", { name: "View CV", exact: true }),
+      page
+        .locator("#contact")
+        .getByRole("link", { name: "View CV", exact: true }),
     ];
 
     for (const target of targets) {

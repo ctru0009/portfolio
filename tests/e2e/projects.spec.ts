@@ -10,7 +10,7 @@ const COMPACT_PROJECTS = [
   "AI-Powered Resource Planning System",
   "AI Product Data Enrichment Pipeline",
   "LLM-Assisted Catalogue QA",
-  "TradeFlow — Electrical Enquiry Intake",
+  "TradeFlow - Electrical Enquiry Intake",
   "pocket-lab",
   "Invoice Approval Dashboard",
 ];
@@ -22,12 +22,12 @@ const SUMMARIES: Record<string, string> = {
   "AI-Powered Resource Planning System":
     "Capacity, dependency and skill constraints run in application code; Gemini adds Zod-validated impact analysis, and planning stays deterministic without it.",
   "AI Product Data Enrichment Pipeline":
-    "A TypeScript CLI that Zod-validates every Gemini response, retries with backoff, and isolates failures per row so one bad row can't kill a run.",
+    "A TypeScript CLI that Zod-validates every Gemini response, retries with backoff, and isolates failures per row so one bad row can’t kill a run.",
   "VenueOps Lite":
     "Each Google Sheets enquiry becomes a schema-validated extraction via an OpenRouter tool call; deterministic rules enforce notice and minimum-order constraints, and human approval gates every reply.",
   "LLM-Assisted Catalogue QA":
     "Deterministic validation runs first; only ambiguous catalogue taxonomy reaches a model, whose Zod-validated suggestion still needs human approval.",
-  "TradeFlow — Electrical Enquiry Intake":
+  "TradeFlow - Electrical Enquiry Intake":
     "Free-text electrical enquiries become structured jobs; incomplete jobs park for review, and emergency language blocks approval until acknowledged.",
   ccswap:
     "A single-binary Go CLI that switches Claude Code between provider profiles; every swap rewrites ~/.claude/settings.json atomically and never touches permissions, MCP servers or other config.",
@@ -45,11 +45,11 @@ const DESCRIPTIONS: Record<string, string> = {
   "AI Product Data Enrichment Pipeline":
     "A TypeScript CLI that classifies DummyJSON product records with Gemini. Every model response is Zod-validated; batches retry with backoff; checkpoints and row-level isolation mean a bad row or provider blip does not kill the run.",
   "VenueOps Lite":
-    "A catering enquiry workflow where the model interprets and software acts: an OpenRouter tool call turns each Google Sheets row into a schema-validated extraction, deterministic rules enforce notice and minimum-order constraints, and a human approves every reply — with at most one follow-up and an append-only activity log.",
+    "A catering enquiry workflow where the model interprets and software acts: an OpenRouter tool call turns each Google Sheets row into a schema-validated extraction, deterministic rules enforce notice and minimum-order constraints, and a human approves every reply - with at most one follow-up and an append-only activity log.",
   "LLM-Assisted Catalogue QA":
     "An n8n-orchestrated catalogue QA workflow that keeps rules and models in their lanes: deterministic validation runs first and only ambiguous taxonomy reaches an OpenAI-compatible model, whose Zod-validated suggestion still waits for human approval.",
-  "TradeFlow — Electrical Enquiry Intake":
-    "A consultancy-style demo that sits in front of a fictional electrical shop's job system: free text becomes a structured summary, routine jobs are created, incomplete ones park for review, emergency language blocks approval until acknowledged, and quote follow-ups are tracked as explicit state instead of memory.",
+  "TradeFlow - Electrical Enquiry Intake":
+    "A consultancy-style demo that sits in front of a fictional electrical shop’s job system: free text becomes a structured summary, routine jobs are created, incomplete ones park for review, emergency language blocks approval until acknowledged, and quote follow-ups are tracked as explicit state instead of memory.",
   ccswap:
     "A single-binary Go CLI that switches Claude Code between provider profiles such as Anthropic, Z.ai, Ollama Cloud and OpenRouter. Every swap rewrites ~/.claude/settings.json atomically and never touches permissions, MCP servers or other config.",
   "pocket-lab":
@@ -68,7 +68,7 @@ const GITHUB_LINKS: Record<string, string> = {
   "VenueOps Lite": "https://github.com/ctru0009/venue-ops",
   "LLM-Assisted Catalogue QA":
     "https://github.com/ctru0009/llm-assisted-catalogue-qa",
-  "TradeFlow — Electrical Enquiry Intake":
+  "TradeFlow - Electrical Enquiry Intake":
     "https://github.com/ctru0009/tradeflow",
   ccswap: "https://github.com/ctru0009/ccswap",
   "pocket-lab": "https://github.com/ctru0009/pocket-lab",
@@ -80,7 +80,7 @@ const GITHUB_LINKS: Record<string, string> = {
 
 const TRADEFLOW_LIVE_DEMO = "https://tradeflow-fawn-three.vercel.app";
 
-const detailsOpenerName = (title: string) => `Details — ${title}`;
+const detailsOpenerName = (title: string) => `Details - ${title}`;
 
 test.describe("projects", () => {
   test.beforeEach(async ({ page }) => {
@@ -236,7 +236,7 @@ test.describe("projects", () => {
         ).toBeVisible();
       }
 
-      if (title === "TradeFlow — Electrical Enquiry Intake") {
+      if (title === "TradeFlow - Electrical Enquiry Intake") {
         await expect(
           dialog.getByRole("link", { name: /^Live/ }),
         ).toHaveAttribute("href", TRADEFLOW_LIVE_DEMO);
@@ -250,6 +250,45 @@ test.describe("projects", () => {
       await expect(dialog).toBeHidden();
       await expect(opener).toBeFocused();
     }
+  });
+
+  test("an open dialog does not scroll the page behind it", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const opener = page.getByRole("button", { name: /^Details/ }).first();
+    await opener.scrollIntoViewIfNeeded();
+    await opener.click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    const before = await page.evaluate(() => window.scrollY);
+    await page.mouse.wheel(0, 800);
+    expect(await page.evaluate(() => window.scrollY)).toBe(before);
+    expect(
+      await page.evaluate(() => getComputedStyle(document.body).overflow),
+    ).toBe("hidden");
+    await page.keyboard.press("Escape");
+    expect(
+      await page.evaluate(() => getComputedStyle(document.body).overflow),
+    ).not.toBe("hidden");
+    expect(await page.evaluate(() => window.scrollY)).toBe(before);
+  });
+
+  test("dialog isolates the page behind it", async ({ page }) => {
+    await page.goto("/");
+    const opener = page.getByRole("button", { name: /^Details/ }).first();
+    await opener.scrollIntoViewIfNeeded();
+    await opener.click();
+    await expect(page.locator("#root")).toHaveAttribute("inert", "");
+    for (let i = 0; i < 12; i++) {
+      await page.keyboard.press("Tab");
+      expect(
+        await page.evaluate(
+          () => document.activeElement?.closest('[role="dialog"]') !== null,
+        ),
+      ).toBe(true);
+    }
+    await page.keyboard.press("Escape");
+    await expect(page.locator("#root")).not.toHaveAttribute("inert", "");
   });
 });
 

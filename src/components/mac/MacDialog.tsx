@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
+import { createPortal } from "react-dom";
 import TitleBar from "./TitleBar";
 
 interface MacDialogProps {
@@ -24,13 +25,18 @@ const MacDialog = ({
 }: MacDialogProps) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
 
   useEffect(() => {
     if (!open) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (event.key !== "Tab" || !dialogRef.current) return;
@@ -61,23 +67,42 @@ const MacDialog = ({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open, onClose]);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
     openerRef.current = document.activeElement as HTMLElement | null;
     const dialog = dialogRef.current;
+    const root = document.getElementById("root");
+    root?.setAttribute("inert", "");
     if (dialog && !dialog.contains(document.activeElement)) {
       (dialog.querySelector<HTMLElement>(FOCUSABLE) ?? dialog).focus({
         preventScroll: true,
       });
     }
-    return () => openerRef.current?.focus({ preventScroll: true });
+    return () => {
+      // Root must be interactive again before focus can return to the opener.
+      root?.removeAttribute("inert");
+      openerRef.current?.focus({ preventScroll: true });
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+    document.body.style.overflow = "hidden";
+    const gap = window.innerWidth - document.documentElement.clientWidth;
+    if (gap > 0) document.body.style.paddingRight = `${gap}px`;
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
+    };
   }, [open]);
 
   if (!open) return null;
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-start justify-center bg-ink/40 px-4 pt-[12vh]"
       onClick={onClose}
@@ -88,6 +113,7 @@ const MacDialog = ({
         aria-modal="true"
         aria-label={title}
         tabIndex={-1}
+        // Container is tabIndex={-1}, focused only when it holds no focusable child; the outline is intentionally suppressed.
         className={`w-full max-w-[520px] border-2 border-ink bg-paper shadow-hard outline-none ${className}`}
         onClick={(event) => event.stopPropagation()}
       >
@@ -103,7 +129,8 @@ const MacDialog = ({
           </div>
         ) : null}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };
 
