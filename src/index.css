@@ -8,6 +8,17 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Departure Fallback";
+  src:
+    local("Menlo"), local("SF Mono"), local("DejaVu Sans Mono"),
+    local("Liberation Mono"), local("Courier New");
+  size-adjust: 105.7%; /* measured in Task 1; Departure = 350/550 em */
+  ascent-override: 100%; /* hhea/OS-2: 550/550 */
+  descent-override: 27.27%; /* 150/550 */
+  line-gap-override: 0%;
+}
+
 @layer base {
   :root {
     color-scheme: light;
@@ -27,7 +38,9 @@
     background-size: 4px 4px;
     color: theme(colors.ink);
     font-size: 13px;
-    font-family: Departure, ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-family:
+      Departure, "Departure Fallback", ui-monospace, "SF Mono", Menlo, Consolas,
+      monospace;
     min-height: 100vh;
   }
 

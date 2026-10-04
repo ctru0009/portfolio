@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         mono: [
           "Departure",
+          "Departure Fallback",
           "ui-monospace",
           "SF Mono",
           "Menlo",
