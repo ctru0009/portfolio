@@ -8,9 +8,7 @@ export default {
         paper: "#fff",
         chrome: "#eee",
         desktop: "#d8d8d8",
-        panel: "#fafafa",
         muted: "#444",
-        dim: "#777",
         faint: "#999",
       },
       fontFamily: {

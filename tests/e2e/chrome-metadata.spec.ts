@@ -204,13 +204,13 @@ test.describe("chrome, metadata and work dates", () => {
 
     const avatar = page.locator('img[alt="Portrait of Cong Chuong Truong"]');
     await expect(avatar).toHaveCount(1);
-    await expect(avatar).toHaveAttribute("width", "280");
-    await expect(avatar).toHaveAttribute("height", "280");
+    await expect(avatar).toHaveAttribute("width", "140");
+    await expect(avatar).toHaveAttribute("height", "140");
     await expect
       .poll(async () =>
         avatar.evaluate((img) => `${img.naturalWidth}x${img.naturalHeight}`),
       )
-      .toBe("280x280");
+      .toBe("140x140");
 
     const box = await avatar.boundingBox();
     expect(box).not.toBeNull();

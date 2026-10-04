@@ -76,7 +76,7 @@ const ProjectCard = ({
             alt={`Screenshot of ${project.title}`}
             loading="lazy"
             decoding="async"
-            className="block h-full w-full object-cover"
+            className="block h-full w-full object-cover grayscale"
           />
         </div>
       ) : null}

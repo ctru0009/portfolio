@@ -66,7 +66,6 @@ const NavigationData: NavigationInterface[] = [
 ];
 
 const HeroData = {
-  // avatarURL: "https://i.pravatar.cc/300",
   avatarURL: avatar,
   name: "Cong Chuong Truong",
   title: "Software Engineer",
