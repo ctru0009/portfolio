@@ -28,9 +28,11 @@ const About = () => {
         guitar.
       </p>
 
-      <p className="text-11 text-muted">
-        Education - {education.degree}, {education.school}, {education.period}
-      </p>
+      {education ? (
+        <p className="text-11 text-muted">
+          Education - {education.degree}, {education.school}, {education.period}
+        </p>
+      ) : null}
     </div>
   );
 };

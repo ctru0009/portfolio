@@ -39,29 +39,24 @@ const MacDialog = ({
         onCloseRef.current();
         return;
       }
-      if (event.key !== "Tab" || !dialogRef.current) return;
+      const dialog = dialogRef.current;
+      if (event.key !== "Tab" || !dialog) return;
 
-      const nodes = Array.from(
-        dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE),
-      );
-      if (nodes.length === 0) {
+      const nodes = Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE));
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (!first || !last) {
         event.preventDefault();
-        dialogRef.current.focus();
+        dialog.focus();
         return;
       }
 
-      const first = nodes[0];
-      const last = nodes[nodes.length - 1];
       const active = document.activeElement;
+      const boundary = event.shiftKey ? first : last;
 
-      if (event.shiftKey) {
-        if (active === first || !dialogRef.current.contains(active)) {
-          event.preventDefault();
-          last.focus();
-        }
-      } else if (active === last || !dialogRef.current.contains(active)) {
+      if (active === boundary || !dialog.contains(active)) {
         event.preventDefault();
-        first.focus();
+        (event.shiftKey ? last : first).focus();
       }
     };
 

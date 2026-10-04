@@ -32,18 +32,22 @@ const Sidebar = () => {
         </p>
         <div className="mt-[19px] flex flex-wrap gap-x-[25px] gap-y-1 border-t-2 border-ink pt-3 min-[800px]:mt-[31px] min-[800px]:block min-[800px]:pt-[15px]">
           <FactRow label="EXPERIENCE">3+ years</FactRow>
-          <FactRow label="CURRENT" layout="stacked">
-            {currentJob.title}
-            {", "}
-            {currentJob.company}
-          </FactRow>
-          <FactRow label="EDUCATION" layout="stacked">
-            {education.degree}
-            {", "}
-            {education.school}
-            {", "}
-            {education.period}
-          </FactRow>
+          {currentJob ? (
+            <FactRow label="CURRENT" layout="stacked">
+              {currentJob.title}
+              {", "}
+              {currentJob.company}
+            </FactRow>
+          ) : null}
+          {education ? (
+            <FactRow label="EDUCATION" layout="stacked">
+              {education.degree}
+              {", "}
+              {education.school}
+              {", "}
+              {education.period}
+            </FactRow>
+          ) : null}
           <FactRow label="LINKS">
             <span className="flex flex-wrap justify-end gap-x-4">
               <a

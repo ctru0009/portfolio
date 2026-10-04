@@ -78,7 +78,9 @@ const FindDialog = ({ open, onClose }: FindDialogProps) => {
       setActiveIndex(Math.max(clamped - 1, 0));
     } else if (event.key === "Enter") {
       event.preventDefault();
-      handleSelect(visible[clamped]);
+      const entry = visible[clamped];
+      if (!entry) return;
+      handleSelect(entry);
     }
   };
 
