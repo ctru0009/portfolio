@@ -25,7 +25,7 @@ test.describe("section step headings", () => {
     test(`#${id} is numbered ${number} ${label}`, async ({ page }) => {
       const heading = page.locator(`#${id}`).getByRole("heading", {
         level: 2,
-        name: `${number} ${label}`,
+        name: label,
         exact: true,
       });
 

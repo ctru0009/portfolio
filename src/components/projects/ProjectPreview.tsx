@@ -27,10 +27,12 @@ const ProjectPreview = ({
         <>
           <SquareButton onClick={onClose}>Close</SquareButton>
           {hasLiveDemo ? (
-            <SquareLink href={project.liveLink}>Live demo ↗</SquareLink>
+            <SquareLink href={project.liveLink}>
+              Live demo <span aria-hidden="true">↗</span>
+            </SquareLink>
           ) : null}
           <SquareLink variant="dark" href={project.githubLink}>
-            GitHub ↗
+            GitHub <span aria-hidden="true">↗</span>
           </SquareLink>
         </>
       }

@@ -32,7 +32,7 @@ const ProjectCard = ({
             rel="noopener noreferrer"
             className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
           >
-            GitHub ↗
+            GitHub <span aria-hidden="true">↗</span>
           </a>
           {hasLiveDemo ? (
             <a
@@ -41,7 +41,7 @@ const ProjectCard = ({
               rel="noopener noreferrer"
               className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
             >
-              Live demo ↗
+              Live demo <span aria-hidden="true">↗</span>
             </a>
           ) : null}
           <span aria-hidden="true" className="underline underline-offset-[3px]">
@@ -90,7 +90,7 @@ const ProjectCard = ({
           rel="noopener noreferrer"
           className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
         >
-          GitHub ↗
+          GitHub <span aria-hidden="true">↗</span>
         </a>
         {hasLiveDemo ? (
           <a
@@ -99,7 +99,7 @@ const ProjectCard = ({
             rel="noopener noreferrer"
             className={`relative z-10 inline-flex min-h-[44px] items-center ${linkClass}`}
           >
-            Live demo ↗
+            Live demo <span aria-hidden="true">↗</span>
           </a>
         ) : null}
         <span aria-hidden="true" className="underline underline-offset-[3px]">
