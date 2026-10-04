@@ -27,6 +27,8 @@
   html {
     scrollbar-color: theme(colors.ink) theme(colors.chrome);
     scrollbar-width: thin;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
@@ -42,6 +44,12 @@
       Departure, "Departure Fallback", ui-monospace, "SF Mono", Menlo, Consolas,
       monospace;
     min-height: 100vh;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  header {
+    padding-top: env(safe-area-inset-top);
   }
 
   ::selection {

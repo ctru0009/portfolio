@@ -78,6 +78,15 @@ test.describe("chrome, metadata and work dates", () => {
     ).toHaveAttribute("content", SOCIAL_IMAGE_ALT);
   });
 
+  test("theme-color metadata is present", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.locator('head meta[name="theme-color"]')).toHaveAttribute(
+      "content",
+      "#ffffff",
+    );
+  });
+
   test("images reserve dimensions and keep their source ratios", async ({
     page,
   }) => {
